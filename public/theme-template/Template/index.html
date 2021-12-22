@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="SEOhub - SEO, Marketing. Social Media, Multipurpose HTML5 Template" />
+    <meta name="author" content="potenzaglobalsolutions.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>SEOhub - SEO, Marketing. Social Media, Multipurpose HTML5 Template</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    
+    <!-- mega menu -->
+    <link rel="stylesheet" type="text/css" href="assets/css/mega-menu/mega_menu.css" />
+    
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
+    
+    <!-- Themify icons -->
+    <link rel="stylesheet" type="text/css" href="assets/css/themify-icons.css" />
+    
+    <!-- owl-carousel -->
+    <link rel="stylesheet" type="text/css" href="assets/css/owl-carousel/owl.carousel.css" />
+
+    <!-- REVOLUTION STYLE SHEETS -->
+    <link rel="stylesheet" type="text/css" href="assets/revolution/css/settings.css">
+
+    <!-- main style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+
+    </head>
+
+<body>
+    <!--=================================
+        loading -->
+    <div id="loading">
+        <div id="loading-center">
+            <img src="assets/images/loader.gif" alt="">
+        </div>
+    </div>
+
+    <a href="http://www.designnominees.com/themes/seohub-multipurpose-html5-template" title="Design Nominees" style="width:70px;height:130px;position:fixed;top:100px;right:0px;z-index:99999;text-indent:-9999px;background: url(http://www.designnominees.com/ribbons/designnominees-ribbon-totd-white-right.png) no-repeat;" target="_blank">Design Nominees</a>
+
+    <a href="http://www.csslight.com/website/20358/SEOhub-Multipurpose-HTML5-Template" title="CSS Light" style="width:84px;height:29px;position:fixed;top:300px;right:0px;z-index:99999;text-indent:-9999px;background: url(http://www.csslight.com/ribbons/small-csslight-ribbon-right.png) no-repeat;" target="_blank">CSS Light Web Gallery</a>
+
+    <a href="" style="background: url(http://webguruawards.com/awards/GOTD/img_guru_of_the_day_gray.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);width:75px;height:111px;position:fixed;top:370px;right:5px;z-index:99999;" target="_blank"></a>
+    
+    <!--=================================
+        loading -->
+    <!--=================================
+        header -->
+    <header id="header" class="transparent">
+            <!--=================================
+                mega menu -->
+            <div class="menu">
+                <!-- menu start -->
+                <nav id="menu" class="mega-menu">
+                    <!-- menu list items container -->
+                    <section class="menu-list-items plr-6">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- menu logo -->
+                                    <ul class="menu-logo">
+                                        <li>
+                                            <a href="index-1.html"><img id="logo_light_img" src="assets/images/logo-light.png" alt="logo"> </a>
+                                        </li>
+                                    </ul>
+                                    <!-- menu links -->
+                                    <ul class="menu-links">
+                                        <!-- active class -->
+                                        <li class="active"><a href="javascript:void(0)"> Home <i class="fa fa-angle-down fa-indicator"></i></a>
+                                            <!-- drop down multilevel  -->
+                                            <ul class="drop-down-multilevel">
+                                            <li><a href="index-1.html">home 01 </a></li>
+                                            <li><a href="index-2.html">home 02</a></li>
+                                            <li><a href="index-3.html">home 03</a></li>
+                                            <li><a href="index-4.html">home 04</a></li>
+                                            <li><a href="index-5.html">home 05</a></li>
+                                        </ul>
+                                        </li>
+                                        <!-- active class -->
+                                        <li><a href="javascript:void(0)"> services <i class="fa fa-angle-down fa-indicator"></i></a>
+                                            <!-- drop down multilevel  -->
+                                            <ul class="drop-down-multilevel">
+                                                <li><a href="service-list-01.html">Service list 01 </a></li>
+                                                <li><a href="service-list-02.html">Service list 02</a></li>
+                                                <li><a href="analytics-services.html">Analytics Services</a></li>
+                                                <li><a href="off-page-optimization.html">Off Page Optimization</a></li>
+                                                <li><a href="boost-your-conversion-rate.html">Boost Your Conversion Rate</a></li>
+                                                <li><a href="search-engine-optimize.html">Search Engine Optimize</a></li>
+                                                <li><a href="social-media-marketing.html">Social Media Marketing</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="javascript:void(0)">Pages <i class="fa fa-angle-down fa-indicator"></i></a>
+                                            <!-- drop down multilevel  -->
+                                            <div class="drop-down menu-bg grid-col-12">
+                                                <!--grid row-->
+                                                <div class="grid-row">
+                                                    <!--grid column 3-->
+                                                    <div class="grid-col-3">
+                                                        <h4>pages</h4>
+														<ul>
+                                                            <li><a href="about-01.html">About us 01 </a></li>
+                                                            <li><a href="about-02.html">About us 02</a></li>
+                                                            <li><a href="faq.html">faq</a></li>
+                                                            <li><a href="login.html">login</a></li>
+                                                            <li><a href="register.html">register</a></li>
+                                                            <li><a href="our-clients.html">our clients</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <!--grid column 3-->
+                                                    <div class="grid-col-3">
+                                                        <h4>pages</h4>
+														<ul>
+                                                            <li><a href="team.html">team</a></li>
+                                                            <li><a href="team-single.html">team single</a></li>
+                                                            <li><a href="error-404.html">error 404</a></li>
+                                                            <li><a href="contact-single-office.html">contact single offices</a></li>
+                                                            <li><a href="contact-multiple-offices.html">contact multiple offices</a></li>
+                                                            <li><a href="free-seo-analysis.html">free-seo-analysis</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <!--grid column 3-->
+                                                    <div class="grid-col-3">
+                                                        <h4>elements</h4>
+														<ul>
+                                                            <li><a href="under-constraction.html">Under constraction</a></li>
+                                                            <li><a href="accordion.html">Accordion</a></li>
+                                                            <li><a href="typography.html">Typography</a></li>
+                                                            <li><a href="buttons.html">Buttons</a></li>
+                                                            <li><a href="pricing-tables.html">Pricing Tables</a></li>
+                                                            <li><a href="tab.html">Tab</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <!--grid column 3-->
+                                                    <div class="grid-col-3">
+                                                        <h4>page title</h4>
+														<ul>
+                                                        <li><a href="page-title-image.html">page title image</a></li>
+                                                        <li><a href="page-title-dark-image.html">page title dark image</a></li>
+                                                        <li><a href="page-title-dark.html">page title dark</a></li>
+                                                        <li><a href="page-title-light.html">page title light</a></li>
+                                                        <li><a href="page-title-fixed.html">page title fixed</a></li>
+                                                        <li><a href="page-title-parallax.html">page title parallax</a></li>
+                                                      </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li><a href="javascript:void(0)">blog <i class="fa fa-angle-down fa-indicator"></i></a>
+                                            <!-- drop down multilevel  -->
+                                            <ul class="drop-down-multilevel">
+                                                <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
+                                                <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
+                                                <li><a href="blog-fullwidth.html">Blog fullwidth</a></li>
+                                                <li><a href="blog-masonry-2-columns.html">Blog masonry 2 columns</a></li>
+                                                <li><a href="blog-masonry-3-columns.html">Blog masonry 3 columns</a></li>
+                                                <li><a href="blog-masonry-4-columns.html">Blog masonry 4 columns</a></li>
+                                                <li><a href="javascript:void(0)">Blog single <i class="fa fa-angle-right fa-indicator"></i></a>
+                                                    <!-- drop down second level -->
+                                                    <ul class="drop-down-multilevel">
+                                                        <li><a href="blog-single-image-post.html">blog single image post</a></li>
+                                                        <li><a href="blog-single-blockquote-post.html">blog single blockquote post</a></li>
+                                                        <li><a href="blog-single-video-post.html">blog single video post</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="javascript:void(0)">Case Studies <i class="fa fa-angle-down fa-indicator"></i></a>
+                                            <!-- drop down multilevel  -->
+                                            <ul class="drop-down-multilevel">
+                                                <li><a href="case-studies-2-columns.html">case studies 2 columns</a></li>
+                                                <li><a href="case-studies-3-columns.html">case studies 3 columns</a></li>
+                                                <li><a href="case-studies-4-columns.html">case studies 4 columns</a></li>
+                                                <li><a href="case-studies-filter.html">case studies filter</a></li>
+                                                <li><a href="case-studies-full-screen.html">case studies full screen</a></li>
+                                                <li><a href="case-studies-single.html">case studies single</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="javascript:void(0)"> Shop <i class="fa fa-angle-down fa-indicator"></i> </a>
+                                        <!-- drop down multilevel  -->
+                                        <ul class="drop-down-multilevel">
+                                            <li><a href="shop.html">Shop</a></li>
+                                            <li><a href="shop-single.html">Shop Single</a></li>
+                                        </ul>
+                                    </li>
+                                        <li><a href="javascript:void(0)"> Contact us <i class="fa fa-angle-down fa-indicator"></i> </a>
+                                            <!-- drop down multilevel  -->
+                                            <ul class="drop-down-multilevel">
+                                                <li><a href="contact-single-office.html">contact single office </a></li>
+                                                <li><a href="contact-multiple-offices.html">contact multiple offices</a></li>
+                                                <li><a href="free-seo-analysis.html">free seo analysis</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="side-menu-main">
+                                            <div class="side-menu">
+                                                <div class="mobile-nav-button">
+                                                    <div class="mobile-nav-button-line"></div>
+                                                    <div class="mobile-nav-button-line"></div>
+                                                    <div class="mobile-nav-button-line"></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </nav>
+                <!-- menu end -->
+            </div>
+        </header>
+    <!--=================================
+header -->
+
+	<!--=================================
+search and side menu content -->
+        <div class="menu-overlay"></div>
+        <div class="side-content" id="scrollbar">
+            <div class="side-content-info">
+                <div class="menu-toggle-hamburger menu-close"><span class="ti-close"> </span></div>
+                <div class="side-logo">
+                    <img class="img-fluid mb-3" src="assets/images/logo-dark.png" alt="">
+                    <p>Culpa molestias mollitia natus labore perspiciatis ipsa lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit aut explicabo mollitia, sed, eos, magni quos laborum dolores ab distinctio voluptates quae ipsam.</p>
+                    <hr class="mt-2 mb-3" />
+                </div>
+                <div class="contact-address">
+                    <div class="address-title mb-3">
+                        <h4 class="mb-1">Office 01</h4>
+                        <p>mollitia omnis fuga, nihil suscipit lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti sit quos.</p>
+                    </div>
+                    <div class="contact-box mb-2">
+                        <div class="contact-icon">
+                            <i class="ti-direction-alt text-blue"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="text-left">
+                                <h6>25, King St. 20170</h6>
+                                <span>Melbourne Australia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-box mb-2">
+                        <div class="contact-icon">
+                            <i class="ti-headphone-alt text-blue"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="text-left">
+                                <h6>0011 234 56789</h6>
+                                <span>Mon-Fri 8:30am-6:30pm</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-box mb-2">
+                        <div class="contact-icon">
+                            <i class="ti-email text-blue"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="text-left">
+                                <h6>info@yoursite.com</h6>
+                                <span>24 X 7 online support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="side-content-image">
+                <img class="img-fluid center-block" src="assets/images/04.png" alt="">
+            </div>
+        </div>
+        <!--=================================
+search and side menu content -->
+
+    <!--=================================
+slider -->
+	<div class="main-banner light-blue-bg">
+        <div class="rocket"><img class="img-fluid" src="assets/images/rocket.gif" alt=""></div>
+        <div class="banner-text text-white">
+        	<h2 class="title text-white">SEOhub - Multipurpose Bootstrap 4 Template</h2>
+            <p>Bootstrap 4 based Powerful Responsive HTML5 Template with 5 stunning home pages The fastest and easiest way to start new projects and startups</p>
+            <a target="_blank" class="button white purchase-btn" href="https://themeforest.net/item/seohub-seo-marketing-social-media-multipurpose-html5-template/20234006/?ref=Potenzaglobalsolutions"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Purchase now</a>
+            <a class="ml-3" href="https://getbootstrap.com/"><img class="img-fluid" src="assets/images/bootstrap-img.png" alt=""></a>
+        </div>
+        <div id="rev_slider_12_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="seo-intro" style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+<!-- START REVOLUTION SLIDER 5.2.6 fullwidth mode -->
+	<div id="rev_slider_12_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.2.6">
+<ul>	<!-- SLIDE  -->
+    <li data-index="rs-20" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+		<!-- MAIN IMAGE -->
+        <img src="assets/revolution/images/bg.png"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
+		<!-- LAYERS -->
+
+		<!-- LAYER NR. 1 -->
+		<div class="tp-caption  tp-resizeme" 
+			 id="slide-20-layer-12" 
+			 data-x="909" 
+			 data-y="302" 
+						data-width="['auto']"
+			data-height="['auto']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="x:50px;opacity:0;s:1080;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:220;" 
+			data-start="10" 
+			data-splitin="none" 
+			data-splitout="none" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 5; white-space: nowrap; font-family:Arial, sans-serif; font-size: 180px; line-height: 180px; font-weight: 800; color: rgba(255, 255, 255, 0.2);">
+<div class="rs-looped rs-slideloop"  data-easing="easeInQuad" data-speed="40" data-xs="750" data-xe="-1700" data-ys="0" data-ye="0">SEOHUB </div></div>
+
+		<!-- LAYER NR. 2 -->
+		<div class="tp-caption   tp-resizeme" 
+			 id="slide-20-layer-1" 
+			 data-x="747" 
+			 data-y="307" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:710;e:Power2.easeInOut;" 
+			 data-transform_out="rZ:0deg;sX:0.7;sY:0.7;opacity:0;s:300;" 
+			 data-mask_out="x:0;y:0;s:inherit;e:inherit;" 
+			data-start="200" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 6;"><img src="assets/revolution/images/effect-4.png" alt="" data-ww="708px" data-hh="432px" data-no-retina> </div>
+
+		<!-- LAYER NR. 3 -->
+		<div class="tp-caption   tp-resizeme rs-parallaxlevel-3" 
+			 id="slide-20-layer-2" 
+			 data-x="901" 
+			 data-y="112" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1150;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="1470" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 7;"><img src="assets/revolution/images/effect-1.png" alt="" data-ww="266px" data-hh="189px" data-no-retina> </div>
+
+		<!-- LAYER NR. 4 -->
+		<div class="tp-caption   tp-resizeme rs-parallaxlevel-1" 
+			 id="slide-20-layer-3" 
+			 data-x="1282" 
+			 data-y="462" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1150;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="1930" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 8;"><img src="assets/revolution/images/effect-2.png" alt="" data-ww="190px" data-hh="200px" data-no-retina> </div>
+
+		<!-- LAYER NR. 5 -->
+		<div class="tp-caption   tp-resizeme rs-parallaxlevel-3" 
+			 id="slide-20-layer-4" 
+			 data-x="778" 
+			 data-y="461" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1150;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="2380" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 9;"><img src="assets/revolution/images/effect-3.png" alt="" data-ww="158px" data-hh="158px" data-no-retina> </div>
+
+		<!-- LAYER NR. 6 -->
+		<div class="tp-caption   tp-resizeme rs-parallaxlevel-2" 
+			 id="slide-20-layer-5" 
+			 data-x="1085" 
+			 data-y="669" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="y:-50px;opacity:0;s:1150;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="2840" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 10;"><img src="assets/revolution/images/effect-5.png" alt="" data-ww="234px" data-hh="234px" data-no-retina> </div>
+
+		<!-- LAYER NR. 7 -->
+		<div class="tp-caption   tp-resizeme" 
+			 id="slide-20-layer-8" 
+			 data-x="680" 
+			 data-y="286" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="x:50px;opacity:0;s:1100;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="1000" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 11;"><img src="assets/revolution/images/effect-6.png" alt="" data-ww="208px" data-hh="164px" data-no-retina> </div>
+
+		<!-- LAYER NR. 8 -->
+		<div class="tp-caption   tp-resizeme rs-parallaxlevel-1" 
+			 id="slide-20-layer-6" 
+			 data-x="751" 
+			 data-y="173" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="x:50px;opacity:0;s:1480;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="1000" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 12;"><img src="assets/revolution/images/tablet.png" alt="" data-ww="568px" data-hh="703px" data-no-retina> </div>
+
+		<!-- LAYER NR. 9 -->
+		<div class="tp-caption   tp-resizeme rs-parallaxlevel-2" 
+			 id="slide-20-layer-7" 
+			 data-x="1132" 
+			 data-y="277" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="x:-50px;opacity:0;s:1490;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="1130" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 13;"><img src="assets/revolution/images/mobile.png" alt="" data-ww="322px" data-hh="437px" data-no-retina> </div>
+
+		<!-- LAYER NR. 10 -->
+		<div class="tp-caption   tp-resizeme rs-parallaxlevel-1" 
+			 id="slide-20-layer-9" 
+			 data-x="1409" 
+			 data-y="311" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="x:-50px;opacity:0;s:1250;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="2000" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 14;"><img src="assets/revolution/images/effect-6.png" alt="" data-ww="147px" data-hh="116px" data-no-retina> </div>
+
+		<!-- LAYER NR. 11 -->
+		<div class="tp-caption   tp-resizeme" 
+			 id="slide-20-layer-10" 
+			 data-x="700" 
+			 data-y="655" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="x:50px;opacity:0;s:1370;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="1660" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 15;"><img src="assets/revolution/images/target-bord.png" alt="" data-ww="202px" data-hh="202px" data-no-retina> </div>
+
+		<!-- LAYER NR. 12 -->
+		<div class="tp-caption   tp-resizeme rs-parallaxlevel-3" 
+			 id="slide-20-layer-11" 
+			 data-x="1373" 
+			 data-y="225" 
+						data-width="['none','none','none','none']"
+			data-height="['none','none','none','none']"
+			data-transform_idle="o:1;"
+ 
+			 data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1340;e:Power2.easeInOut;" 
+			 data-transform_out="opacity:0;s:300;" 
+			data-start="2150" 
+			data-responsive_offset="on" 
+
+			
+			style="z-index: 16;"><img src="assets/revolution/images/rocket.png" alt="" data-ww="112px" data-hh="112px" data-no-retina> </div>
+	</li>
+</ul>
+<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>	</div>
+</div><!-- END REVOLUTION SLIDER -->
+    </div>
+<!--=================================
+slider -->
+
+    <!--=================================
+multi-page -->
+    <section class="demo-sec light-blue-bg page-section-ptb plr-6 sec-relative" id="scroll-buttons">
+        <marquee class="animated-text o-hidden white">Home pages</marquee>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section-title text-center">
+                        <span>stunning Home Demos </span>
+                        <h2 class="mb-3">Multi- Home Layout</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="item demo-1">
+                            <a target="_blank" href="index-1.html">
+                                <div class="item-box">
+                                    <div class="item-inside">
+                                        <span class="demo-img" style="background-image: url(assets/images/demo/home-1.jpg);"></span>
+                                        <img class="lazy" src="assets/images/demo/loading.jpg" data-original="assets/images/demo/home-1.jpg" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="demo-box"><a href="index-1.html">Home Layout 1</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="item demo-2">
+                            <a target="_blank" href="index-2.html">
+                                <div class="item-box">
+                                    <div class="item-inside">
+                                        <span class="demo-img" style="background-image: url(assets/images/demo/home-2.jpg);"></span>
+                                        <img class="lazy" src="assets/images/demo/loading.jpg" data-original="assets/images/demo/home-2.jpg" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="demo-box"><a href="index-2.html">Home Layout 2</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="item demo-3">
+                            <a target="_blank" href="index-3.html">
+                                <div class="item-box">
+                                    <div class="item-inside">
+                                        <span class="demo-img" style="background-image: url(assets/images/demo/home-3.jpg);"></span>
+                                        <img class="lazy" src="assets/images/demo/loading.jpg" data-original="assets/images/demo/home-3.jpg" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="demo-box"><a href="index-3.html">Home Layout 3</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="item demo-4 mb-0">
+                            <a target="_blank" href="index-4.html">
+                                <div class="item-box">
+                                    <div class="item-inside">
+                                        <span class="demo-img" style="background-image: url(assets/images/demo/home-4.jpg);"></span>
+                                        <img class="lazy" src="assets/images/demo/loading.jpg" data-original="assets/images/demo/home-4.jpg" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="demo-box"><a href="index-4.html">Home Layout 4</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="item demo-5 mb-0">
+                            <a target="_blank" href="index-5.html">
+                                <div class="item-box">
+                                    <div class="item-inside">
+                                        <span class="demo-img" style="background-image: url(assets/images/demo/home-5.jpg);"></span>
+                                        <img class="lazy" src="assets/images/demo/loading.jpg" data-original="assets/images/demo/home-5.jpg" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="demo-box"><a href="index-5.html">Home Layout 5</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=================================
+multi-page -->
+
+<!--=================================
+Our FEATURES -->
+	<section class="white-bg page-section-ptb pb-6 plr-6 sec-relative core-fearture">
+	<marquee class="animated-text o-hidden dark">Our Core Features</marquee>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <span>we ARE seohUB AND</span>
+                    <h2 class="text-center">OUR CORE FEATURES</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 feature-item">
+                <div class="feature-box-01 text-left mb-4">
+					<div class="feature-box-img"><img src="assets/images/icon/01.png" alt=""></div>
+					<div class="feature-box-info">
+						<h5 class="mb-2 mt-2">Revolution slider included</h5>
+						<p>Includes revolution slider jquery plugin worth <b>$14</b> which will make your website more impactful.</p>
+					</div>
+				</div>
+            </div>
+            <div class="col-lg-4 col-md-6 feature-item">
+                <div class="feature-box-01 text-left mb-4">
+					<div class="feature-box-img"><img src="assets/images/icon/02.png" alt=""></div>
+					<div class="feature-box-info">
+						<h5 class="mb-2 mt-2">Responsive Mega Drop Down Menu</h5>
+						<p>Horizontal, vertical left, vertical right, 6 drop down animations, multilevel drop down and much more...</p>
+					</div>
+				</div>
+            </div>
+            <div class="col-lg-4 col-md-6 feature-item">
+                <div class="feature-box-01 text-left mb-4">
+					<div class="feature-box-img"><img src="assets/images/icon/03.png" alt=""></div>
+					<div class="feature-box-info">
+						<h5 class="mb-2 mt-2">Fully Responsive & retina ready</h5>
+						<p>Seohub automatically resize to fit the different screen size and make it look great on all device.</p>
+					</div>
+				</div>
+            </div>
+            <div class="col-lg-4 col-md-6 feature-item">
+                <div class="feature-box-01 text-left mb-4">
+					<div class="feature-box-img"><img src="assets/images/icon/04.png" alt=""></div>
+					<div class="feature-box-info">
+						<h5 class="mb-2 mt-2">Support all major Browsers</h5>
+						<p>Seohub support all major browsers like Google Chrome, Mozilla Firefox, Safari, Opera, Internet Explorer 9 and Above.</p>
+					</div>
+				</div>
+            </div>
+            <div class="col-lg-4 col-md-6 feature-item">
+                <div class="feature-box-01 text-left mb-4">
+					<div class="feature-box-img"><img src="assets/images/icon/05.png" alt=""></div>
+					<div class="feature-box-info">
+						<h5 class="mb-2 mt-2">Well organized & customized code</h5>
+						<p>We have built Seohub to be the ultimate HTML5 template with clean, clear, commented and customizable code.</p>
+					</div>
+				</div>
+            </div>
+            <div class="col-lg-4 col-md-6 feature-item">
+                 <div class="feature-box-01 text-left mb-4">
+					<div class="feature-box-img"><img src="assets/images/icon/06.png" alt=""></div>
+					<div class="feature-box-info">
+						<h5 class="mb-2 mt-2">Home layouts options</h5>
+						<p>Seohub has more 5 stunning home page layouts options to choose from. Change as per your requirement.</p>
+					</div>
+				</div>
+            </div>
+            <div class="col-lg-4 col-md-6 feature-item">
+                <div class="feature-box-01 last-1 text-left mb-4">
+					<div class="feature-box-img"><img src="assets/images/icon/07.png" alt=""></div>
+					<div class="feature-box-info">
+						<h5 class="mb-2 mt-2">blog layout options</h5>
+						<p>Each story needs a beautiful design. modern and unique blog layouts including classic and masonary that you can place anywhere</p>
+					</div>
+				</div>
+            </div>
+            <div class="col-lg-4 col-md-6 feature-item">
+                <div class="feature-box-01 last-2 text-left mb-4">
+					<div class="feature-box-img"><img src="assets/images/icon/08.png" alt=""></div>
+					<div class="feature-box-info">
+						<h5 class="mb-2 mt-2">Detailed documentation</h5>
+						<p>Seohub Documentation has been carefully detailed and completed with super easy to understand instructions giving you the full access to all of its features.</p>
+					</div>
+				</div>
+            </div>
+            <div class="col-lg-4 col-md-6 feature-item">
+                <div class="feature-box-01 last-3 text-left mb-4">
+					<div class="feature-box-img"><img src="assets/images/icon/09.png" alt=""></div>
+					<div class="feature-box-info">
+						<h5 class="mb-2 mt-2">Ultimate customizability</h5>
+						<p>Choose the right color, layout, background pattern and background image with our theme customizer module.</p>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=================================
+Our FEATURES -->
+
+<!--=================================
+Multi-Header -->
+	<section class="light-blue-bg page-section-ptb sec-relative plr-0 pb-0">
+	<marquee class="animated-text o-hidden white">50+ Templates</marquee>
+    <div class="container-fluid plr-0">
+        <div class="row">
+        	<div class="col-md-12">
+                <div class="section-title text-center">
+                    <span>Very Easy to Use</span>
+                    <h2 class="text-center">50+ Templates Included</h2>
+                </div>
+            </div>
+            <div class="col-md-12">
+            	<div class="owl-carousel" data-nav-dots="false" data-nav-arrow="false" data-items="4" data-sm-items="3" data-xs-items="2" data-loop="true" data-auto="true" data-space="0">
+					<div class="item"><img class="img-fluid" src="assets/images/shortcode/img1.png" alt=""></div>
+                    <div class="item"><img class="img-fluid" src="assets/images/shortcode/img2.png" alt=""></div>
+                    <div class="item"><img class="img-fluid" src="assets/images/shortcode/img3.png" alt=""></div>
+                    <div class="item"><img class="img-fluid" src="assets/images/shortcode/img4.png" alt=""></div>
+                    <div class="item"><img class="img-fluid" src="assets/images/shortcode/img5.png" alt=""></div>
+                    <div class="item"><img class="img-fluid" src="assets/images/shortcode/img6.png" alt=""></div>
+                    <div class="item"><img class="img-fluid" src="assets/images/shortcode/img7.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+	</section>
+<!--=================================
+Multi-Header -->
+
+<!--=================================
+Multi-Header -->
+	<section class="black-bg page-section-ptb plr-6 sec-relative core-fearture">
+	<marquee class="animated-text o-hidden white2">Our Core Features</marquee>
+    <div class="container-fluid">
+        <div class="row">
+        	<div class="col-md-12">
+                <div class="section-title text-center">
+                    <span>No limits for creativity</span>
+                    <h2 class="text-center text-white">Multiple header styles</h2>
+                </div>
+            </div>
+            <div class="col-md-12">
+            	<div class="owl-carousel" data-nav-dots="false" data-nav-arrow="true" data-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2"  data-loop="true">
+					<div class="item"><img class="img-fluid lazy" src="assets/images/header/loading.jpg" data-original="assets/images/header/style1.jpg" alt=""></div>
+                    <div class="item"><img class="img-fluid lazy" src="assets/images/header/loading.jpg" data-original="assets/images/header/style2.jpg" alt=""></div>
+                    <div class="item"><img class="img-fluid lazy" src="assets/images/header/loading.jpg" data-original="assets/images/header/style3.jpg" alt=""></div>
+                    <div class="item"><img class="img-fluid lazy" src="assets/images/header/loading.jpg" data-original="assets/images/header/style4.jpg" alt=""></div>
+                    <div class="item"><img class="img-fluid lazy" src="assets/images/header/loading.jpg" data-original="assets/images/header/style5.jpg" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+	</section>
+<!--=================================
+Multi-Header -->
+
+<!--=================================
+HIGH QUALITY DOCUMENTATION -->
+<section class="high-documentation sec-relative pt-5 pb-5 white-bg plr-6">
+    <marquee class="animated-text o-hidden dark">DOCUMENTATION</marquee>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-title text-left mt-6">
+                    <h2 class="mb-3">HIGH QUALITY <br>
+                    DOCUMENTATION</h2>
+                    <p class="">Sephub Documentation has been carefully detailed and completed with super easy to understand instructions giving you the full access to all of its features. Our Documentation will give you an understanding of how Seohub is structured and guide you in performing common functions.
+
+Documentation also comes with a lot of code structure to help you. If the documentation is not enough contact us on our support forum.</p>
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+            	<img class="img-fluid" style="display:inline; width:550px" src="assets/images/mockup.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!--=================================
+HIGH QUALITY DOCUMENTATION -->
+
+
+<!--=================================
+Rating -->
+<section class="rating blue-bg">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center">
+            	<div class="rating-block">
+            		<h3 class="title text-white">Don't forget to rate us.</h3>
+                    <ul class="list-inline">
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    </ul>
+            	</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!--=================================
+Rating -->
+
+
+<!--=================================
+Footer-->
+
+<footer class="page-section-ptb footer bg fixed bg-overlay-black-80">
+ <div class="container">
+  <div class="row">
+          <div class="col-md-12">
+            <div class="footer-widget text-center">
+              <h2 class="title text-white">Get Seohub Template Now!</h2>
+              <p class="text-white">All live demo pages are included in the download package <br>with Seohub Documentation</p>
+              <a target="_blank" class="button purchase-btn" href="https://themeforest.net/item/seohub-seo-marketing-social-media-multipurpose-html5-template/20234006/?ref=Potenzaglobalsolutions"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Purchase now</a>
+            </div>
+          </div>
+       </div>
+  </div>
+</footer>
+
+<!--=================================
+Footer-->
+
+<!--=================================
+back to top -->
+ <div class="back-to-top">
+     <span><img src="assets/images/rocket.png" data-src="assets/images/rocket.png" data-hover="assets/images/rocket.gif" alt=""></span>
+ </div>
+<!--=================================
+back to top -->
+
+    <!--=================================
+jquery -->
+    
+    <!-- jquery  -->
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/popper.min.js"></script>
+    
+    <!-- bootstrap -->
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    
+    <!-- mega-menu -->
+    <script type="text/javascript" src="assets/js/mega-menu/mega_menu.js"></script>
+    
+    <!-- owl-carousel -->
+    <script type="text/javascript" src="assets/js/owl-carousel/owl.carousel.min.js"></script>
+
+    <!-- lazyload -->
+    <script type="text/javascript" src="assets/js/jquery.lazyload.min.js"></script>
+    
+    <!-- Hover 3D -->
+    <script type="text/javascript" src="assets/js/jquery.hover3d.min.js"></script>
+    
+    <!-- custom -->
+    <script type="text/javascript" src="assets/js/custom.js"></script>
+    <!-- REVOLUTION JS FILES -->
+    <script type="text/javascript" src="assets/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+    <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    
+    <!-- custom -->
+   <!--  <script type="text/javascript" src="assets/js/custom.js"></script> -->
+    
+
+		<script type="text/javascript">
+						var tpj=jQuery;
+			
+			var revapi12;
+			tpj(document).ready(function() {
+				if(tpj("#rev_slider_12_1").revolution == undefined){
+					revslider_showDoubleJqueryError("#rev_slider_12_1");
+				}else{
+					revapi12 = tpj("#rev_slider_12_1").show().revolution({
+						sliderType:"standard",
+jsFileLocation:"assets/revolution/js",
+						sliderLayout:"fullwidth",
+						dottedOverlay:"none",
+						delay:9000,
+						navigation: {
+							onHoverStop:"off",
+						},
+						visibilityLevels:[1240,1024,778,480],
+						gridwidth:1600,
+						gridheight:900,
+						lazyType:"none",
+						parallax: {
+							type:"mouse",
+							origo:"enterpoint",
+							speed:400,
+							levels:[5,10,15,20,25,30,35,40,45,46,47,48,49,50,51,55],
+							type:"mouse",
+						},
+						shadow:0,
+						spinner:"spinner0",
+						stopLoop:"off",
+						stopAfterLoops:-1,
+						stopAtSlide:-1,
+						shuffle:"off",
+						autoHeight:"off",
+						disableProgressBar:"on",
+						hideThumbsOnMobile:"off",
+						hideSliderAtLimit:0,
+						hideCaptionAtLimit:0,
+						hideAllCaptionAtLilmit:0,
+						debugMode:false,
+						fallbacks: {
+							simplifyAll:"off",
+							nextSlideOnWindowFocus:"off",
+							disableFocusListener:false,
+						}
+					});
+				}
+			});	/*ready*/
+		</script>
+
+<script type="text/javascript">
+    $(function() {
+        $("img.lazy").lazyload({
+            event: "sporty"
+        });
+    });
+    $(window).bind("load", function() {
+        var timeout = setTimeout(function() {
+            $("img.lazy").trigger("sporty")
+        }, 100);
+    });
+</script>
+    
+<script>
+	$(".feature-item").hover3d({
+		selector: ".feature-box-01 ",
+		sensitivity: 10,
+		perspective: 1000,
+		shine: true
+	});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49980377-11', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
