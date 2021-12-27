@@ -33,6 +33,30 @@ class StorePageRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'meta_title' => [
+                'string',
+                'nullable',
+            ],
+            'meta_description' => [
+                'string',
+                'nullable',
+            ],
+            'fb_title' => [
+                'string',
+                'nullable',
+            ],
+            'fb_description' => [
+                'string',
+                'nullable',
+            ],
+            'tw_title' => [
+                'string',
+                'nullable',
+            ],
+            'tw_description' => [
+                'string',
+                'nullable',
+            ],
         ];
     }
 }

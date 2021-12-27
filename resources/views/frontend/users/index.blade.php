@@ -32,16 +32,19 @@
                                         {{ trans('cruds.user.fields.email') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.email_verified_at') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.user.fields.approved') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.verified') }}
+                                        {{ trans('cruds.user.fields.roles') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.roles') }}
+                                        {{ trans('cruds.user.fields.company_name') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.user.fields.phone_number') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.user.fields.avatar') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -61,20 +64,26 @@
                                             {{ $user->email ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->email_verified_at ?? '' }}
-                                        </td>
-                                        <td>
                                             <span style="display:none">{{ $user->approved ?? '' }}</span>
                                             <input type="checkbox" disabled="disabled" {{ $user->approved ? 'checked' : '' }}>
-                                        </td>
-                                        <td>
-                                            <span style="display:none">{{ $user->verified ?? '' }}</span>
-                                            <input type="checkbox" disabled="disabled" {{ $user->verified ? 'checked' : '' }}>
                                         </td>
                                         <td>
                                             @foreach($user->roles as $key => $item)
                                                 <span>{{ $item->title }}</span>
                                             @endforeach
+                                        </td>
+                                        <td>
+                                            {{ $user->company_name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $user->phone_number ?? '' }}
+                                        </td>
+                                        <td>
+                                            @if($user->avatar)
+                                                <a href="{{ $user->avatar->getUrl() }}" target="_blank" style="display: inline-block">
+                                                    <img src="{{ $user->avatar->getUrl('thumb') }}">
+                                                </a>
+                                            @endif
                                         </td>
                                         <td>
                                             @can('user_show')

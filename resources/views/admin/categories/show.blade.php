@@ -96,10 +96,18 @@
                 {{ trans('cruds.post.title') }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#category_projects" role="tab" data-toggle="tab">
+                {{ trans('cruds.project.title') }}
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="category_posts">
             @includeIf('admin.categories.relationships.categoryPosts', ['posts' => $category->categoryPosts])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="category_projects">
+            @includeIf('admin.categories.relationships.categoryProjects', ['projects' => $category->categoryProjects])
         </div>
     </div>
 </div>

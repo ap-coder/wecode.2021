@@ -16,6 +16,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::post('users/media', 'UsersController@storeMedia')->name('users.storeMedia');
+    Route::post('users/ckmedia', 'UsersController@storeCKEditorImages')->name('users.storeCKEditorImages');
     Route::resource('users', 'UsersController');
 
     // Staff
@@ -95,6 +97,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Content Section
     Route::delete('content-sections/destroy', 'ContentSectionController@massDestroy')->name('content-sections.massDestroy');
     Route::resource('content-sections', 'ContentSectionController');
+
+    // Projects
+    Route::delete('projects/destroy', 'ProjectsController@massDestroy')->name('projects.massDestroy');
+    Route::post('projects/media', 'ProjectsController@storeMedia')->name('projects.storeMedia');
+    Route::post('projects/ckmedia', 'ProjectsController@storeCKEditorImages')->name('projects.storeCKEditorImages');
+    Route::resource('projects', 'ProjectsController');
+
+    // Technology
+    Route::delete('technologies/destroy', 'TechnologyController@massDestroy')->name('technologies.massDestroy');
+    Route::resource('technologies', 'TechnologyController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -118,6 +130,8 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
 
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::post('users/media', 'UsersController@storeMedia')->name('users.storeMedia');
+    Route::post('users/ckmedia', 'UsersController@storeCKEditorImages')->name('users.storeCKEditorImages');
     Route::resource('users', 'UsersController');
 
     // Staff
@@ -197,6 +211,16 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Content Section
     Route::delete('content-sections/destroy', 'ContentSectionController@massDestroy')->name('content-sections.massDestroy');
     Route::resource('content-sections', 'ContentSectionController');
+
+    // Projects
+    Route::delete('projects/destroy', 'ProjectsController@massDestroy')->name('projects.massDestroy');
+    Route::post('projects/media', 'ProjectsController@storeMedia')->name('projects.storeMedia');
+    Route::post('projects/ckmedia', 'ProjectsController@storeCKEditorImages')->name('projects.storeCKEditorImages');
+    Route::resource('projects', 'ProjectsController');
+
+    // Technology
+    Route::delete('technologies/destroy', 'TechnologyController@massDestroy')->name('technologies.massDestroy');
+    Route::resource('technologies', 'TechnologyController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

@@ -64,6 +64,66 @@
                             <span class="help-block">{{ trans('cruds.page.fields.slug_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label for="meta_title">{{ trans('cruds.page.fields.meta_title') }}</label>
+                            <input class="form-control" type="text" name="meta_title" id="meta_title" value="{{ old('meta_title', '') }}">
+                            @if($errors->has('meta_title'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('meta_title') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.page.fields.meta_title_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="meta_description">{{ trans('cruds.page.fields.meta_description') }}</label>
+                            <input class="form-control" type="text" name="meta_description" id="meta_description" value="{{ old('meta_description', '') }}">
+                            @if($errors->has('meta_description'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('meta_description') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.page.fields.meta_description_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb_title">{{ trans('cruds.page.fields.fb_title') }}</label>
+                            <input class="form-control" type="text" name="fb_title" id="fb_title" value="{{ old('fb_title', '') }}">
+                            @if($errors->has('fb_title'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('fb_title') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.page.fields.fb_title_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb_description">{{ trans('cruds.page.fields.fb_description') }}</label>
+                            <input class="form-control" type="text" name="fb_description" id="fb_description" value="{{ old('fb_description', '') }}">
+                            @if($errors->has('fb_description'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('fb_description') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.page.fields.fb_description_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="tw_title">{{ trans('cruds.page.fields.tw_title') }}</label>
+                            <input class="form-control" type="text" name="tw_title" id="tw_title" value="{{ old('tw_title', '') }}">
+                            @if($errors->has('tw_title'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('tw_title') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.page.fields.tw_title_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="tw_description">{{ trans('cruds.page.fields.tw_description') }}</label>
+                            <input class="form-control" type="text" name="tw_description" id="tw_description" value="{{ old('tw_description', '') }}">
+                            @if($errors->has('tw_description'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('tw_description') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.page.fields.tw_description_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}
                             </button>

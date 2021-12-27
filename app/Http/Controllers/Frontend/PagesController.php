@@ -54,7 +54,7 @@ class PagesController extends Controller
     {
         abort_if(Gate::denies('page_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $page->load('pagesVideoContents');
+        $page->load('pagesVideoContents', 'pagesPagesections', 'pagesContentSections');
 
         return view('frontend.pages.show', compact('page'));
     }

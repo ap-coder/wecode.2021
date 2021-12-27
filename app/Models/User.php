@@ -13,11 +13,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use SoftDeletes;
     use Notifiable;
+    use InteractsWithMedia;
     use HasFactory;
 
     public $table = 'users';
@@ -25,6 +29,12 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token',
         'password',
+    ];
+
+    protected $appends = [
+        'avatar',
+        'logo',
+        'additional_images',
     ];
 
     protected $dates = [
@@ -45,6 +55,9 @@ class User extends Authenticatable
         'verified_at',
         'verification_token',
         'remember_token',
+        'company_name',
+        'client_type',
+        'phone_number',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -85,6 +98,17 @@ class User extends Authenticatable
         return $this->roles()->where('id', 1)->exists();
     }
 
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
+
+    public function clientProjects()
+    {
+        return $this->hasMany(Project::class, 'client_id', 'id');
+    }
+
     public function getEmailVerifiedAtAttribute($value)
     {
         return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
@@ -120,6 +144,42 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function getAvatarAttribute()
+    {
+        $file = $this->getMedia('avatar')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
+    }
+
+    public function getLogoAttribute()
+    {
+        $file = $this->getMedia('logo')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
+    }
+
+    public function getAdditionalImagesAttribute()
+    {
+        $files = $this->getMedia('additional_images');
+        $files->each(function ($item) {
+            $item->url = $item->getUrl();
+            $item->thumbnail = $item->getUrl('thumb');
+            $item->preview = $item->getUrl('preview');
+        });
+
+        return $files;
     }
 
     protected function serializeDate(DateTimeInterface $date)

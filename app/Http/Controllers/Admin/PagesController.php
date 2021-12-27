@@ -46,6 +46,24 @@ class PagesController extends Controller
             $table->editColumn('title', function ($row) {
                 return $row->title ? $row->title : '';
             });
+            $table->editColumn('meta_title', function ($row) {
+                return $row->meta_title ? $row->meta_title : '';
+            });
+            $table->editColumn('meta_description', function ($row) {
+                return $row->meta_description ? $row->meta_description : '';
+            });
+            $table->editColumn('fb_title', function ($row) {
+                return $row->fb_title ? $row->fb_title : '';
+            });
+            $table->editColumn('fb_description', function ($row) {
+                return $row->fb_description ? $row->fb_description : '';
+            });
+            $table->editColumn('tw_title', function ($row) {
+                return $row->tw_title ? $row->tw_title : '';
+            });
+            $table->editColumn('tw_description', function ($row) {
+                return $row->tw_description ? $row->tw_description : '';
+            });
 
             $table->rawColumns(['actions', 'placeholder']);
 

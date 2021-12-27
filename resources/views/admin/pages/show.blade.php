@@ -63,6 +63,54 @@
                             {{ $page->slug }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.page.fields.meta_title') }}
+                        </th>
+                        <td>
+                            {{ $page->meta_title }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.page.fields.meta_description') }}
+                        </th>
+                        <td>
+                            {{ $page->meta_description }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.page.fields.fb_title') }}
+                        </th>
+                        <td>
+                            {{ $page->fb_title }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.page.fields.fb_description') }}
+                        </th>
+                        <td>
+                            {{ $page->fb_description }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.page.fields.tw_title') }}
+                        </th>
+                        <td>
+                            {{ $page->tw_title }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.page.fields.tw_description') }}
+                        </th>
+                        <td>
+                            {{ $page->tw_description }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

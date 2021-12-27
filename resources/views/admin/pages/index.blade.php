@@ -28,6 +28,24 @@
                         {{ trans('cruds.page.fields.title') }}
                     </th>
                     <th>
+                        {{ trans('cruds.page.fields.meta_title') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.page.fields.meta_description') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.page.fields.fb_title') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.page.fields.fb_description') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.page.fields.tw_title') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.page.fields.tw_description') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -85,6 +103,12 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'title', name: 'title' },
+{ data: 'meta_title', name: 'meta_title' },
+{ data: 'meta_description', name: 'meta_description' },
+{ data: 'fb_title', name: 'fb_title' },
+{ data: 'fb_description', name: 'fb_description' },
+{ data: 'tw_title', name: 'tw_title' },
+{ data: 'tw_description', name: 'tw_description' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
