@@ -25,6 +25,9 @@
                         {{ trans('cruds.page.fields.id') }}
                     </th>
                     <th>
+                      {{ trans('cruds.page.fields.published') }}
+                  </th>
+                    <th>
                         {{ trans('cruds.page.fields.title') }}
                     </th>
                     <th>
@@ -84,6 +87,7 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
+{ data: 'published', name: 'published' },
 { data: 'title', name: 'title' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

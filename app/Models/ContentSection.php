@@ -57,4 +57,14 @@ class ContentSection extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function assign_contentPages()
+    {
+        return $this->belongsToMany(Page::class);
+    }
+
+    public function assign_posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }

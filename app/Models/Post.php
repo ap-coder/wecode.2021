@@ -60,6 +60,9 @@ class Post extends Model implements HasMedia
         'post_password',
         'comment_count',
         'ping_status',
+        'read_time',
+        'video_url',
+        'author_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -73,7 +76,7 @@ class Post extends Model implements HasMedia
 
     public function postsContentSections()
     {
-        return $this->belongsToMany(ContentSection::class);
+        return $this->belongsToMany(ContentSection::class)->orderBy('order', 'ASC');
     }
 
     public function category()

@@ -21,6 +21,7 @@ class Pagesection extends Model
     ];
 
     protected $fillable = [
+        'published',
         'section',
         'section_nickname',
         'order',
@@ -28,6 +29,11 @@ class Pagesection extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', 1);
+    }
 
     public function pages()
     {
@@ -37,5 +43,10 @@ class Pagesection extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function assign_pages()
+    {
+        return $this->belongsToMany(Page::class);
     }
 }

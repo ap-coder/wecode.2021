@@ -9,84 +9,47 @@
     <div class="card-body">
         <form method="POST" action="{{ route("admin.threads.store") }}" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label for="title">{{ trans('cruds.thread.fields.title') }}</label>
-                <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title" id="title" value="{{ old('title', '') }}">
-                @if($errors->has('title'))
-                    <span class="text-danger">{{ $errors->first('title') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.thread.fields.title_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="body">{{ trans('cruds.thread.fields.body') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('body') ? 'is-invalid' : '' }}" name="body" id="body">{!! old('body') !!}</textarea>
-                @if($errors->has('body'))
-                    <span class="text-danger">{{ $errors->first('body') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.thread.fields.body_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <div class="form-check {{ $errors->has('published') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="published" value="0">
-                    <input class="form-check-input" type="checkbox" name="published" id="published" value="1" {{ old('published', 0) == 1 || old('published') === null ? 'checked' : '' }}>
-                    <label class="form-check-label" for="published">{{ trans('cruds.thread.fields.published') }}</label>
-                </div>
-                @if($errors->has('published'))
-                    <span class="text-danger">{{ $errors->first('published') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.thread.fields.published_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="photo">{{ trans('cruds.thread.fields.photo') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('photo') ? 'is-invalid' : '' }}" id="photo-dropzone">
-                </div>
-                @if($errors->has('photo'))
-                    <span class="text-danger">{{ $errors->first('photo') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.thread.fields.photo_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="additional_photos">{{ trans('cruds.thread.fields.additional_photos') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('additional_photos') ? 'is-invalid' : '' }}" id="additional_photos-dropzone">
-                </div>
-                @if($errors->has('additional_photos'))
-                    <span class="text-danger">{{ $errors->first('additional_photos') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.thread.fields.additional_photos_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="attachments">{{ trans('cruds.thread.fields.attachments') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('attachments') ? 'is-invalid' : '' }}" id="attachments-dropzone">
-                </div>
-                @if($errors->has('attachments'))
-                    <span class="text-danger">{{ $errors->first('attachments') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.thread.fields.attachments_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <div class="form-check {{ $errors->has('closed') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="closed" value="0">
-                    <input class="form-check-input" type="checkbox" name="closed" id="closed" value="1" {{ old('closed', 0) == 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="closed">{{ trans('cruds.thread.fields.closed') }}</label>
-                </div>
-                @if($errors->has('closed'))
-                    <span class="text-danger">{{ $errors->first('closed') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.thread.fields.closed_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="slug">{{ trans('cruds.thread.fields.slug') }}</label>
-                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', '') }}">
-                @if($errors->has('slug'))
-                    <span class="text-danger">{{ $errors->first('slug') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.thread.fields.slug_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-danger" type="submit">
-                    {{ trans('global.save') }}
-                </button>
-            </div>
+                           
+<div class="row">
+  <div class="col-7 col-sm-9">
+      <div class="tab-content" id="vert-tabs-right-tabContent">
+          <div class="tab-pane fade show active" id="vert-tabs-right-general" role="tabpanel" aria-labelledby="vert-tabs-right-general-tab">
+              @include('admin.threads.partials.general')
+
+          </div>
+          <div class="tab-pane fade" id="vert-tabs-right-images"    role="tabpanel" aria-labelledby="vert-tabs-right-images-tab">
+              @include('admin.threads.partials.images')
+          </div>           
+       
+          <div class="tab-pane fade" id="vert-tabs-right-settings" role="tabpanel" aria-labelledby="vert-tabs-right-settings-tab">
+              @include('admin.threads.partials.settings')
+          </div>
+
+      </div>
+  </div>
+
+  <div class="col-5 col-sm-3">
+      <div class="nav flex-column nav-tabs nav-tabs-right h-100" id="vert-tabs-right-tab" role="tablist" aria-orientation="vertical">
+
+          <a class="nav-link active" id="vert-tabs-right-general-tab" data-toggle="pill" href="#vert-tabs-right-general" role="tab" aria-controls="vert-tabs-right-general" aria-selected="true">General</a>
+           <a class="nav-link" id="vert-tabs-right-images-tab" data-toggle="pill" href="#vert-tabs-right-images" role="tab" aria-controls="vert-tabs-right-images" aria-selected="true">Images</a>
+          <a class="nav-link" id="vert-tabs-right-settings-tab" data-toggle="pill" href="#vert-tabs-right-settings" role="tab" aria-controls="vert-tabs-right-settings" aria-selected="false">Settings</a>
+
+      </div>
+  </div>
+
+
+
+
+</div>
+
+
+<hr>
+          
+          <div class="form-group">
+            <button class="btn btn-danger" type="submit">
+                {{ trans('global.save') }}
+            </button>
         </form>
     </div>
 </div>

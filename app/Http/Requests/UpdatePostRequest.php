@@ -21,6 +21,10 @@ class UpdatePostRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'slug' => [
+                'string',
+                'required',
+            ],
             'meta_title' => [
                 'string',
                 'nullable',

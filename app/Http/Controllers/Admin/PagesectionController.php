@@ -44,6 +44,9 @@ class PagesectionController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
+            $table->editColumn('published', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+            });
             $table->editColumn('section', function ($row) {
                 return $row->section ? $row->section : '';
             });
@@ -54,7 +57,7 @@ class PagesectionController extends Controller
                 return $row->order ? $row->order : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder']);
+            $table->rawColumns(['actions', 'placeholder','published']);
 
             return $table->make(true);
         }

@@ -9,6 +9,8 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Staff;
+use App\Models\ContentSection;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -73,7 +75,9 @@ class PostController extends Controller
 
         $categories = Category::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.posts.create', compact('categories'));
+        $authors = Staff::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.posts.create', compact('authors','categories'));
     }
 
     public function store(StorePostRequest $request)
@@ -92,6 +96,20 @@ class PostController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $post->id]);
         }
 
+        if ($request->input('body_text', false)) 
+        {
+            $reading_content = strip_tags($post->body_text);
+                //PHP Round fractions up so the sample text post minimum read time is 1 minute
+                $totalReadTm = ceil(str_word_count($reading_content)/220);
+
+                if ($totalReadTm == 1){
+                    $totalReadTm = $totalReadTm;
+                }else{
+                    $totalReadTm = $totalReadTm;
+                }
+                $post->update(['read_time' => $totalReadTm]);
+        }
+
         return redirect()->route('admin.posts.index');
     }
 
@@ -101,9 +119,11 @@ class PostController extends Controller
 
         $categories = Category::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
+        $authors = Staff::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $post->load('category');
 
-        return view('admin.posts.edit', compact('categories', 'post'));
+        return view('admin.posts.edit', compact('authors','categories', 'post'));
     }
 
     public function update(UpdatePostRequest $request, Post $post)
@@ -135,7 +155,25 @@ class PostController extends Controller
             }
         }
 
-        return redirect()->route('admin.posts.index');
+        if ($request->input('body_text', false)) 
+        {
+            $reading_content = strip_tags($post->body_text);
+                //PHP Round fractions up so the sample text post minimum read time is 1 minute
+                $totalReadTm = ceil(str_word_count($reading_content)/220);
+                if ($totalReadTm == 1){
+                    $totalReadTm = $totalReadTm;
+                }else{
+                    $totalReadTm = $totalReadTm;
+                }
+                $post->update(['read_time' => $totalReadTm]);
+        }
+
+
+        if ($request->preview) {
+            echo json_encode($post->slug);
+        } else {
+            return redirect()->route('admin.posts.index');
+        }
     }
 
     public function show(Post $post)
@@ -173,5 +211,44 @@ class PostController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+
+    public function GetPostContentSectionModalForm(Request $request)
+    {
+        $contentSection=ContentSection::find($request->id);
+        $html= view('admin.posts.partials.content-section-modal', compact('contentSection'))->render();
+
+        echo $html;
+    }
+
+    public function AddPostContentSection(Request $request)
+    {
+        if($request->id){
+            $contentSection=ContentSection::find($request->id);
+            $contentSection->update($request->all());
+        }else{
+            $contentSection = ContentSection::create($request->all());
+        }
+
+        $contentSection->assign_posts()->sync($request->input('posts', []));
+
+        $posts = Post::where('id',$request->posts)->first();
+
+        $contentSections=$posts->postsContentSections;
+
+        $html= view('admin.posts.partials.content-section-loop', compact('contentSections'))->render();
+
+        echo $html;
+    }
+
+    public function ChangePostContentSectionOrder(Request $request)
+    {
+        $ids=$request->params;
+        foreach ($ids as $key => $id) {
+            ContentSection::where('id',$id['value'])->update([
+                'order' => $key+1,
+            ]);
+        }
+        echo 1;
     }
 }

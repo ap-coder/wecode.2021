@@ -27,6 +27,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Pages
     Route::delete('pages/destroy', 'PagesController@massDestroy')->name('pages.massDestroy');
     Route::resource('pages', 'PagesController');
+    Route::post('pages/media', 'PagesController@storeMedia')->name('pages.storeMedia');
+    Route::post('pages/ckmedia', 'PagesController@storeCKEditorImages')->name('pages.storeCKEditorImages');
+    Route::post('GetPageContentSectionModalForm', 'PagesController@GetPageContentSectionModalForm');
+	Route::post('AddPageContentSection', 'PagesController@AddPageContentSection');
+	Route::post('ChangePageContentSectionOrder', 'PagesController@ChangePageContentSectionOrder');
+	Route::post('GetPageSectionModalForm', 'PagesController@GetPageSectionModalForm');
+	Route::post('AddPageSection', 'PagesController@AddPageSection');
+	Route::post('ChangePageSectionOrder', 'PagesController@ChangePageSectionOrder');
+	Route::post('AddExistingPageSection', 'PagesController@AddExistingPageSection');
 
     // Category
     Route::delete('categories/destroy', 'CategoryController@massDestroy')->name('categories.massDestroy');
@@ -63,6 +72,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('posts/media', 'PostController@storeMedia')->name('posts.storeMedia');
     Route::post('posts/ckmedia', 'PostController@storeCKEditorImages')->name('posts.storeCKEditorImages');
     Route::resource('posts', 'PostController');
+    Route::post('GetPostContentSectionModalForm', 'PostController@GetPostContentSectionModalForm');
+	Route::post('AddPostContentSection', 'PostController@AddPostContentSection');
+	Route::post('ChangePostContentSectionOrder', 'PostController@ChangePostContentSectionOrder');
 
     // Time Work Type
     Route::delete('time-work-types/destroy', 'TimeWorkTypeController@massDestroy')->name('time-work-types.massDestroy');
@@ -165,6 +177,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::post('posts/media', 'PostController@storeMedia')->name('posts.storeMedia');
     Route::post('posts/ckmedia', 'PostController@storeCKEditorImages')->name('posts.storeCKEditorImages');
     Route::resource('posts', 'PostController');
+    
 
     // Time Work Type
     Route::delete('time-work-types/destroy', 'TimeWorkTypeController@massDestroy')->name('time-work-types.massDestroy');

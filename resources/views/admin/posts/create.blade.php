@@ -9,151 +9,64 @@
     <div class="card-body">
         <form method="POST" action="{{ route("admin.posts.store") }}" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label for="category_id">{{ trans('cruds.post.fields.category') }}</label>
-                <select class="form-control select2 {{ $errors->has('category') ? 'is-invalid' : '' }}" name="category_id" id="category_id">
-                    @foreach($categories as $id => $entry)
-                        <option value="{{ $id }}" {{ old('category_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('category'))
-                    <span class="text-danger">{{ $errors->first('category') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.category_helper') }}</span>
+            
+
+<div class="row">
+    <div class="col-7 col-sm-9">
+        <div class="tab-content" id="vert-tabs-right-tabContent">
+            <div class="tab-pane fade show active" id="vert-tabs-right-general" role="tabpanel" aria-labelledby="vert-tabs-right-general-tab">
+                @include('admin.posts.partials.general')
+
             </div>
-            <div class="form-group">
-                <label class="required" for="title">{{ trans('cruds.post.fields.title') }}</label>
-                <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title" id="title" value="{{ old('title', '') }}" required>
-                @if($errors->has('title'))
-                    <span class="text-danger">{{ $errors->first('title') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.title_helper') }}</span>
+            <div class="tab-pane fade" id="vert-tabs-right-images"    role="tabpanel" aria-labelledby="vert-tabs-right-images-tab">
+                @include('admin.posts.partials.images')
+
             </div>
-            <div class="form-group">
-                <label for="body_text">{{ trans('cruds.post.fields.body_text') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('body_text') ? 'is-invalid' : '' }}" name="body_text" id="body_text">{!! old('body_text') !!}</textarea>
-                @if($errors->has('body_text'))
-                    <span class="text-danger">{{ $errors->first('body_text') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.body_text_helper') }}</span>
+
+
+            <div class="tab-pane fade" id="vert-tabs-right-authorship" role="tabpanel" aria-labelledby="vert-tabs-right-authorship-tab">
+                @include('admin.posts.partials.authorship')
             </div>
-            <div class="form-group">
-                <label for="excerpt">{{ trans('cruds.post.fields.excerpt') }}</label>
-                <textarea class="form-control {{ $errors->has('excerpt') ? 'is-invalid' : '' }}" name="excerpt" id="excerpt">{{ old('excerpt') }}</textarea>
-                @if($errors->has('excerpt'))
-                    <span class="text-danger">{{ $errors->first('excerpt') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.excerpt_helper') }}</span>
+            <div class="tab-pane fade" id="vert-tabs-right-seo"      role="tabpanel" aria-labelledby="vert-tabs-right-seo-tab">
+                @include('admin.posts.partials.seo')
             </div>
-            <div class="form-group">
-                <label for="featured_image">{{ trans('cruds.post.fields.featured_image') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('featured_image') ? 'is-invalid' : '' }}" id="featured_image-dropzone">
-                </div>
-                @if($errors->has('featured_image'))
-                    <span class="text-danger">{{ $errors->first('featured_image') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.featured_image_helper') }}</span>
+
+
+            <div class="tab-pane fade" id="vert-tabs-right-settings" role="tabpanel" aria-labelledby="vert-tabs-right-settings-tab">
+                @include('admin.posts.partials.settings')
             </div>
-            <div class="form-group">
-                <div class="form-check {{ $errors->has('published') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="published" value="0">
-                    <input class="form-check-input" type="checkbox" name="published" id="published" value="1" {{ old('published', 0) == 1 || old('published') === null ? 'checked' : '' }}>
-                    <label class="form-check-label" for="published">{{ trans('cruds.post.fields.published') }}</label>
-                </div>
-                @if($errors->has('published'))
-                    <span class="text-danger">{{ $errors->first('published') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.published_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="contributor">{{ trans('cruds.post.fields.contributor') }}</label>
-                <input class="form-control {{ $errors->has('contributor') ? 'is-invalid' : '' }}" type="text" name="contributor" id="contributor" value="{{ old('contributor', '') }}">
-                @if($errors->has('contributor'))
-                    <span class="text-danger">{{ $errors->first('contributor') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.contributor_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="contributor_link">{{ trans('cruds.post.fields.contributor_link') }}</label>
-                <input class="form-control {{ $errors->has('contributor_link') ? 'is-invalid' : '' }}" type="text" name="contributor_link" id="contributor_link" value="{{ old('contributor_link', '') }}">
-                @if($errors->has('contributor_link'))
-                    <span class="text-danger">{{ $errors->first('contributor_link') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.contributor_link_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="contributor_2">{{ trans('cruds.post.fields.contributor_2') }}</label>
-                <input class="form-control {{ $errors->has('contributor_2') ? 'is-invalid' : '' }}" type="text" name="contributor_2" id="contributor_2" value="{{ old('contributor_2', '') }}">
-                @if($errors->has('contributor_2'))
-                    <span class="text-danger">{{ $errors->first('contributor_2') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.contributor_2_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="contributor_2_link">{{ trans('cruds.post.fields.contributor_2_link') }}</label>
-                <input class="form-control {{ $errors->has('contributor_2_link') ? 'is-invalid' : '' }}" type="text" name="contributor_2_link" id="contributor_2_link" value="{{ old('contributor_2_link', '') }}">
-                @if($errors->has('contributor_2_link'))
-                    <span class="text-danger">{{ $errors->first('contributor_2_link') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.contributor_2_link_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="attachments">{{ trans('cruds.post.fields.attachments') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('attachments') ? 'is-invalid' : '' }}" id="attachments-dropzone">
-                </div>
-                @if($errors->has('attachments'))
-                    <span class="text-danger">{{ $errors->first('attachments') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.attachments_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="menu_order">{{ trans('cruds.post.fields.menu_order') }}</label>
-                <input class="form-control {{ $errors->has('menu_order') ? 'is-invalid' : '' }}" type="number" name="menu_order" id="menu_order" value="{{ old('menu_order', '') }}" step="1">
-                @if($errors->has('menu_order'))
-                    <span class="text-danger">{{ $errors->first('menu_order') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.menu_order_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label>{{ trans('cruds.post.fields.comment_status') }}</label>
-                <select class="form-control {{ $errors->has('comment_status') ? 'is-invalid' : '' }}" name="comment_status" id="comment_status">
-                    <option value disabled {{ old('comment_status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(App\Models\Post::COMMENT_STATUS_SELECT as $key => $label)
-                        <option value="{{ $key }}" {{ old('comment_status', '1') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('comment_status'))
-                    <span class="text-danger">{{ $errors->first('comment_status') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.comment_status_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="post_password">{{ trans('cruds.post.fields.post_password') }}</label>
-                <input class="form-control {{ $errors->has('post_password') ? 'is-invalid' : '' }}" type="password" name="post_password" id="post_password">
-                @if($errors->has('post_password'))
-                    <span class="text-danger">{{ $errors->first('post_password') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.post_password_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="comment_count">{{ trans('cruds.post.fields.comment_count') }}</label>
-                <input class="form-control {{ $errors->has('comment_count') ? 'is-invalid' : '' }}" type="number" name="comment_count" id="comment_count" value="{{ old('comment_count', '0') }}" step="1">
-                @if($errors->has('comment_count'))
-                    <span class="text-danger">{{ $errors->first('comment_count') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.comment_count_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <div class="form-check {{ $errors->has('ping_status') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="ping_status" value="0">
-                    <input class="form-check-input" type="checkbox" name="ping_status" id="ping_status" value="1" {{ old('ping_status', 0) == 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="ping_status">{{ trans('cruds.post.fields.ping_status') }}</label>
-                </div>
-                @if($errors->has('ping_status'))
-                    <span class="text-danger">{{ $errors->first('ping_status') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.post.fields.ping_status_helper') }}</span>
-            </div>
+
+            <div class="tab-pane fade" id="vert-tabs-right-content-section" role="tabpanel" aria-labelledby="vert-tabs-right-content-section-tab">
+          </div>
+        </div>
+    </div>
+
+    <div class="col-5 col-sm-3">
+        <div class="nav flex-column nav-tabs nav-tabs-right h-100" id="vert-tabs-right-tab" role="tablist" aria-orientation="vertical">
+
+            <a class="nav-link active" id="vert-tabs-right-general-tab" data-toggle="pill" href="#vert-tabs-right-general" role="tab" aria-controls="vert-tabs-right-general" aria-selected="true">General</a>
+             <a class="nav-link" id="vert-tabs-right-images-tab" data-toggle="pill" href="#vert-tabs-right-images" role="tab" aria-controls="vert-tabs-right-images" aria-selected="true">Images</a>
+             <a class="nav-link" id="vert-tabs-right-authorship-tab" data-toggle="pill" href="#vert-tabs-right-authorship" role="tab" aria-controls="vert-tabs-right-authorship" aria-selected="false">Authorship</a>
+            <a class="nav-link" id="vert-tabs-right-seo-tab" data-toggle="pill" href="#vert-tabs-right-seo" role="tab" aria-controls="vert-tabs-right-seo" aria-selected="false">SEO META</a>
+
+            <a class="nav-link" id="vert-tabs-right-settings-tab" data-toggle="pill" href="#vert-tabs-right-settings" role="tab" aria-controls="vert-tabs-right-settings" aria-selected="false">Settings</a>
+
+            <a class="nav-link" id="vert-tabs-right-content-section-tab" data-toggle="pill" href="#vert-tabs-right-content-section" role="tab" aria-controls="vert-tabs-right-content-section" aria-selected="false">Content Section</a>
+
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+<hr>
+
+
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
