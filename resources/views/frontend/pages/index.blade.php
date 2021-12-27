@@ -29,6 +29,24 @@
                                         {{ trans('cruds.page.fields.title') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.page.fields.meta_title') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.page.fields.meta_description') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.page.fields.fb_title') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.page.fields.fb_description') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.page.fields.tw_title') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.page.fields.tw_description') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -41,6 +59,24 @@
                                         </td>
                                         <td>
                                             {{ $page->title ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $page->meta_title ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $page->meta_description ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $page->fb_title ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $page->fb_description ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $page->tw_title ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $page->tw_description ?? '' }}
                                         </td>
                                         <td>
                                             @can('page_show')

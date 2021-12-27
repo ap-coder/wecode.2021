@@ -424,6 +424,54 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 104,
+                'title' => 'project_create',
+            ],
+            [
+                'id'    => 105,
+                'title' => 'project_edit',
+            ],
+            [
+                'id'    => 106,
+                'title' => 'project_show',
+            ],
+            [
+                'id'    => 107,
+                'title' => 'project_delete',
+            ],
+            [
+                'id'    => 108,
+                'title' => 'project_access',
+            ],
+            [
+                'id'    => 109,
+                'title' => 'admin_setting_access',
+            ],
+            [
+                'id'    => 110,
+                'title' => 'portfolio_manager_access',
+            ],
+            [
+                'id'    => 111,
+                'title' => 'technology_create',
+            ],
+            [
+                'id'    => 112,
+                'title' => 'technology_edit',
+            ],
+            [
+                'id'    => 113,
+                'title' => 'technology_show',
+            ],
+            [
+                'id'    => 114,
+                'title' => 'technology_delete',
+            ],
+            [
+                'id'    => 115,
+                'title' => 'technology_access',
+            ],
+            [
+                'id'    => 116,
                 'title' => 'profile_password_edit',
             ],
         ];

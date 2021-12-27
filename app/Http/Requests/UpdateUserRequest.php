@@ -32,6 +32,21 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'array',
             ],
+            'company_name' => [
+                'string',
+                'nullable',
+            ],
+            'client_type' => [
+                'string',
+                'nullable',
+            ],
+            'phone_number' => [
+                'string',
+                'nullable',
+            ],
+            'additional_images' => [
+                'array',
+            ],
         ];
     }
 }

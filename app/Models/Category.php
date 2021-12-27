@@ -50,6 +50,11 @@ class Category extends Model implements HasMedia
         return $this->hasMany(Post::class, 'category_id', 'id');
     }
 
+    public function categoryProjects()
+    {
+        return $this->hasMany(Project::class, 'category_id', 'id');
+    }
+
     public function getPhotoAttribute()
     {
         $file = $this->getMedia('photo')->last();
