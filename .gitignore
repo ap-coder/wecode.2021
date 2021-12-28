@@ -15,5 +15,6 @@ storage/*.key
 Homestead.yaml
 Homestead.json
 /.vagrant
-resouces/views/Template
-resouces/views/Template/*
+resources/views/Template
+resources/views/Template/*
+
