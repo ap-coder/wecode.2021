@@ -19,11 +19,11 @@ class UpdateProjectRequest extends FormRequest
         return [
             'name' => [
                 'string',
-                'nullable',
+                'required',
             ],
             'slug' => [
                 'string',
-                'nullable',
+                'required',
             ],
             'start_date' => [
                 'date_format:' . config('panel.date_format'),
