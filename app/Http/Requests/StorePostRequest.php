@@ -23,7 +23,7 @@ class StorePostRequest extends FormRequest
             ],
             'slug' => [
                 'string',
-                'required',
+                'nullable',
             ],
             'contributor' => [
                 'string',

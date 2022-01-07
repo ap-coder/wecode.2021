@@ -138,7 +138,7 @@ if ($('#submitPostForm').valid()) // check if form is valid
             data: formData,
             success: function(resultData) {
               $this.html("{{ trans('global.save_and_preview') }}");
-              window.open("{{ url('about/blog') }}/"+resultData, '_blank'); 
+              window.open("{{ url('blog') }}/"+resultData, '_blank'); 
              }
         });
 

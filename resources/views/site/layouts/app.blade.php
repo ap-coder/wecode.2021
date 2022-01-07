@@ -20,13 +20,7 @@
 
                 <!--================================= header -->
 
-
-                <!--================================= banner -->
-
-@include('site.layouts.partials.slider')
-
-
-                <!--================================= banner -->
+                @yield('content')
 
 
    
@@ -42,7 +36,7 @@
 
                 <!--================================= back to top -->
      <div class="back-to-top">
-         <span><img src="{{ asset('site/{{ asset('site/images/rocket.png') }}') }}" data-src="{{ asset('site/{{ asset('site/images/rocket.png') }}') }}" data-hover="{{ asset('site/images/rocket.gif') }}" alt=""></span>
+         <span><img src="{{ asset('site/images/rocket.png') }}" data-src="{{ asset('site/images/rocket.png') }}" data-hover="{{ asset('site/images/rocket.gif') }}" alt=""></span>
      </div>
 
 

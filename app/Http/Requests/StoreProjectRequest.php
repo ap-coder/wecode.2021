@@ -23,7 +23,7 @@ class StoreProjectRequest extends FormRequest
             ],
             'slug' => [
                 'string',
-                'required',
+                'nullable',
             ],
             'start_date' => [
                 'date_format:' . config('panel.date_format'),

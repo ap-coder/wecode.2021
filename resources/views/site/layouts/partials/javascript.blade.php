@@ -11,6 +11,13 @@
 <!-- owl-carousel -->
 <script type="text/javascript" src="{{ asset('site/js/owl-carousel/owl.carousel.min.js') }}"></script>
 
+
+<!-- isotope -->
+<script type="text/javascript" src="{{ asset('site/js/isotope/isotope.pkgd.min.js') }}"></script>
+
+<!-- magnific -->
+<script type="text/javascript" src="{{ asset('site/js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+
 <!-- revolution -->
 <script type="text/javascript" src="{{ asset('site/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('site/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>

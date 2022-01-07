@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('site/css/themify-icons.css') }}" />
     <!-- owl-carousel -->
     <link rel="stylesheet" type="text/css" href="{{ asset('site/css/owl-carousel/owl.carousel.css') }}" />
+     <!-- magnific-popup -->
+     <link rel="stylesheet" type="text/css" href="{{ asset('site/css/magnific-popup/magnific-popup.css') }}" />
     <!-- revolution -->
     <link rel="stylesheet" type="text/css" href="{{ asset('site/revolution/css/settings.css') }}" />
     <!-- main style -->
