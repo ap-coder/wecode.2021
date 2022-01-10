@@ -33,6 +33,11 @@
 <script type="text/javascript" src="{{ asset('site/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('site/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
  
+    <!-- appear -->
+    <script type="text/javascript" src="{{ asset('site/js/jquery.appear.js') }}"></script>
+   
+    <!-- counter -->
+    <script type="text/javascript" src="{{ asset('site/js/counter/jquery.countTo.js') }}"></script>
 
 <!-- custom -->
 <script type="text/javascript" src="{{ asset('site/js/custom.js') }}"></script>

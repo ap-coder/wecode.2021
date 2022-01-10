@@ -9,12 +9,22 @@ intro-title -->
                     <div class="intro-name">
                         <h3 class="text-white">Portfolio</h3>
                         <ul class="breadcrumb mt-1">
-                            <li class="breadcrumb-item"><a href="{{ url('') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Portfolio</li>
+                                <li class="breadcrumb-item"><a href="{{ url('') }}">Home</a></li>
+                            @if (@$project)
+                                <li class="breadcrumb-item"><a href="{{ route('project.index') }}">Portfolio</a></li>
+                            @endif
+                                <li class="breadcrumb-item active">{{ @$project->name ? $project->name : 'Portfolio' }}</li>
                         </ul>
                     </div>
                     <div class="intro-img">
-                        <img class="img-fluid" src="{{ asset('site/images/breadcrumb/01.png') }}" alt="Banner Image">
+                        
+                        @if($env == 'local')
+                            <img class="img-fluid" src="{{ asset('site/images/breadcrumb/01.png') }}" alt="Banner Image">
+                        @elseif(@$project && @$project->header_image)
+                            <img class="img-fluid" src="{{ $project->header_image->getUrl() }}" alt="Banner Image">
+                        @else
+                            <img class="img-fluid" src="{{ asset('site/images/breadcrumb/01.png') }}" alt="Banner Image">
+                        @endif
                     </div>
                 </div>
             </div>

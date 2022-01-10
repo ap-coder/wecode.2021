@@ -22,8 +22,12 @@ class ProjectsController extends Controller
     }
 
     
-    public function show(Project $project, $slug)
+    public function show($slug)
     {
-        dd($slug);
+        $project = Project::where('slug', $slug)->first();
+
+        $relatedProjects = Project::published()->where('category_id',$project->category_id)->limit(6)->get();
+
+        return view('site.project.show', compact('project','relatedProjects'));
     }
 }
