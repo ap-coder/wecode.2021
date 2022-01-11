@@ -10,6 +10,15 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+use Illuminate\Support\Str;
+use Spatie\Image\Manipulations;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Builder;
+
 class Post extends Model implements HasMedia
 {
     use SoftDeletes;
@@ -40,7 +49,7 @@ class Post extends Model implements HasMedia
 
     protected $fillable = [
         'category_id',
-        'title',
+        'title', 
         'body_text',
         'excerpt',
         'meta_title',
@@ -68,7 +77,18 @@ class Post extends Model implements HasMedia
         'deleted_at',
     ];
 
- 
+   protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            $model->slug = Str::slug($model->title);
+        });
+
+        static::updating(function () {
+            $model->slug = Str::slug($model->title);
+        });        
+    }
 
     public function scopePublished($query)
 	{

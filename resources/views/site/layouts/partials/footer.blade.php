@@ -45,7 +45,7 @@
                 <div class="col-lg-5 col-md-12">
                     <div class="about-content">
                         <h6 class="mb-2">about us</h6>
-                        <p>We attract your potential vistors from search and turn them into your customers.  </p>
+                        <p>We help you attract your potential vistors from search and social media and turn them into your customers.</p>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-12">

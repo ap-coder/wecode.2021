@@ -18,11 +18,10 @@ intro-title -->
                     </div>
                     <div class="intro-img">
                         
-                        @if($env == 'local')
-                            <img class="img-fluid" src="{{ asset('site/images/breadcrumb/01.png') }}" alt="Banner Image">
-                        @elseif(@$project && @$project->header_image)
+                       
+                        @if(@$project && @$project->header_image)
                             <img class="img-fluid" src="{{ $project->header_image->getUrl() }}" alt="Banner Image">
-                        @else
+                        @elseif($env == 'local')
                             <img class="img-fluid" src="{{ asset('site/images/breadcrumb/01.png') }}" alt="Banner Image">
                         @endif
                     </div>
@@ -33,3 +32,4 @@ intro-title -->
 </section>
 <!--=================================
 intro-title -->
+ <img src="//image.thum.io/get/image/fit/600x200/https://codecorp.com" />
