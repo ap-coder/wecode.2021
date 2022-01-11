@@ -18,7 +18,7 @@ case-studies  -->
                     @endforeach
                 </div>
                 <div class="isotope popup-gallery column-3">
-
+ 
              
                     @if ($projects->count()>0)
                         @foreach ($projects as $project)
