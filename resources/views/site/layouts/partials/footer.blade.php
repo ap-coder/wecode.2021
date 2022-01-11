@@ -45,7 +45,7 @@
                 <div class="col-lg-5 col-md-12">
                     <div class="about-content">
                         <h6 class="mb-2">about us</h6>
-                        <p>We attract your potential buyers from search and turn them intoyour customers. Qolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibham liber tempor cum soluta nobis eleifend option. sed diam nonummy nibham liber tempor cum soluta nobis eleifend option.</p>
+                        <p>We attract your potential vistors from search and turn them into your customers.  </p>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-12">
@@ -102,8 +102,8 @@
                             <i class="ti-direction-alt"></i>
                         </div>
                         <div class="contact-info">
-                            <h5>25, King St. 20170</h5>
-                            <span>Melbourne Australia</span>
+                            <h5>Midvale</h5>
+                            <span>Utah United States</span>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                             <i class="ti-headphone-alt"></i>
                         </div>
                         <div class="contact-info">
-                            <h5>0011 234 56789</h5>
+                            <h5>Hours</h5>
                             <span>Mon-Fri 8:30am-6:30pm</span>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                             <i class="ti-email"></i>
                         </div>
                         <div class="contact-info">
-                            <h5>info@yoursite.com</h5>
+                            <h5>wecodelaravel@gmail.com</h5>
                             <span>24 X 7 online support</span>
                         </div>
                     </div>

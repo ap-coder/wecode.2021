@@ -6,15 +6,15 @@
                     <div class="col-md-4">
                         <div class="topbar-left text-center text-md-left">
                             <ul class="list-inline">
-                                <li> <i class="ti-location-pin"> </i> Manhattan, New York</li>
-                                <li> <i class="ti-headphone-alt"></i>+1 234 56789</li>
+                                <li> <i class="ti-location-pin"> </i>Midvale, Utah</li>
+                                <li> <i class="ti-headphone-alt"></i>wecodelaravel@gmail.com</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="topbar-right text-center text-md-right">
                             <ul class="list-inline">
-                                <li><a href="#"> Check your rankings anytime anywhere </a> </li>
+                                <!-- <li><a href="#"> Check your rankings anytime anywhere </a> </li> -->
                                 <li><a href="#"> Register for FREE!</a></li>
                                 <li><a href="#"> Support & FAQ</a></li>
                                 <li><a href="#">Login </a></li>
