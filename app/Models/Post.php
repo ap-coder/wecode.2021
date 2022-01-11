@@ -68,6 +68,19 @@ class Post extends Model implements HasMedia
         'deleted_at',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            $model->slug = str_slug($model->title);
+        });
+
+        static::updating(function () {
+            $model->slug = str_slug($model->title);
+        });        
+    }
+
     public function scopePublished($query)
 	{
 		return $query->where('published', 1);

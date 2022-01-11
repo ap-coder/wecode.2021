@@ -60,6 +60,19 @@ class Page extends Model implements HasMedia
         'fi_content_style',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            $model->slug = str_slug($model->title);
+        });
+
+        static::updating(function () {
+            $model->slug = str_slug($model->title);
+        });        
+    }
+
     public const TITLE_STYLE_SELECT = [
         'text-primary bg-light'   => 'Primary',
         'text-secondary bg-dark'  => 'Secondary',
@@ -99,7 +112,8 @@ class Page extends Model implements HasMedia
         'text-dark bg-light p-2'      => 'Dark BG Light',
     ];
 
-    
+
+
     public function pagesVideoContents()
     {
         return $this->belongsToMany(VideoContent::class);
