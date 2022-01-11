@@ -19,27 +19,25 @@ case-studies  -->
                 </div>
                 <div class="isotope popup-gallery column-3">
 
-                    
+             
                     @if ($projects->count()>0)
                         @foreach ($projects as $project)
                         <div class="grid-item {{ $project->category->slug ?? '' }}">
                             <div class="studies-entry">
                                 <div class="entry-image clearfix">
 
-                                    @if($env == 'local')
-                                        <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
-                                    @elseif($project->featured_image)
-                                        <img class="img-fluid" src="{{ $project->featured_image->getUrl() }}" alt="{{ $project->name }}">
-                                    @else
+                                    
+                                       
+                                    @if($project->featured_image)
+                                        <img class="img-fluid" src="{{ $project->featured_image->getUrl('featured') }}" alt="{{ $project->name }}">
+                                    @elseif($env == 'local')
                                         <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
                                     @endif
 
                                     <div class="entry-overlay">
-                                        @if($env == 'local')
-                                            <a class="popup-img" href="{{ asset('site/images/case-studies/01.jpg') }}"> <span class="ti-zoom-in"></span></a>
-                                        @elseif($project->featured_image)
+                                        @if($project->featured_image)
                                             <a class="popup-img" href="{{ $project->featured_image->getUrl() }}"> <span class="ti-zoom-in"></span></a>
-                                        @else
+                                        @elseif($env == 'local')
                                             <a class="popup-img" href="{{ asset('site/images/case-studies/01.jpg') }}"> <span class="ti-zoom-in"></span></a>
                                         @endif
                                     </div>

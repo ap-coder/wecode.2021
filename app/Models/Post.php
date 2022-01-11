@@ -68,6 +68,8 @@ class Post extends Model implements HasMedia
         'deleted_at',
     ];
 
+ 
+
     public function scopePublished($query)
 	{
 		return $query->where('published', 1);

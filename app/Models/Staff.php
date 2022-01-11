@@ -54,7 +54,7 @@ class Staff extends Model implements HasMedia
         'updated_at',
         'deleted_at',
     ];
-
+ 
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);

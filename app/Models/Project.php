@@ -10,6 +10,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Image\Manipulations;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Builder;
 
 class Project extends Model implements HasMedia
 {
@@ -64,7 +72,7 @@ class Project extends Model implements HasMedia
         'updated_at',
         'deleted_at',
     ];
-
+ 
     public function scopePublished($query)
 	{
 		return $query->where('published', 1);
@@ -74,6 +82,11 @@ class Project extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('portfolio')->fit('crop', 460, 240)->optimize()->sharpen(2);
+        $this->addMediaConversion('featured')->fit('crop', 800, 600);
+        $this->addMediaConversion('solution')->fit('crop', 700, 400);
+        $this->addMediaConversion('challenge')->fit('crop', 700, 400);
+        // $this->addMediaConversion('timeline')->fit(Manipulations::FIT_FILL,470, 250)->sharpen(10)->background('FFFFFF')->nonQueued();
     }
 
     public function projectsTechnologies()
@@ -108,6 +121,7 @@ class Project extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->portfolio   = $file->getUrl('portfolio');
         }
 
         return $file;
@@ -120,6 +134,7 @@ class Project extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->featured  = $file->getUrl('featured');
         }
 
         return $file;
@@ -144,6 +159,7 @@ class Project extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->challenge   = $file->getUrl('challenge');
         }
 
         return $file;
@@ -156,6 +172,7 @@ class Project extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->solution   = $file->getUrl('solution');
         }
 
         return $file;

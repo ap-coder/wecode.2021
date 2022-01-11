@@ -4,18 +4,16 @@
 
 @include('site.project.partials.project-intro')
 
- <!--=================================
-prject single -->
+ <!--================================= prject single -->
 <section class="case-studies single page-section-ptb">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="single-image">
-                    @if($env == 'local')
-                        <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
-                    @elseif($project->featured_image)
+                     
+                    @if($project->featured_image)
                         <img class="img-fluid" src="{{ $project->featured_image->getUrl() }}" alt="{{ $project->name }}">
-                    @else
+                    @elseif($env == 'local')
                         <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
                     @endif
                 </div>
@@ -25,11 +23,11 @@ prject single -->
                     <h4 class="mb-2">{{ $project->name }}</h4>
                     {!! $project->body_content !!}
                     <div class="single-info mt-2">
-                        <h6>clients</h6>
+                        <h6>Client:</h6>
                         <p class="mb-2">{{ $project->client->name ?? '' }}</p>
-                        <h6>Date</h6>
+                        <h6>Date:</h6>
                         <p class="mb-2">{{ date('d M Y',strtotime($project->start_date)) }}</p>
-                        <h6>Project Type</h6>
+                        <h6>Project Type:</h6>
                         <p class="mb-2">{{ App\Models\Project::PROJECT_TYPE_SELECT[$project->project_type] ?? '' }} </p>
                         {{--  <a class="button border" href="#">lauch site </a>  --}}
                     </div>
@@ -46,17 +44,16 @@ prject single -->
                             <div class="banner-image">
                                 <div class="banner-info">
                                     <h4 class="mb-3">CHALLENGE</h4>
-                                    {!! $project->challenges !!}
+                                    {!! $project->challenges ?? '' !!}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        @if($env == 'local')
-                            <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
-                        @elseif($project->challenge_image)
-                            <img class="img-fluid" src="{{ $project->challenge_image->getUrl() }}" alt="{{ $project->name }}">
-                        @else
+ 
+                        @if($project->challenge_image)
+                            <img class="img-fluid" src="{{ $project->challenge_image->getUrl('challenge') }}" alt="{{ $project->name }}">
+                        @elseif($env == 'local')
                             <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
                         @endif
                     </div>
@@ -64,16 +61,15 @@ prject single -->
             </div> 
         @endif
         
-        @if ($project->solutions)
+        @if($project->solutions)
             <hr class="my-5">
             <div class="single-banner">
                 <div class="row">
                     <div class="col-md-6">
-                        @if($env == 'local')
-                            <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
-                        @elseif($project->solution_image)
-                            <img class="img-fluid" src="{{ $project->solution_image->getUrl() }}" alt="{{ $project->name }}">
-                        @else
+     
+                        @if($project->solution_image)
+                            <img class="img-fluid" src="{{ $project->solution_image->getUrl('solution') }}" alt="{{ $project->name }}">
+                        @elseif($env == 'local')
                             <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
                         @endif
                     </div>
@@ -82,7 +78,7 @@ prject single -->
                             <div class="banner-image">
                                 <div class="banner-info">
                                     <h4 class="mb-3">SOLUTION </h4>
-                                    {!! $project->solutions !!}
+                                    {!! $project->solutions ?? '' !!}
                                 </div>
                             </div>
                         </div>
@@ -95,20 +91,16 @@ prject single -->
         
     </div>
 </section>
-<!--=================================
-prject  -->
+<!--================================= prject  -->
 
-<!--=================================
-counter -->
+<!--================================= counter -->
     @include('site.project.partials.counter')
-<!--=================================
-counter -->
+<!--================================= counter -->
 
-<!--=================================
-related-projects -->
+<!--================================= related-projects -->
     @include('site.project.partials.related-projects')
-<!--=================================
-related-projects -->
+
+<!--================================= related-projects -->
 
 
 @endsection

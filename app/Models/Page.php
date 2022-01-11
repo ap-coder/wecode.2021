@@ -61,6 +61,7 @@ class Page extends Model implements HasMedia
         'add_to_sitemap',
         'custom_css',
     ];
+ 
 
     public const TITLE_STYLE_SELECT = [
         'text-primary bg-light'   => 'Primary',
@@ -101,7 +102,8 @@ class Page extends Model implements HasMedia
         'text-dark bg-light p-2'      => 'Dark BG Light',
     ];
 
-    
+
+
     public function pagesVideoContents()
     {
         return $this->belongsToMany(VideoContent::class);

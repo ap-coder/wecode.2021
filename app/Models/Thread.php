@@ -41,6 +41,7 @@ class Thread extends Model implements HasMedia
         'deleted_at',
     ];
 
+ 
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);

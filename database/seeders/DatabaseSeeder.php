@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
         ]);
+        $this->call(ProjectsTableSeeder::class);
+        $this->call(MediaTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
     }
 }
