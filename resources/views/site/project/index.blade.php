@@ -23,7 +23,7 @@ case-studies  -->
                     
                     @if ($projects->count()>0)
                         @foreach ($projects as $project)
-                        <div class="grid-item {{ $project->category->slug }}">
+                        <div class="grid-item {{ $project->category->slug ?? '' }}">
                             <div class="studies-entry">
                                 <div class="entry-image clearfix">
 
@@ -53,7 +53,7 @@ case-studies  -->
                                     </div>
                                     <div class="entry-bottom mt-1 clearfix">
                                         <ul class="entry-tag list-style-none">
-                                            <li><a href="{{ route('project.show', $project->slug ) }}">{{ $project->category->name }}</a></li>
+                                            <li><a href="{{ route('project.show', $project->slug ) }}">{{ $project->category->name ?? '' }}</a></li>
                                         </ul>
                                         {{-- <div class="entry-like float-right">
                                             <a href="#"> <span class="ti-heart"></span></a>

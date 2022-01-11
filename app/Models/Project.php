@@ -74,6 +74,10 @@ class Project extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('portfolio')->fit('crop', 452, 238);
+        $this->addMediaConversion('featured')->fit('crop', 800, 600);
+        $this->addMediaConversion('solution')->fit('crop', 700, 400);
+        $this->addMediaConversion('challenge')->fit('crop', 700, 400);
     }
 
     public function projectsTechnologies()
@@ -108,6 +112,7 @@ class Project extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->portfolio   = $file->getUrl('portfolio');
         }
 
         return $file;
@@ -120,6 +125,7 @@ class Project extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->featured  = $file->getUrl('featured');
         }
 
         return $file;
@@ -144,6 +150,7 @@ class Project extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->challenge   = $file->getUrl('challenge');
         }
 
         return $file;
@@ -156,6 +163,7 @@ class Project extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->solution   = $file->getUrl('solution');
         }
 
         return $file;
