@@ -43,7 +43,7 @@
                         <div class="banner-block">
                             <div class="banner-image">
                                 <div class="banner-info">
-                                    <h4 class="mb-3">CHALLENGE</h4>
+                                    <h4 class="mb-3">CHALLENGES</h4>
                                     {!! $project->challenges ?? '' !!}
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                         <div class="banner-block">
                             <div class="banner-image">
                                 <div class="banner-info">
-                                    <h4 class="mb-3">SOLUTION </h4>
+                                    <h4 class="mb-3">SOLUTIONS</h4>
                                     {!! $project->solutions ?? '' !!}
                                 </div>
                             </div>

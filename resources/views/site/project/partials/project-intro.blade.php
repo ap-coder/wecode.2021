@@ -30,6 +30,4 @@ intro-title -->
         </div>
     </div>
 </section>
-<!--=================================
-intro-title -->
- <img src="//image.thum.io/get/image/fit/600x200/https://codecorp.com" />
+<!--================================= intro-title -->
