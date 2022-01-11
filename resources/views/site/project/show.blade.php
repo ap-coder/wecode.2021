@@ -53,7 +53,7 @@
  
                         @if($project->challenge_image)
                             <img class="img-fluid" src="{{ $project->challenge_image->getUrl('challenge') }}" alt="{{ $project->name }}">
-                        @if($env == 'local')
+                        @elseif($env == 'local')
                             <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
                         @endif
                     </div>

@@ -28,9 +28,6 @@
                         {{ trans('cruds.pagesection.fields.published') }}
                     </th>
                     <th>
-                        {{ trans('cruds.pagesection.fields.section') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.pagesection.fields.section_nickname') }}
                     </th>
                     <th>
@@ -94,7 +91,6 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'published', name: 'published' },
-{ data: 'section', name: 'section' },
 { data: 'section_nickname', name: 'section_nickname' },
 { data: 'order', name: 'order' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }

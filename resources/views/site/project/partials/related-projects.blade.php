@@ -25,17 +25,17 @@
                                         <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $relatedProject->name }}">
                                     @endif
                                     <div class="entry-overlay">
-                                        <a href="{{ route('project.show', $relatedProject->slug ) }}"> <span class="ti-link"></span></a>
+                                        <a href="{{ route('portfolio.show', $relatedProject->slug ) }}"> <span class="ti-link"></span></a>
                                     </div>
                                 </div>
                                 <div class="entry-detail">
                                     <div class="entry-content mb-1">
-                                        <a href="{{ route('project.show', $relatedProject->slug ) }}">{{ $relatedProject->name }}</a>
+                                        <a href="{{ route('portfolio.show', $relatedProject->slug ) }}">{{ $relatedProject->name }}</a>
                                         <p class="mt-1">{{ \Illuminate\Support\Str::limit($relatedProject->intro, $limit = 150, $end = '...') }}</p>
                                     </div>
                                     <div class="entry-bottom mt-1 clearfix">
                                         <ul class="entry-tag list-style-none">
-                                            <li><a href="{{ route('project.show', $relatedProject->slug ) }}">{{ $relatedProject->category->name ?? '' }}</a></li>
+                                            <li><a href="{{ route('portfolio.show', $relatedProject->slug ) }}">{{ $relatedProject->category->name ?? '' }}</a></li>
                                         </ul>
                                         {{--  <div class="entry-like float-right">
                                             <a href="#"> <span class="ti-heart"></span></a>

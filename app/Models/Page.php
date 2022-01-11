@@ -58,6 +58,8 @@ class Page extends Model implements HasMedia
         'title_style',
         'tagline_style',
         'fi_content_style',
+        'add_to_sitemap',
+        'custom_css',
     ];
  
 

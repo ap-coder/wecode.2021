@@ -83,15 +83,66 @@
     </div>
   </div>
   
-  <!-- The add Content Section Modal -->
-  <div class="modal" id="addPageSectionModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-  
-      </div>
+
+<!-- The add Content Section Modal -->
+<div class="modal" id="addPageSectionModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+     
+            <form>
+                @csrf
+              <!-- Modal Header -->
+              <div class="modal-header">
+              <h4 class="modal-title"> Create  {{ trans('cruds.pagesection.title_singular') }}</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body" style="min-height: calc(100vh - 200px);">
+            
+                <div class="form-group">
+                    <div class="form-check {{ $errors->has('published') ? 'is-invalid' : '' }}">
+                        <input type="hidden" name="published" value="0">
+                        <input class="form-check-input" type="checkbox" name="published" id="published" value="1" {{ old('published', 0) === 1 ? 'checked' : '' }}>
+                        <label class="form-check-label" for="published">{{ trans('cruds.pagesection.fields.published') }}</label>
+                    </div>
+                    @if($errors->has('published'))
+                        <span class="text-danger">{{ $errors->first('published') }}</span>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.pagesection.fields.published_helper') }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="addnickname">{{ trans('cruds.pagesection.fields.section_nickname') }}</label>
+                    <input class="form-control {{ $errors->has('section_nickname') ? 'is-invalid' : '' }}" type="text" name="section_nickname" id="addnickname" value="{{ old('section_nickname', '') }}">
+                    @if($errors->has('section_nickname'))
+                        <span class="text-danger">{{ $errors->first('section_nickname') }}</span>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.pagesection.fields.section_nickname_helper') }}</span>
+                </div>
+               
+                <div class="form-group">
+                    <label for="addPageSectionTxt">{{ trans('cruds.pagesection.fields.section') }}</label>
+                    <textarea class="prism-live language-html {{ $errors->has('section') ? 'is-invalid' : '' }} PageSectionTxt" name="section" id="addPageSectionTxt">{{ old('section', '') }}</textarea>
+                    @if($errors->has('section'))
+                        <span class="text-danger">{{ $errors->first('section') }}</span>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.pagesection.fields.section_helper') }}</span>
+                </div>
+                    
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="addsavePageSection">Save</button>
+              </div>
+              </form>
+        
     </div>
   </div>
-  
+</div>
+
   
   
   <!-- The add Existing Page Section Modal -->
@@ -106,17 +157,18 @@
       <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
   
-      <div class="modal-body">
+      <div class="modal-body" style="min-height: calc(100vh - 200px);">
         <div class="form-group">
           <label for="page_sections">Select Existing Sections</label>
-          <div style="padding-bottom: 4px">
+          {{-- <div style="padding-bottom: 4px">
               <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
               <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-          </div>
-          <select class="form-control select2 {{ $errors->has('page_sections') ? 'is-invalid' : '' }}" name="page_sections[]" id="page_sections" multiple style="width: 100%;">
+          </div> --}}
+          <select class="form-control select2 {{ $errors->has('page_sections') ? 'is-invalid' : '' }}" name="page_sections[]" id="page_sections" style="width: 100%;">
               @foreach($page_sections as $id => $page_section)
                 @if(isset($page))
-                  <option value="{{ $id }}" {{ (in_array($id, old('page_sections', [])) || $page->pagesPagesections->contains($id)) ? 'selected' : '' }}>{{ $page_section }}</option>
+                  {{-- <option value="{{ $id }}" {{ (in_array($id, old('page_sections', [])) || $page->pagesPagesections->contains($id)) ? 'selected' : '' }}>{{ $page_section }}</option> --}}
+                  <option value="{{ $id }}">{{ $page_section }}</option>
                 @else
                   <option value="{{ $id }}" {{ in_array($id, old('page_sections', [])) ? 'selected' : '' }}>{{ $page_section }}</option>
                 @endif
@@ -131,6 +183,7 @@
   
       <!-- Modal footer -->
     <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       <button type="button" class="btn btn-info" id="saveExistingPageSection">Save</button>
       </div>
     </form>
@@ -145,28 +198,45 @@
 <script>
     
     $('#use_textonly_header').click(function(){
-      if($(this).prop('checked') == true){
-        $('#use_textonly_header_box').show();
-      }else{
-        $('#use_textonly_header_box').hide();
-      }
-    });
-  
-    $('#use_svg_header').click(function(){
-      if($(this).prop('checked') == true){
-        $('#use_svg_header_box').show();
-      }else{
-        $('#use_svg_header_box').hide();
-      }
-    });
-  
-    $('#use_featured_image_header').click(function(){
-      if($(this).prop('checked') == true){
-        $('#use_featured_image_header_box').show();
-      }else{
-        $('#use_featured_image_header_box').hide();
-      }
-    });
+    if($(this).prop('checked') == true){
+      $('#use_textonly_header_box').show();
+      $('#use_featured_image_header_box').hide();
+      $('#use_svg_header_box').hide();
+
+      $('#use_svg_header').prop('checked',false);
+      $('#use_featured_image_header').prop('checked',false);
+    }else{
+      $('#use_textonly_header_box').hide();
+    }
+  });
+
+  $('#use_svg_header').click(function(){
+    if($(this).prop('checked') == true){
+      $('#use_featured_image_header_box').show();
+      $('#use_textonly_header_box').hide();
+      $('#use_svg_header_box').hide();
+
+      $('#use_textonly_header').prop('checked',false);
+      $('#use_featured_image_header').prop('checked',false);
+    }else{
+      $('#use_featured_image_header_box').hide();
+    }
+  });
+
+  $('#use_featured_image_header').click(function(){
+    if($(this).prop('checked') == true){
+
+      $('#use_featured_image_header_box').hide();
+      $('#use_textonly_header_box').show();
+      $('#use_svg_header_box').show();
+
+      $('#use_textonly_header').prop('checked',false);
+      $('#use_svg_header').prop('checked',false);
+    }else{
+      $('#use_textonly_header_box').hide();
+      $('#use_svg_header_box').hide();
+    }
+  });
   
     $('#save-and-preview').click(function(){
     
@@ -251,6 +321,34 @@
       
 <script>
   
+$(document.body).on('click', '.clearAllExisting' ,function(){
+  
+  if (confirm('Are you sure you want to clear all existing page sections!')) {
+    $this=$(this);
+    $loader='<div class="spinner-border text-dark" role="status">'+
+      '<span class="sr-only">Loading...</span>'+
+      '</div>';
+      $this.html($loader);
+
+      var pid=$('#page_id').val();
+
+      
+    var _token = $('input[name="_token"]').val();
+      $.ajax({
+        url:'{{ url("/admin/clearAllExistingPageSection") }}',
+        method:"POST",
+        data: {pages:pid,_token:_token},
+        success:function(response) {
+          $this.html('Clear all existing');
+          $('#pageSectionBody').html(response);
+          $('#addExistingPageSectionModal').modal('hide');
+          $('#addExistingPageSectionModal form')[0].reset();
+        }
+      })
+  }
+
+});
+
     $(document.body).on('click', '#saveExistingPageSection' ,function(){
     
     $this=$(this);
@@ -296,34 +394,34 @@
             }
         });
       
-      $(document.body).on('click', '.addPageSection' ,function(){
+      // $(document.body).on('click', '.addPageSection' ,function(){
       
-      var _token = $('input[name="_token"]').val();
-            $.ajax({
-              url:'{{ url("/admin/GetPageSectionModalForm") }}',
-              method:"POST",
-              data: {_token:_token},
-              success:function(response) {
-                $('#addPageSectionModal .modal-content').html(response);
-                $('#addPageSectionModal').modal('show');
-              }
-            })
-      });
+      // var _token = $('input[name="_token"]').val();
+      //       $.ajax({
+      //         url:'{{ url("/admin/GetPageSectionModalForm") }}',
+      //         method:"POST",
+      //         data: {_token:_token},
+      //         success:function(response) {
+      //           $('#addPageSectionModal .modal-content').html(response);
+      //           $('#addPageSectionModal').modal('show');
+      //         }
+      //       })
+      // });
       
-      $(document.body).on('click', '.editPageSection' ,function(){
+      // $(document.body).on('click', '.editPageSection' ,function(){
       
-      var id=$(this).attr('myid');
-      var _token = $('input[name="_token"]').val();
-              $.ajax({
-                url:'{{ url("/admin/GetPageSectionModalForm") }}',
-                method:"POST",
-                data: {id:id,_token:_token},
-                success:function(response) {
-                  $('#addPageSectionModal .modal-content').html(response);
-                  $('#addPageSectionModal').modal('show');
-                }
-              })
-      });
+      // var id=$(this).attr('myid');
+      // var _token = $('input[name="_token"]').val();
+      //         $.ajax({
+      //           url:'{{ url("/admin/GetPageSectionModalForm") }}',
+      //           method:"POST",
+      //           data: {id:id,_token:_token},
+      //           success:function(response) {
+      //             $('#addPageSectionModal .modal-content').html(response);
+      //             $('#addPageSectionModal').modal('show');
+      //           }
+      //         })
+      // });
       
         
             $(document.body).on('click', '#savePageSection' ,function(){
@@ -333,12 +431,30 @@
                   '</div>';
           $this.html($loader);
           
-            var pid=$('#page_id').val();
-            var nickname=$('#section_nickname').val();
-            var formdata=$('#addPageSectionModal form').serialize()+'&contentPages='+pid;
       
+        var page_section_id=$(this).attr('pid');
+        var pid=$('#page_id').val();
+        var nickname=$('#nickname'+page_section_id).val();
+        var PageSectionTxt=$('#PageSectionTxt'+page_section_id).val();
+        var published=0;
+        if ($('#published'+page_section_id).prop("checked"))
+        {
+          var published=1;
+        }
+        var _token = $('input[name="_token"]').val();
+        var formdata={
+          id:page_section_id,
+          contentPages:pid,
+          section:PageSectionTxt,
+          section_nickname:nickname,
+          published:published,
+          _token:_token
+        };
+
+        // console.log(formdata);
+
             if(nickname){
-              var _token = $('input[name="_token"]').val();
+              
                   $.ajax({
                     url:'{{ url("/admin/AddPageSection") }}',
                     method:"POST",
@@ -346,13 +462,41 @@
                     success:function(response) {
                       $this.html('Save');
                       $('#pageSectionBody').html(response);
-                      $('#addPageSectionModal').modal('hide');
-                      $('#addPageSectionModal form')[0].reset();
+                      $('#editPageSectionModal'+page_section_id).modal('hide');
+                      location.reload();
                     }
                   })
             }
           });
       
+          $(document.body).on('click', '#addsavePageSection' ,function(){
+          $this=$(this);
+  $loader='<div class="spinner-border text-dark" role="status">'+
+              '<span class="sr-only">Loading...</span>'+
+              '</div>';
+      $this.html($loader);
+      
+        var pid=$('#page_id').val();
+        var nickname=$('#addnickname').val();
+        var formdata=$('#addPageSectionModal form').serialize()+'&contentPages='+pid;
+  
+        if(nickname){
+          var _token = $('input[name="_token"]').val();
+              $.ajax({
+                url:'{{ url("/admin/AddPageSection") }}',
+                method:"POST",
+                data: formdata,
+                success:function(response) {
+                  $this.html('Save');
+                  $('#pageSectionBody').html(response);
+                  $('#addPageSectionModal').modal('hide');
+                  $('#addPageSectionModal form')[0].reset();
+                  location.reload();
+                }
+              })
+        }
+      });
+
       </script>
     
   

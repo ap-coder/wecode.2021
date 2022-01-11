@@ -19,6 +19,10 @@
     <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+
+    <link href="{{ asset('admin/css/prism.css') }}" rel="stylesheet" />
+		<link href="{{ asset('admin/css/prism-live.css') }}" rel="stylesheet" />
+
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet" />
     @yield('styles')
@@ -109,6 +113,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+
+    
+{{-- <script src="https://blissfuljs.com/bliss.shy.min.js"></script> --}}
+<script src="{{ asset('admin/js/bliss.shy.min.js') }}"></script>
+<script src="{{ asset('admin/js/prism.js') }}"></script>
+<script src="{{ asset('admin/js/prism-live.js') }}"></script>
+<script src="{{ asset('admin/js/prism-live-css.js') }}"></script>
+<script src="{{ asset('admin/js/prism-live-javascript.js') }}"></script>
+<script src="{{ asset('admin/js/prism-live-markup.js') }}"></script>
 
     <script>
         $(function() {

@@ -34,21 +34,6 @@
                         {{ trans('cruds.project.fields.published') }}
                     </th>
                     <th>
-                        {{ trans('cruds.project.fields.header_image') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.project.fields.meta_title') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.project.fields.meta_description') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.project.fields.fb_title') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.project.fields.tw_description') }}
-                    </th>
-                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -108,11 +93,6 @@
 { data: 'name', name: 'name' },
 { data: 'category_name', name: 'category.name' },
 { data: 'published', name: 'published' },
-{ data: 'header_image', name: 'header_image', sortable: false, searchable: false },
-{ data: 'meta_title', name: 'meta_title' },
-{ data: 'meta_description', name: 'meta_description' },
-{ data: 'fb_title', name: 'fb_title' },
-{ data: 'tw_description', name: 'tw_description' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
