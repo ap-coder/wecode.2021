@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("admin.projects.update", [$project->id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("admin.projects.update", [$project->id]) }}" enctype="multipart/form-data" id="submitPostForm" class="form-horizontal" novalidate="">
             @method('PUT')
             @csrf
 
@@ -37,12 +37,12 @@
         <div class="nav flex-column nav-tabs nav-tabs-right h-100" id="vert-tabs-right-tab" role="tablist" aria-orientation="vertical">
 
             <a class="nav-link active" id="vert-tabs-right-general-tab" data-toggle="pill" href="#vert-tabs-right-general" role="tab" aria-controls="vert-tabs-right-general" aria-selected="true">General</a>
+
              <a class="nav-link" id="vert-tabs-right-images-tab" data-toggle="pill" href="#vert-tabs-right-images" role="tab" aria-controls="vert-tabs-right-images" aria-selected="true">Images</a>
             
             <a class="nav-link" id="vert-tabs-right-seo-tab" data-toggle="pill" href="#vert-tabs-right-seo" role="tab" aria-controls="vert-tabs-right-seo" aria-selected="false">SEO META</a>
 
             <a class="nav-link" id="vert-tabs-right-settings-tab" data-toggle="pill" href="#vert-tabs-right-settings" role="tab" aria-controls="vert-tabs-right-settings" aria-selected="false">Settings</a>
-
 
         </div>
     </div>
@@ -55,17 +55,14 @@
 
 <hr>
             
-            <div class="form-group">
-                <button class="btn btn-danger" type="submit">
-                    {{ trans('global.save') }}
-                </button>
-              {{-- <button class="btn btn-danger" type="submit">
+         
+              <button class="btn btn-danger" type="submit">
                   {{ trans('global.save_and_close') }}
               </button>
 
               <button class="btn btn-primary" id="save-and-preview" type="button">
                 {{ trans('global.save_and_preview') }}
-            </button> --}}
+            </button>
           </div>
             
             
@@ -79,6 +76,79 @@
 
 @section('scripts')
 <script>
+
+    
+ $('#save-and-preview').click(function(){
+
+$('#submitPostForm').validate({
+      rules: {
+        'name': {
+            required: true
+        },
+      },
+      messages: {
+        title: "Please enter project name",
+    }
+});
+
+if ($('#submitPostForm').valid()) // check if form is valid
+  {
+      $this=$(this);
+      $loader='<div class="spinner-border text-dark" role="status">'+
+                '<span class="sr-only">Loading...</span>'+
+                '</div>';
+      $this.html($loader);
+      var formData = $('#submitPostForm').serializeArray();
+
+      formData.push({name: "preview", value: 1});
+
+      var body_content=getDataFromTheBodyEditor();
+      var challenges=getDataFromTheChallengesEditor();
+      var solutions=getDataFromTheSolutionsEditor();
+
+      // Find and replace `content` if there
+      for (index = 0; index < formData.length; ++index) {
+          if (formData[index].name == "body_content") {
+            formData[index].value = body_content;
+              break;
+          }
+      }
+
+      // Find and replace `content` if there
+      for (index = 0; index < formData.length; ++index) {
+          if (formData[index].name == "challenges") {
+            formData[index].value = challenges;
+              break;
+          }
+      }
+
+      // Find and replace `content` if there
+      for (index = 0; index < formData.length; ++index) {
+          if (formData[index].name == "solutions") {
+            formData[index].value = solutions;
+              break;
+          }
+      }
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("admin.projects.update", [$project->id]) }}',
+            dataType: 'json',
+            data: formData,
+            success: function(resultData) {
+              $this.html("{{ trans('global.save_and_preview') }}");
+              window.open("{{ url('project') }}/"+resultData, '_blank'); 
+             }
+        });
+
+  }
+
+});
+
+let theBodyEditor;
+let theChallengesEditor;
+let theSolutionsEditor;
+
     $(document).ready(function () {
   function SimpleUploadAdapter(editor) {
     editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
@@ -131,15 +201,66 @@
     }
   }
 
-  var allEditors = document.querySelectorAll('.ckeditor');
+  // var allEditors = document.querySelectorAll('.ckeditor');
+  // for (var i = 0; i < allEditors.length; ++i) {
+  //   ClassicEditor.create(
+  //     allEditors[i], {
+  //       extraPlugins: [SimpleUploadAdapter]
+  //     }
+  //   );
+  // }
+
+  var allEditors = document.querySelectorAll('#body_content');
   for (var i = 0; i < allEditors.length; ++i) {
     ClassicEditor.create(
       allEditors[i], {
         extraPlugins: [SimpleUploadAdapter]
       }
-    );
+    ).then( editor => {
+        // CKEditorInspector.attach( editor );
+        theBodyEditor = editor;
+    } )
   }
+
+  var allchallengesEditors = document.querySelectorAll('#challenges');
+  for (var i = 0; i < allchallengesEditors.length; ++i) {
+    ClassicEditor.create(
+      allchallengesEditors[i], {
+        extraPlugins: [SimpleUploadAdapter]
+      }
+    ).then( editor => {
+        // CKEditorInspector.attach( editor );
+        theChallengesEditor = editor;
+    } )
+  }
+
+  var allsolutionsEditors = document.querySelectorAll('#solutions');
+  for (var i = 0; i < allsolutionsEditors.length; ++i) {
+    ClassicEditor.create(
+      allsolutionsEditors[i], {
+        extraPlugins: [SimpleUploadAdapter]
+      }
+    ).then( editor => {
+        // CKEditorInspector.attach( editor );
+        theSolutionsEditor = editor;
+    } )
+  }
+
 });
+
+
+function getDataFromTheBodyEditor() {
+  return theBodyEditor.getData();
+}
+
+function getDataFromTheChallengesEditor() {
+  return theChallengesEditor.getData();
+}
+
+function getDataFromTheSolutionsEditor() {
+  return theSolutionsEditor.getData();
+}
+
 </script>
 
 <script>
