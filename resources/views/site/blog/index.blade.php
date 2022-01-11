@@ -32,7 +32,7 @@ page-section -->
                             </div>
                             <div class="entry-meta mb-1">
                                 <ul>
-                                    <li><a href="javascript:void(0);"><i class="ti-folder"></i> {{ $post->category->name }}</a></li>
+                                    <li><a href="javascript:void(0);"><i class="ti-folder"></i> {{ $post->category->name ?? '' }}</a></li>
                                     {{-- <li><a href="javascript:void(0);"><i class="ti-comments"></i> 5</a></li> --}}
                                     <li><a href="javascript:void(0);"><i class="ti-calendar"></i> {{ date('d M Y',strtotime($post->created_at)) }}</a></li>
                                 </ul>
