@@ -59,19 +59,7 @@ class Page extends Model implements HasMedia
         'tagline_style',
         'fi_content_style',
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::saving(function ($model) {
-            $model->slug = str_slug($model->title);
-        });
-
-        static::updating(function () {
-            $model->slug = str_slug($model->title);
-        });        
-    }
+ 
 
     public const TITLE_STYLE_SELECT = [
         'text-primary bg-light'   => 'Primary',
