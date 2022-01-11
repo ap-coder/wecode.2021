@@ -61,7 +61,7 @@
                                     </li> --}}
                                     <li><a href="{{ route('blog.index') }}">blog</a>
                                     </li>
-                                    <li><a href="{{ route('project.index') }}">Portfolio</a>
+                                    <li><a href="{{ route('portfolio.index') }}">Portfolio</a>
                                     </li>
                                    
                                     <li><a href="javascript:void(0)"> Contact us </a>

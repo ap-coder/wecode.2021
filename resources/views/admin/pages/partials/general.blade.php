@@ -33,6 +33,9 @@
                         <a class="btn btn-success addExistingPageSection" href="javascript:void(0);" data-toggle="modal" data-target="#addExistingPageSectionModal">
                             {{ trans('global.add') }} Existing Sections
                         </a>
+                        <a class="btn btn-danger clearAllExisting" href="javascript:void(0);">
+                            Clear all existing
+                        </a>
                     </div>
 
                 @endcan

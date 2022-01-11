@@ -16,14 +16,13 @@ case-studies  -->
                     @foreach ($categories as $category)
                         <button data-filter=".{{ $category->slug }}">{{ $category->name }}</button>
                     @endforeach
-                   
                 </div>
                 <div class="isotope popup-gallery column-3">
 
                     
                     @if ($projects->count()>0)
                         @foreach ($projects as $project)
-                        <div class="grid-item {{ $project->category->slug }}">
+                        <div class="grid-item {{ $project->category->slug ?? '' }}">
                             <div class="studies-entry">
                                 <div class="entry-image clearfix">
 
@@ -48,12 +47,12 @@ case-studies  -->
                                 </div>
                                 <div class="entry-detail text-left">
                                     <div class="entry-content mb-1">
-                                        <a href="{{ route('project.show', $project->slug ) }}">{{ \Illuminate\Support\Str::limit($project->name, $limit = 40, $end = '...') }}</a>
+                                        <a href="{{ route('portfolio.show', $project->slug ) }}">{{ \Illuminate\Support\Str::limit($project->name, $limit = 40, $end = '...') }}</a>
                                         <p class="mt-1">{{ \Illuminate\Support\Str::limit($project->intro, $limit = 150, $end = '...') }}</p>
                                     </div>
                                     <div class="entry-bottom mt-1 clearfix">
                                         <ul class="entry-tag list-style-none">
-                                            <li><a href="{{ route('project.show', $project->slug ) }}">{{ $project->category->name }}</a></li>
+                                            <li><a href="{{ route('portfolio.show', $project->slug ) }}">{{ $project->category->name ?? '' }}</a></li>
                                         </ul>
                                         {{-- <div class="entry-like float-right">
                                             <a href="#"> <span class="ti-heart"></span></a>

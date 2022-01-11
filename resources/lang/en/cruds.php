@@ -213,6 +213,10 @@ return [
             'featured_image_helper' => ' ',
             'page_section'              => 'Page Section',
             'page_section_helper'       => ' ', 
+            'add_to_sitemap'              => 'Add to sitemap',
+            'add_to_sitemap_helper'       => ' ',
+            'custom_css'              => 'Custom Css',
+            'custom_css_helper'       => ' ',
         ],
     ],
     'pageManager' => [

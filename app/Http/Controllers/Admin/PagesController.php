@@ -94,7 +94,9 @@ class PagesController extends Controller
     {
         $page = Page::create($request->all());
 
-        $page->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image', 'public');
+        if ($request->input('featured_image', false)) {
+            $page->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image', 'public');
+        }
 
         foreach ($request->input('photos', []) as $file) {
             File::ensureDirectoryExists('site/img/landing-pages');
@@ -119,7 +121,7 @@ class PagesController extends Controller
     {
         abort_if(Gate::denies('page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $page_sections=Pagesection::published()->get()->pluck('section_nickname','id');
+        $page_sections=Pagesection::published()->get()->pluck('section_nickname','id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.pages.edit', compact('page','page_sections'));
     }
@@ -274,6 +276,19 @@ class PagesController extends Controller
         $ContentPage = Page::where('id',$request->pages)->first();
 
         $pageSections=$ContentPage->pagesPagesections;
+
+        $html= view('admin.pages.partials.page-section-loop', compact('pageSections'))->render();
+
+        echo $html;
+    }
+
+    public function clearAllExistingPageSection(Request $request)
+    {
+        $updatePage = Page::where('id',$request->pages)->first();
+        $updatePage->pagesPagesections()->detach();
+        $page = Page::where('id',$request->pages)->first();
+
+        $pageSections=$page->pagesPagesections;
 
         $html= view('admin.pages.partials.page-section-loop', compact('pageSections'))->render();
 

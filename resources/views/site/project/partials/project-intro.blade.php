@@ -11,7 +11,7 @@ intro-title -->
                         <ul class="breadcrumb mt-1">
                                 <li class="breadcrumb-item"><a href="{{ url('') }}">Home</a></li>
                             @if (@$project)
-                                <li class="breadcrumb-item"><a href="{{ route('project.index') }}">Portfolio</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('portfolio.index') }}">Portfolio</a></li>
                             @endif
                                 <li class="breadcrumb-item active">{{ @$project->name ? $project->name : 'Portfolio' }}</li>
                         </ul>

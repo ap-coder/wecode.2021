@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 	Route::post('AddPageSection', 'PagesController@AddPageSection');
 	Route::post('ChangePageSectionOrder', 'PagesController@ChangePageSectionOrder');
 	Route::post('AddExistingPageSection', 'PagesController@AddExistingPageSection');
+	Route::post('clearAllExistingPageSection', 'PagesController@clearAllExistingPageSection');
 
     // Category
     Route::delete('categories/destroy', 'CategoryController@massDestroy')->name('categories.massDestroy');

@@ -10,7 +10,7 @@
                 @if (isset($page))
                 <input class="form-check-input" type="checkbox" name="use_textonly_header" id="use_textonly_header" value="1" {{ $page->use_textonly_header || old('use_textonly_header', 0) === 1 ? 'checked' : '' }}>
                 @else
-                    <input class="form-check-input" type="checkbox" name="use_textonly_header" id="use_textonly_header" value="1" {{ old('use_textonly_header', 0) == 1 || old('use_textonly_header') === null ? 'checked' : '' }}>
+                    <input class="form-check-input" type="checkbox" name="use_textonly_header" id="use_textonly_header" value="1" {{ old('use_textonly_header', 0) == 1 || old('use_textonly_header') === null ? '' : '' }}>
                 @endif
                 
                 <label class="form-check-label" for="use_textonly_header">{{ trans('cruds.page.fields.use_textonly_header') }}</label>
@@ -29,7 +29,7 @@
                 @if (isset($page))
                 <input class="form-check-input" type="checkbox" name="use_svg_header" id="use_svg_header" value="1" {{ $page->use_svg_header || old('use_svg_header', 0) === 1 ? 'checked' : '' }}>
                 @else
-                    <input class="form-check-input" type="checkbox" name="use_svg_header" id="use_svg_header" value="1" {{ old('use_svg_header', 0) == 1 || old('use_svg_header') === null ? 'checked' : '' }}>
+                    <input class="form-check-input" type="checkbox" name="use_svg_header" id="use_svg_header" value="1" {{ old('use_svg_header', 0) == 1 || old('use_svg_header') === null ? '' : '' }}>
                 @endif
                 
                 <label class="form-check-label" for="use_svg_header">{{ trans('cruds.page.fields.use_svg_header') }}</label>
@@ -48,7 +48,7 @@
                 @if (isset($page))
                 <input class="form-check-input" type="checkbox" name="use_featured_image_header" id="use_featured_image_header" value="1" {{ $page->use_featured_image_header || old('use_featured_image_header', 0) === 1 ? 'checked' : '' }}>
                 @else
-                    <input class="form-check-input" type="checkbox" name="use_featured_image_header" id="use_featured_image_header" value="1" {{ old('use_featured_image_header', 0) == 1 || old('use_featured_image_header') === null ? 'checked' : '' }}>
+                    <input class="form-check-input" type="checkbox" name="use_featured_image_header" id="use_featured_image_header" value="1" {{ old('use_featured_image_header', 0) == 1 || old('use_featured_image_header') === null ? '' : '' }}>
                 @endif
                 
                 <label class="form-check-label" for="use_featured_image_header">{{ trans('cruds.page.fields.use_featured_image_header') }}</label>
@@ -67,11 +67,13 @@
 
                     
 
-<div id="use_textonly_header_box" @if (isset($page)) @if(@$page->use_textonly_header==false) style="display:none;"  @endif @endif>
+<div id="use_textonly_header_box" @if (isset($page)) @if(@$page->use_textonly_header==false &&  @$page->use_featured_image_header==false) style="display:none;"  @endif @endif>
     <div class="col-lg-6">
         <div class="form-group">
         <label>HEADER TITLE
-            
+            {{-- {{ trans('cruds.page.fields.show_title') }} 
+            | 
+            {{ trans('cruds.page.fields.title_style') }} --}}
         </label>
             <div class="input-group">
                 <input type="hidden" name="show_featured_content" value="0">
@@ -87,7 +89,7 @@
             </div>
             <select class="form-control {{ $errors->has('title_style') ? 'is-invalid' : '' }}" name="title_style" id="title_style">
                 <option value disabled {{ old('title_style', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                @foreach(App\Models\Page::TITLE_STYLE_SELECT as $key => $label)
+                @foreach(App\Models\page::TITLE_STYLE_SELECT as $key => $label)
                     <option value="{{ $key }}" {{ old('title_style', @$page->title_style) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
                 @endforeach
             </select>
@@ -103,7 +105,9 @@
     <div class="col-lg-6">
         <div class="form-group">
         <label>HEADER SUB TITLE
-
+            {{-- {{ trans('cruds.page.fields.show_tagline') }}
+            | 
+            {{ trans('cruds.page.fields.tagline_style') }} --}}
         </label>
             <div class="input-group">
                 <input type="hidden" name="show_featured_content" value="0">
@@ -120,7 +124,7 @@
           
              <select class="form-control {{ $errors->has('tagline_style') ? 'is-invalid' : '' }}" name="tagline_style" id="tagline_style">
                 <option value disabled {{ old('tagline_style', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                @foreach(App\Models\Page::TAGLINE_STYLE_SELECT as $key => $label)
+                @foreach(App\Models\page::TAGLINE_STYLE_SELECT as $key => $label)
                     <option value="{{ $key }}" {{ old('tagline_style', @$page->tagline_style) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
                 @endforeach
             </select>
@@ -132,7 +136,7 @@
 </div>
                 
 
-<div id="use_svg_header_box" @if (isset($page)) @if(@$page->use_svg_header==false) style="display:none;"  @endif @endif>
+<div id="use_svg_header_box" @if (isset($page)) @if(@$page->use_featured_image_header==false) style="display:none;"  @endif @endif>
         <div class="col-lg-6">
             <div class="form-group">
             <label>HEADER FEATURED IMAGE CONTENT </label>
@@ -150,7 +154,7 @@
                 </div>
                 <select class="form-control {{ $errors->has('fi_content_style') ? 'is-invalid' : '' }}" name="fi_content_style" id="fi_content_style">
                     <option value disabled {{ old('fi_content_style', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(App\Models\Page::FI_CONTENT_STYLE_SELECT as $key => $label)
+                    @foreach(App\Models\page::FI_CONTENT_STYLE_SELECT as $key => $label)
                         <option value="{{ $key }}" {{ old('fi_content_style', @$page->fi_content_style) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
                     @endforeach
                 </select>
@@ -160,6 +164,8 @@
             </div>
             
         </div>
+
+
 
     <div class="form-group">
     <label for="featured_image_content">{{ trans('cruds.page.fields.featured_image_content') }}</label>
@@ -173,7 +179,7 @@
 
                
 
-<div class="form-group" id="use_featured_image_header_box" @if (isset($page)) @if(@$page->use_featured_image_header==false) style="display:none;"  @endif @endif>
+<div class="form-group" id="use_featured_image_header_box" @if (isset($page)) @if(@$page->use_svg_header==false) style="display:none;"  @endif @endif>
     <label for="svg_masthead">{{ trans('cruds.page.fields.svg_masthead') }}</label>
     <textarea class="form-control {{ $errors->has('svg_masthead') ? 'is-invalid' : '' }}" name="svg_masthead" id="svg_masthead">{{ old('svg_masthead', @$page->svg_masthead) }}</textarea>
     @if($errors->has('svg_masthead'))
