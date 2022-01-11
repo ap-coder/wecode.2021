@@ -389,3 +389,101 @@ a.bold {
     border-left: 1px solid #dee2e6;
     border-right: 0;
 }
+
+.media-images {
+    border: 2px solid #ddd;
+    margin: 10px 0;
+    min-height: 200px;
+    position: relative;
+}
+
+.media-images img {
+    width: 100%;
+}
+
+.copy-btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.copy-btn .btn-info {
+    width: 100%;
+    border-radius: 0;
+}
+
+.copy-btn .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.copy-btn .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.copy-btn:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.media-images .tooltiptextimg {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.media-images .tooltiptextimg::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.media-images:hover .tooltiptextimg {
+    visibility: visible;
+    opacity: 1;
+}
+
+.ekko-lightbox .modal-title {
+    font-size: 16px;
+}
+
+.list-grid-button {
+    position: absolute;
+    right: 0;
+    right: 15px;
+}

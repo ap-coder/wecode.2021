@@ -87,7 +87,29 @@ class PagesController extends Controller
     {
         abort_if(Gate::denies('page_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.pages.create');
+        $photos = [];
+
+        foreach (File::allFiles(public_path('site/img/landing-pages')) as $file) {
+
+            $photos[] = array(
+                "filename" => $file->getFilename(),
+                "filesize" => $file->getSize(), // returns size in bytes
+                "fileext" => $file->getExtension()
+            );
+        }
+
+        $attachments = [];
+
+        foreach (File::allFiles(public_path('site/attachments/landing-pages')) as $attachment) {
+
+            $attachments[] = array(
+                "filename" => $attachment->getFilename(),
+                "filesize" => $attachment->getSize(), // returns size in bytes
+                "fileext" => $attachment->getExtension()
+            );
+        }
+
+        return view('admin.pages.create', compact('photos','attachments'));
     }
 
     public function store(StorePageRequest $request)
@@ -123,7 +145,29 @@ class PagesController extends Controller
 
         $page_sections=Pagesection::published()->get()->pluck('section_nickname','id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.pages.edit', compact('page','page_sections'));
+        $photos = [];
+
+        foreach (File::allFiles(public_path('site/img/landing-pages')) as $file) {
+
+            $photos[] = array(
+                "filename" => $file->getFilename(),
+                "filesize" => $file->getSize(), // returns size in bytes
+                "fileext" => $file->getExtension()
+            );
+        }
+
+        $attachments = [];
+
+        foreach (File::allFiles(public_path('site/attachments/landing-pages')) as $attachment) {
+
+            $attachments[] = array(
+                "filename" => $attachment->getFilename(),
+                "filesize" => $attachment->getSize(), // returns size in bytes
+                "fileext" => $attachment->getExtension()
+            );
+        }
+
+        return view('admin.pages.edit', compact('page','page_sections','photos','attachments'));
     }
 
     public function update(UpdatePageRequest $request, Page $page)
