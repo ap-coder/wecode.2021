@@ -82,10 +82,11 @@ class Project extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
-        $this->addMediaConversion('portfolio')->fit('crop', 452, 238);
+        $this->addMediaConversion('portfolio')->fit('crop', 460, 240)->optimize()->sharpen(2);
         $this->addMediaConversion('featured')->fit('crop', 800, 600);
         $this->addMediaConversion('solution')->fit('crop', 700, 400);
         $this->addMediaConversion('challenge')->fit('crop', 700, 400);
+        // $this->addMediaConversion('timeline')->fit(Manipulations::FIT_FILL,470, 250)->sharpen(10)->background('FFFFFF')->nonQueued();
     }
 
     public function projectsTechnologies()

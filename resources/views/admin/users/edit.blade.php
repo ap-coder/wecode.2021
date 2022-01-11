@@ -192,8 +192,8 @@
     },
     params: {
       size: 1,
-      width: 300,
-      height: 300
+      width: 600,
+      height: 600
     },
     success: function (file, response) {
       $('form').find('input[name="logo"]').remove()
@@ -246,8 +246,8 @@ Dropzone.options.additionalImagesDropzone = {
     },
     params: {
       size: 5,
-      width: 800,
-      height: 600
+      width: 1000,
+      height: 800
     },
     success: function (file, response) {
       $('form').append('<input type="hidden" name="additional_images[]" value="' + response.name + '">')

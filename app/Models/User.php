@@ -16,6 +16,13 @@ use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Image\Manipulations;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -102,6 +109,8 @@ class User extends Authenticatable implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('avatar')->fit(Manipulations::FIT_FILL, 300,300)->background('FFFFFF');
+        $this->addMediaConversion('logo')->fit(Manipulations::FIT_FILL, 300,300)->background('FFFFFF');
     }
 
     public function clientProjects()
@@ -153,6 +162,7 @@ class User extends Authenticatable implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->avatar   = $file->getUrl('avatar');
         }
 
         return $file;
@@ -165,6 +175,7 @@ class User extends Authenticatable implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->logo   = $file->getUrl('logo');
         }
 
         return $file;
