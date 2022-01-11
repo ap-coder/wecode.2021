@@ -5,7 +5,7 @@ Route::get('userVerification/{token}', 'UserVerificationController@approve')->na
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/dashboard', 'HomeController@index')->name('home');
     Route::get('/menu', 'MenuController@index')->name('menu.index');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');

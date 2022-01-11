@@ -208,7 +208,12 @@ class ProjectsController extends Controller
             $project->solution_image->delete();
         }
 
-        return redirect()->route('admin.projects.index');
+        if ($request->preview) {
+            echo json_encode($project->slug);
+        } else {
+            return redirect()->route('admin.projects.index');
+        }
+
     }
 
     public function show(Project $project)
