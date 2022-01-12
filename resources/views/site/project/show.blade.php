@@ -29,7 +29,9 @@
                         <p class="mb-2">{{ date('d M Y',strtotime($project->start_date)) }}</p>
                         <h6>Project Type:</h6>
                         <p class="mb-2">{{ App\Models\Project::PROJECT_TYPE_SELECT[$project->project_type] ?? '' }} </p>
-                        {{--  <a class="button border" href="#">lauch site </a>  --}}
+                        @if ($project->website)
+                            <a class="button border" href="{{ $project->website }}" target="_blank">lauch site </a> 
+                        @endif
                     </div>
                 </div>
             </div>

@@ -77,6 +77,14 @@
     <span class="help-block">{{ trans('cruds.project.fields.project_type_helper') }}</span>
 </div>
 <div class="form-group">
+    <label for="website">{{ trans('cruds.project.fields.website') }}</label>
+    <input class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}" type="text" name="website" id="website" value="{{ old('website', @$project->website) }}">
+    @if($errors->has('website'))
+        <span class="text-danger">{{ $errors->first('website') }}</span>
+    @endif
+    <span class="help-block">{{ trans('cruds.project.fields.website_helper') }}</span>
+</div>
+<div class="form-group">
     <label for="challenges">{{ trans('cruds.project.fields.challenges') }}</label>
     <textarea class="form-control ckeditor {{ $errors->has('challenges') ? 'is-invalid' : '' }}" name="challenges" id="challenges">{!! old('challenges', @$project->challenges) !!}</textarea>
     @if($errors->has('challenges'))

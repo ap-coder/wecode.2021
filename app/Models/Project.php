@@ -68,6 +68,7 @@ class Project extends Model implements HasMedia
         'tw_title',
         'fb_description',
         'tw_description',
+        'website',
         'created_at',
         'updated_at',
         'deleted_at',

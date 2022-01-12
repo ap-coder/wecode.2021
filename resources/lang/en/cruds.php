@@ -691,6 +691,8 @@ return [
             'fb_description_helper'    => ' ',
             'tw_description'           => 'Twitter Description',
             'tw_description_helper'    => ' ',
+            'website'                  => 'Website',
+            'website_helper'           => ' ',
         ],
     ],
     'adminSetting' => [
