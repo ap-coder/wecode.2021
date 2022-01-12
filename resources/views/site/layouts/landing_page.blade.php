@@ -19,16 +19,11 @@
 
 
                 <!--================================= header -->
-
-
-                <!--================================= banner -->
-
-@include('site.layouts.partials.slider')
-
-
-                <!--================================= banner -->
-
-
+                @include('site.layouts.partials.top_sections')
+                @yield('above-content')
+                    @yield('content')
+                @yield('below-content')
+                @include('site.layouts.partials.bottom_sections')
    
 
 @include('site.layouts.partials.footer')
@@ -41,9 +36,9 @@
 
 
                 <!--================================= back to top -->
-     <div class="back-to-top">
-         <span><img src="{{ asset('site/{{ asset('site/images/rocket.png') }}') }}" data-src="{{ asset('site/{{ asset('site/images/rocket.png') }}') }}" data-hover="{{ asset('site/images/rocket.gif') }}" alt=""></span>
-     </div>
+                <div class="back-to-top">
+                    <span><img src="{{ asset('site/images/rocket.png') }}" data-src="{{ asset('site/images/rocket.png') }}" data-hover="{{ asset('site/images/rocket.gif') }}" alt=""></span>
+                </div>
 
 
                 <!--================================= back to top -->

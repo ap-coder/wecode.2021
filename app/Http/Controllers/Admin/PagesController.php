@@ -199,7 +199,7 @@ class PagesController extends Controller
         }
         
         if ($request->preview) {
-            echo json_encode($page->slug);
+            echo json_encode($page->path.'/'.$page->slug);
         } else {
             return redirect()->route('admin.pages.index');
         }

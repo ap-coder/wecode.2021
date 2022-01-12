@@ -35,6 +35,9 @@
                       <div class="tab-pane fade" id="vert-tabs-right-masthead" role="tabpanel" aria-labelledby="vert-tabs-right-masthead-tab">
                         @include('admin.pages.partials.masthead')
                     </div>
+                    <div class="tab-pane fade" id="vert-tabs-right-uploaded-media" role="tabpanel" aria-labelledby="vert-tabs-right-uploaded-media-tab">
+                      @include('admin.pages.partials.uploaded-media')
+                  </div>
                   </div>
               </div>
           
@@ -47,6 +50,7 @@
                       <a class="nav-link" id="vert-tabs-right-settings-tab" data-toggle="pill" href="#vert-tabs-right-settings" role="tab" aria-controls="vert-tabs-right-settings" aria-selected="false">Settings</a>
                       <a class="nav-link" id="vert-tabs-right-content-section-tab" data-toggle="pill" href="#vert-tabs-right-content-section" role="tab" aria-controls="vert-tabs-right-content-section" aria-selected="false">Content Section</a>
                       <a class="nav-link" id="vert-tabs-right-masthead-tab" data-toggle="pill" href="#vert-tabs-right-masthead" role="tab" aria-controls="vert-tabs-right-masthead" aria-selected="false">Masthead</a>
+                      <a class="nav-link" id="vert-tabs-right-uploaded-media-tab" data-toggle="pill" href="#vert-tabs-right-uploaded-media" role="tab" aria-controls="vert-tabs-right-uploaded-media" aria-selected="false">Uploaded Media</a>
                   </div>
               </div>
           

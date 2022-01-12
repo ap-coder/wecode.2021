@@ -19,9 +19,9 @@
 
 
                 <!--================================= header -->
-
+@include('site.layouts.partials.top_sections')
                 @yield('content')
-
+@include('site.layouts.partials.bottom_sections')
 
    
 

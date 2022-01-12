@@ -19,7 +19,7 @@ class StorePageRequest extends FormRequest
         return [
             'title' => [
                 'string',
-                'nullable',
+                'required',
             ],
             'sub_title' => [
                 'string',
@@ -27,11 +27,11 @@ class StorePageRequest extends FormRequest
             ],
             'path' => [
                 'string',
-                'nullable',
+                'required',
             ],
             'slug' => [
                 'string',
-                'nullable',
+                'required',
             ],
             'meta_title' => [
                 'string',

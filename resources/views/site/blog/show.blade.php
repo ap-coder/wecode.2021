@@ -89,7 +89,7 @@ page-section -->
                         </div>
                     </div>
                 </div>
-                <div class="blog-comments mt-4">
+                {{-- <div class="blog-comments mt-4">
                     <div class="comments-1">
                         <div class="comments-photo">
                             <img src="images/team/08.jpg" alt="">
@@ -138,7 +138,7 @@ page-section -->
                             <p class="mt-1">This is the path of a different choice, a different decision. You have the freedom to be how you want to be. Absorb all you need from this moment in your future and the positive things that you can learn consciously and unconsciously and then drift and float back to the place where the path splits. Step Six: Now that you know and have experienced the two contrasting futures. Now that you know what your future holds as a result of what you do this very day.</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="blog-form mt-6">
                     <h4 class="mb-3">Post a Comment</h4>
                     <div class="gray-form row">
