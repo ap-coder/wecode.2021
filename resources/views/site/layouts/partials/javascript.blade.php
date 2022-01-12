@@ -41,6 +41,7 @@
 
 <!-- custom -->
 <script type="text/javascript" src="{{ asset('site/js/custom.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ asset('site/js/full_with_sections.js') }}"></script> --}}
 
 <script type="text/javascript">
     var tpj = jQuery;

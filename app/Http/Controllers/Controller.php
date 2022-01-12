@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Project;
 
 class Controller extends BaseController
 {
@@ -41,6 +42,14 @@ class Controller extends BaseController
 					$bottom_sections=$pageData->postsContentSections;
 				}
 			}
+
+            $landingPages = Page::all();
+            $posts = Post::all();
+            $projects = Project::all();
+
+            View::share('landingPages', $landingPages);
+            View::share('posts', $posts);
+            View::share('projects', $projects);
 
             View::share('top_sections', $top_sections);
             View::share('bottom_sections', $bottom_sections);

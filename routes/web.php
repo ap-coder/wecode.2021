@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 
 Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
 Auth::routes();
@@ -121,6 +121,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Technology
     Route::delete('technologies/destroy', 'TechnologyController@massDestroy')->name('technologies.massDestroy');
     Route::resource('technologies', 'TechnologyController');
+
+    
+	Route::post('add_env_conditionals', function(Request $request) {
+
+		if($request->evnsData){
+		
+			foreach ($request->evnsData as $key => $value) {
+				\DB::table('admin_menu_items')->where('id', $value['menu_id'])->update( [$value['envs'] => $value['check']]);
+			}
+		}
+
+   })->name('add_env_conditionals');
+
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
