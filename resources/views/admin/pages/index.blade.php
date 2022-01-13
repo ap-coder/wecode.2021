@@ -18,39 +18,11 @@
         <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Page">
             <thead>
                 <tr>
-                    <th width="10">
-
-                    </th>
-                    <th>
-                        {{ trans('cruds.page.fields.id') }}
-                    </th>
-                    <th>
-                      {{ trans('cruds.page.fields.published') }}
-                  </th>
-                    <th>
-                        {{ trans('cruds.page.fields.title') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.page.fields.meta_title') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.page.fields.meta_description') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.page.fields.facebook_title') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.page.fields.facebook_desc') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.page.fields.twitter_post_title') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.page.fields.twitter_post_description') }}
-                    </th>
-                    <th>
-                        &nbsp;
-                    </th>
+                    <th width="10"></th>
+                    <th> {{ trans('cruds.page.fields.id') }} </th>
+                    <th> {{ trans('cruds.page.fields.title') }} </th>
+                    <th> {{ trans('cruds.page.fields.published') }} </th>
+                    <th> &nbsp; </th>
                 </tr>
             </thead>
         </table>
@@ -105,14 +77,10 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'published', name: 'published' },
 { data: 'title', name: 'title' },
-{ data: 'meta_title', name: 'meta_title' },
-{ data: 'meta_description', name: 'meta_description' },
-{ data: 'facebook_title', name: 'facebook_title' },
-{ data: 'facebook_description', name: 'facebook_description' },
-{ data: 'twitter_title', name: 'twitter_title' },
-{ data: 'twitter_description', name: 'twitter_description' },
+{ data: 'published', name: 'published' },
+
+ 
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
@@ -124,7 +92,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 });
 
 </script>

@@ -105,6 +105,10 @@ class User extends Authenticatable implements HasMedia
         return $this->roles()->where('id', 1)->exists();
     }
 
+    public function isAdmin() {
+       return $this->roles()->where('title', 'Admin')->exists();
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);

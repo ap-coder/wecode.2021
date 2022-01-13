@@ -7,13 +7,13 @@
 <body>
 
         <!--================================= loading -->
-  
+
 @include('site.layouts.partials.loader')
 
 
         <!--=================================  loading -->
 
-  
+
         <!--=================================  header -->
 @include('site.layouts.partials.header')
 
@@ -23,15 +23,15 @@
                 @yield('content')
 @include('site.layouts.partials.bottom_sections')
 
-   
 
-@include('site.layouts.partials.footer')
 
+{{-- @include('site.layouts.partials.blue_footer') --}}
+@include('site.layouts.partials.dark_footer')
 
                 <!--================================= footer -->
 
 
-  
+
 
 
                 <!--================================= back to top -->
@@ -41,12 +41,12 @@
 
 
                 <!--================================= back to top -->
-    
+
 @include('site.layouts.partials.javascript')
 
 
-     
-    
+
+
 </body>
 
 </html>
