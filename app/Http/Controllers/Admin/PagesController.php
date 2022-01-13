@@ -315,7 +315,7 @@ class PagesController extends Controller
     {
         $updatePage = Page::where('id',$request->pages)->first();
 
-        $updatePage->pagesPagesections()->sync($request->input('page_sections', []));        
+        $updatePage->pagesPagesections()->toggle($request->input('page_sections', []));        
 
         $ContentPage = Page::where('id',$request->pages)->first();
 
