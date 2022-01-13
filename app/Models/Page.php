@@ -60,6 +60,7 @@ class Page extends Model implements HasMedia
         'fi_content_style',
         'add_to_sitemap',
         'custom_css',
+        'use_rev_slider',
     ];
  
 

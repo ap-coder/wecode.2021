@@ -28,6 +28,8 @@ class Controller extends BaseController
             $top_sections='';
 			$bottom_sections='';
 
+            $landingPageData=Page::where('slug',request()->route('pageslug'))->first();
+
             if ($pagename=='page.show') {
 				$pageData=Page::where('slug',request()->route('pageslug'))->first();
 				if ($pageData) {
@@ -50,6 +52,7 @@ class Controller extends BaseController
             View::share('landingPages', $landingPages);
             View::share('posts', $posts);
             View::share('projects', $projects);
+            View::share('landingPageData', $landingPageData);
 
             View::share('top_sections', $top_sections);
             View::share('bottom_sections', $bottom_sections);

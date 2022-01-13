@@ -215,6 +215,8 @@ return [
             'page_section_helper'       => ' ', 
             'add_to_sitemap'              => 'Add to sitemap',
             'add_to_sitemap_helper'       => ' ',
+            'use_rev_slider'              => 'Use Revolution Slider',
+            'use_rev_slider_helper'       => ' ',
             'custom_css'              => 'Custom Css',
             'custom_css_helper'       => ' ',
         ],

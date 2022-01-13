@@ -17,8 +17,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('site/css/owl-carousel/owl.carousel.css') }}" />
      <!-- magnific-popup -->
      <link rel="stylesheet" type="text/css" href="{{ asset('site/css/magnific-popup/magnific-popup.css') }}" />
-    <!-- revolution -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('site/revolution/css/settings.css') }}" />
+   
+     @if ($landingPageData && $landingPageData->use_rev_slider==true)
+        @include('site.layouts.partials.revolution-css')
+    @endif
+
     <!-- main style -->
     <link rel="stylesheet" type="text/css" href="{{ asset('site/css/style.css') }}" />
     <!-- Responsive -->
