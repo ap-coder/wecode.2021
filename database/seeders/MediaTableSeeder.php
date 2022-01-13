@@ -73,11 +73,11 @@ class MediaTableSeeder extends Seeder
                 'conversions_disk' => 'public',
                 'size' => 9171,
                 'manipulations' => '[]',
-                'custom_properties' => '[]',
+                'custom_properties' => '{"generated_conversions":{"thumb":true,"preview":true,"avatar":true,"logo":true}}',
                 'responsive_images' => '[]',
                 'order_column' => 3,
                 'created_at' => '2022-01-11 19:21:19',
-                'updated_at' => '2022-01-11 19:21:19',
+                'updated_at' => '2022-01-11 21:41:58',
             ),
             3 => 
             array (
