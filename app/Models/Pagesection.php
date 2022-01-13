@@ -12,7 +12,7 @@ class Pagesection extends Model
     use SoftDeletes;
     use HasFactory;
 
-    public $table = 'pagesections';
+    public $table = 'page_sections';
 
     protected $dates = [
         'created_at',
