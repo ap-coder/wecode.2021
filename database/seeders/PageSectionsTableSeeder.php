@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class PagesectionsTableSeeder extends Seeder
+class PageSectionsTableSeeder extends Seeder
 {
 
     /**
@@ -16,9 +16,9 @@ class PagesectionsTableSeeder extends Seeder
     {
         
 
-        \DB::table('pagesections')->delete();
+        \DB::table('page_sections')->delete();
         
-        \DB::table('pagesections')->insert(array (
+        \DB::table('page_sections')->insert(array (
             0 => 
             array (
                 'id' => 1,
