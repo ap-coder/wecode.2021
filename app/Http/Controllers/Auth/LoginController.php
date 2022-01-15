@@ -32,7 +32,7 @@ class LoginController extends Controller
 
     /**
      * Create a new controller instance.
-     */
+     */ 
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -41,7 +41,7 @@ class LoginController extends Controller
     public function redirectTo()
     {
         if (auth()->user()->is_admin) {
-            return '/admin';
+            return '/home';
         }
 
         return '/home';

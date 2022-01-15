@@ -53,7 +53,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin') }}">
+                                <a class="nav-link" href="{{ route('admin.home') }}">
                                     {{ __('ADMIN') }}
                                 </a>
                             </li>
