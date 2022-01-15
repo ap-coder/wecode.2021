@@ -81,7 +81,7 @@ return [
     */
 
     'remote_sites_path' => env('DEBUGBAR_REMOTE_SITES_PATH', ''),
-    'local_sites_path' => env('DEBUGBAR_LOCAL_SITES_PATH', ''),
+    'local_sites_path' => env('DEBUGBAR_LOCAL_SITES_PATH', '/home/code/wecode'),
 
     /*
      |--------------------------------------------------------------------------
@@ -136,7 +136,7 @@ return [
      | Extension, without the server-side code. It uses Debugbar collectors instead.
      |
      */
-    'clockwork' => false,
+    'clockwork' => true,
 
     /*
      |--------------------------------------------------------------------------
@@ -164,7 +164,7 @@ return [
         'mail'            => true,  // Catch mail messages
         'laravel'         => false, // Laravel version and environment
         'events'          => false, // All events fired
-        'default_request' => false, // Regular or special Symfony request logger
+        'default_request' => true, // Regular or special Symfony request logger
         'logs'            => false, // Add the latest log messages
         'files'           => false, // Show the included files
         'config'          => true, // Display config settings
