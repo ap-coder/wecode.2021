@@ -52,6 +52,11 @@
                                     {{ __('Dashboard') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin') }}">
+                                    {{ __('ADMIN') }}
+                                </a>
+                            </li>
                         @endguest
                     </ul>
 
