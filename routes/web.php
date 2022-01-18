@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
 Auth::routes();
 
+Route::get('/home', function () {
+    return redirect()->route('admin.home');
+});
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
     
 
