@@ -1,11 +1,11 @@
-@if($page->use_svg_header == true)   
+@if(isset($page) && $page->use_svg_header == true)   
 
 <div>
   {!! $page->svg_masthead ?? '' !!}
 </div>
 
 
-@elseif($page->use_featured_image_header == true)               
+@elseif(isset($page) && $page->use_featured_image_header == true)               
 
 {{-- THIS IS FEATURED IMAGE HEADER PLACEMENT --}}
 <section class="page-header page-header-modern page-header-background page-header-background-md @if($page->show_title || $page->show_tagline || $page->show_featured_content) overlay overlay-color-dark overlay-show overlay-op-5 @endif" style="width: 100%; min-height: 500px; background-image: url({{ $page->featured_image->getUrl('masthead') }});">
@@ -27,7 +27,7 @@
   </div>
 </section>
 
-@elseif($page->use_textonly_header == true)
+@elseif(isset($page) && $page->use_textonly_header == true)
 
 {{-- DEFAULT IF NOT FEATURED IMAGE --}}
 <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">

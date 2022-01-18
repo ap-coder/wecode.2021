@@ -4,7 +4,7 @@
 {{-- added this part for custom css for this page only. --}}
 @section('page_styles')
     <style>
-        {!! $page->custom_css !!}
+        {!! $page->custom_css ?? '' !!}
     </style>
 @endsection
 
