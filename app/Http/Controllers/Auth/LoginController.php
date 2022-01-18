@@ -44,7 +44,7 @@ class LoginController extends Controller
             return '/admin/dashboard';
         }
 
-        return '/home';
+        return '/admin/dashboard';
     }
 
     public function logout(Request $request)
