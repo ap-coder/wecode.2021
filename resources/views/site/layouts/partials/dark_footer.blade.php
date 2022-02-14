@@ -34,65 +34,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3">
-                    <h6 class="text-white pt-1 pb-3">Recent Posts</h6>
-                    <div class="footer-nav ">
-                        <ul>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> SEO Services </a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Social Media</a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Web Analytics</a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Web Development </a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Content Management</a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Blog Management</a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Virtual Marketing </a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Email Marketing</a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Keyword Analytics </a>
-                            </li>
-                        </ul>
-                    </div>
+
+                @if(isset($footer_widget_menu))
+                <div class="col-lg-4 col-md-6">
+                    @foreach($footer_widget_menu as $menu)
+                        @if ($menu['link']=='')
+                            <h6 class="text-white pt-1 pb-3">{{ $menu['label'] }}</h6>
+						@else
+							<a href="{{ preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode(strpos($menu['link'], "http") === 0 ? $menu['link'] : url('', $menu['link']))) }}" title="{{ $menu['label'] }}">
+								<h6 class="text-white pt-1 pb-3">{{ $menu['label'] }}</h6>
+							</a>
+						@endif
+
+                        @if( $menu['child'] )
+                            <div class="footer-nav ">
+                                <ul>
+                                    @foreach( $menu['child'] as $child )
+                                    <li>
+                                        <a href="{{  preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode(strpos($child['link'], "http") === 0 ? $child['link'] : url('',$child['link']))) }}" title="{{ $child['label'] }}"> <i class="fa fa-angle-right"></i> {{ $child['label'] }} </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
-                <div class="col-lg-2 col-md-3">
-                    <h6 class="text-white pt-1 pb-2">Recent Posts</h6>
-                    <div class="footer-nav">
-                        <ul>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> SEO Services </a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Social Media</a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Web Analytics</a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Web Development </a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Email Marketing</a>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="fa fa-angle-right"></i> Keyword Analytics </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @endif
+                
                 <div class="col-lg-4 col-md-12">
                     <h6 class="text-white pt-1 pb-3">Recent Posts</h6>
                     <p class="text-gray pb-2"> SEOhub helps you to quickly and easily build incredible websites.</p>
@@ -108,23 +76,8 @@
                 </div>
             </div>
         </div>
-        <div class="copyright mt-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-sm-6">
-                        <ul class="list-inline text-left">
-                           <li><a href="#">Terms & Conditions </a> &nbsp;&nbsp;&nbsp;|</li>
-                           <li><a href="#">API Use Policy </a> &nbsp;&nbsp;&nbsp;|</li>
-                           <li><a href="#">Privacy Policy </a> &nbsp;&nbsp;&nbsp;|</li>
-                           <li><a href="#">Cookies </a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="text-right">
-                            <p>Copyright © 2017 We Code Laravel. All Rights Reserved.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        @include('site.layouts.partials.copyright-menu', ['copyright_menu' => $copyright_menu]) 
+
+       
     </footer>

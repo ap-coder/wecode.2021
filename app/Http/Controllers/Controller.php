@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\View;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Project;
+use Harimayco\Menu\Models\Menus;
+use Harimayco\Menu\Models\MenuItems;
+use Harimayco\Menu\Facades\Menu;
 
 class Controller extends BaseController
 {
@@ -56,6 +59,15 @@ class Controller extends BaseController
 
             View::share('top_sections', $top_sections);
             View::share('bottom_sections', $bottom_sections);
+
+
+            $main_menu = Menu::getByName('Main Menu');
+            $footer_widget_menu = Menu::getByName('Footer Widget Menu');
+            $copyright_menu = Menu::getByName('Copyright Menu');
+
+            View::share('main_menu', $main_menu);
+            View::share('footer_widget_menu', $footer_widget_menu);
+            View::share('copyright_menu', $copyright_menu);
 
             return $next($request);
         });
