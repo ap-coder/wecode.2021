@@ -20,7 +20,7 @@ class MassDestroyPagesectionRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:pagesections,id',
+            'ids.*' => 'exists:page_sections,id',
         ];
     }
 }

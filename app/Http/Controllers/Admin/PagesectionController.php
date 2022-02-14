@@ -73,7 +73,7 @@ class PagesectionController extends Controller
 
         return view('admin.pagesections.create', compact('pages'));
     }
-
+ 
     public function store(StorePagesectionRequest $request)
     {
         $pagesection = Pagesection::create($request->all());
@@ -124,5 +124,13 @@ class PagesectionController extends Controller
         Pagesection::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function remove_section(Request $request)
+    {
+        $pageSection=Pagesection::where('id',$request->id)->first();
+        $pageSection->assign_pages()->detach($request->contentPageId);
+
+        echo 1;
     }
 }

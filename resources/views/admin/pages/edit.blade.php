@@ -436,24 +436,26 @@ $(document.body).on('click', '.clearAllExisting' ,function(){
     
     });
     
-    
-      $(document.body).on('click', '.DeletePageSectionBtn' ,function(){
-        $this=$(this);
-          var id=$(this).attr('myid');
-            var _token = $('input[name="_token"]').val();
-            if (confirm('{{ trans('global.areYouSure') }}')) {
-                $.ajax({
-                  url:"{{ url('admin/pagesections') }}/"+id,
-                  method:"POST",
-                  data: {
-                    id:id,_token:_token,_method: 'DELETE'
-                  },
-                  success:function(response) {
-                    $this.closest('tr').remove();
-                  }
-                })
-            }
-        });
+
+        $(document.body).on('click', '.DeletePageSectionBtn' ,function(){
+    $this=$(this);
+      var id=$(this).attr('myid');
+      var contentPageId=$('#page_id').val();
+        var _token = $('input[name="_token"]').val();
+        if (confirm('{{ trans('global.areYouSure') }}')) {
+            $.ajax({
+              url:"{{ route('admin.page-sections.remove_section') }}",
+              method:"POST",
+              data: {
+                id:id,_token:_token,contentPageId: contentPageId
+              },
+              success:function(response) {
+                $this.closest('tr').remove();
+              }
+            })
+        }
+    });
+  
       
       // $(document.body).on('click', '.addPageSection' ,function(){
       

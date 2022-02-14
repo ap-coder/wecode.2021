@@ -115,6 +115,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Pagesection
     Route::delete('pagesections/destroy', 'PagesectionController@massDestroy')->name('pagesections.massDestroy');
+    Route::post('page-sections/remove', 'PagesectionController@remove_section')->name('page-sections.remove_section');
     Route::resource('pagesections', 'PagesectionController');
 
     // Content Section
