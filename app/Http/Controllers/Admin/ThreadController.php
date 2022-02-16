@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyThreadRequest;
 use App\Http\Requests\StoreThreadRequest;
 use App\Http\Requests\UpdateThreadRequest;
 use App\Models\Thread;
+use App\Models\ContentSection;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -144,5 +145,44 @@ class ThreadController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+
+    public function GetThreadContentSectionModalForm(Request $request)
+    {
+        $contentSection=ContentSection::find($request->id);
+        $html= view('admin.threads.partials.content-section-modal', compact('contentSection'))->render();
+
+        echo $html;
+    }
+
+    public function AddThreadContentSection(Request $request)
+    {
+        if($request->id){
+            $contentSection=ContentSection::find($request->id);
+            $contentSection->update($request->all());
+        }else{
+            $contentSection = ContentSection::create($request->all());
+        }
+
+        $contentSection->assign_threads()->sync($request->input('threads', []));
+
+        $threads = Thread::where('id',$request->threads)->first();
+
+        $contentSections=$threads->threadsContentSections;
+
+        $html= view('admin.threads.partials.content-section-loop', compact('contentSections'))->render();
+
+        echo $html;
+    }
+
+    public function ChangeThreadContentSectionOrder(Request $request)
+    {
+        $ids=$request->params;
+        foreach ($ids as $key => $id) {
+            ContentSection::where('id',$id['value'])->update([
+                'order' => $key+1,
+            ]);
+        }
+        echo 1;
     }
 }

@@ -104,4 +104,9 @@ class UsersApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function reloadCaptcha(Request $request)
+    {
+        return response()->json(['captcha'=> captcha_img()]);
+    }
 }

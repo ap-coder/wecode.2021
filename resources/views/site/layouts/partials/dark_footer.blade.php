@@ -36,8 +36,10 @@
                 </div>
 
                 @if(isset($footer_widget_menu))
-                <div class="col-lg-4 col-md-6">
-                    @foreach($footer_widget_menu as $menu)
+
+                @foreach($footer_widget_menu as $menu)
+                <div class="col-lg-2 col-md-3">
+                    
                         @if ($menu['link']=='')
                             <h6 class="text-white pt-1 pb-3">{{ $menu['label'] }}</h6>
 						@else
@@ -57,8 +59,9 @@
                                 </ul>
                             </div>
                         @endif
-                    @endforeach
+                   
                 </div>
+                @endforeach
                 @endif
                 
                 <div class="col-lg-4 col-md-12">

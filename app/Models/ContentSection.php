@@ -53,6 +53,11 @@ class ContentSection extends Model
         return $this->belongsToMany(Thread::class);
     }
 
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
@@ -66,5 +71,15 @@ class ContentSection extends Model
     public function assign_posts()
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    public function assign_threads()
+    {
+        return $this->belongsToMany(Thread::class);
+    }
+
+    public function assign_projects()
+    {
+        return $this->belongsToMany(Project::class);
     }
 }

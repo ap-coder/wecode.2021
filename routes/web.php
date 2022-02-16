@@ -67,6 +67,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('threads/media', 'ThreadController@storeMedia')->name('threads.storeMedia');
     Route::post('threads/ckmedia', 'ThreadController@storeCKEditorImages')->name('threads.storeCKEditorImages');
     Route::resource('threads', 'ThreadController');
+    Route::post('GetThreadContentSectionModalForm', 'ThreadController@GetThreadContentSectionModalForm');
+	Route::post('AddThreadContentSection', 'ThreadController@AddThreadContentSection');
+	Route::post('ChangeThreadContentSectionOrder', 'ThreadController@ChangeThreadContentSectionOrder');
 
     // Reply
     Route::delete('replies/destroy', 'ReplyController@massDestroy')->name('replies.massDestroy');
@@ -127,6 +130,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('projects/media', 'ProjectsController@storeMedia')->name('projects.storeMedia');
     Route::post('projects/ckmedia', 'ProjectsController@storeCKEditorImages')->name('projects.storeCKEditorImages');
     Route::resource('projects', 'ProjectsController');
+    Route::post('GetProjectContentSectionModalForm', 'ProjectsController@GetProjectContentSectionModalForm');
+	Route::post('AddProjectContentSection', 'ProjectsController@AddProjectContentSection');
+	Route::post('ChangeProjectContentSectionOrder', 'ProjectsController@ChangeProjectContentSectionOrder');
 
     // Technology
     Route::delete('technologies/destroy', 'TechnologyController@massDestroy')->name('technologies.massDestroy');

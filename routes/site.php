@@ -6,6 +6,9 @@ Route::resource('blog', 'BlogController', ['except' => ['create', 'store', 'edit
 
 Route::resource('portfolio', 'ProjectsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
+Route::resource('faqs', 'FaqsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+Route::resource('our-clients', 'OurClientController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
 // Route::resource('/{pagepath}/{pageslug}', 'PagesController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
 Route::get('/{pagepath}/{pageslug}', 'PagesController@show')->name('page.show');

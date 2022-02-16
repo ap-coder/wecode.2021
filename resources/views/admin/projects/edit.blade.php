@@ -11,7 +11,7 @@
             @method('PUT')
             @csrf
 
-                         
+            <input type="hidden" name="project_id" id="project_id" value="{{ $project->id }}">
 <div class="row">
     <div class="col-7 col-sm-9">
         <div class="tab-content" id="vert-tabs-right-tabContent">
@@ -30,6 +30,9 @@
                 @include('admin.projects.partials.settings')
             </div>
 
+            <div class="tab-pane fade" id="vert-tabs-right-content-section" role="tabpanel" aria-labelledby="vert-tabs-right-content-section-tab">
+              @includeIf('admin.projects.partials.content-section', ['contentSections' => $project->projectsContentSections])
+          </div>
         </div>
     </div>
 
@@ -44,6 +47,7 @@
 
             <a class="nav-link" id="vert-tabs-right-settings-tab" data-toggle="pill" href="#vert-tabs-right-settings" role="tab" aria-controls="vert-tabs-right-settings" aria-selected="false">Settings</a>
 
+            <a class="nav-link" id="vert-tabs-right-content-section-tab" data-toggle="pill" href="#vert-tabs-right-content-section" role="tab" aria-controls="vert-tabs-right-content-section" aria-selected="false">Content Section</a>
         </div>
     </div>
 
@@ -71,12 +75,47 @@
 </div>
 
 
+<!-- The add Content Section Modal -->
+<div class="modal" id="addContentSectionModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
 
 @endsection
 
 @section('scripts')
 <script>
-
+  updateIndexContentSection = function(e, ui) {
+          $('td.index', ui.item.parent()).each(function (i) {
+              $(this).html(i + 1);
+          });
+      };
+$('.ContentSectionSort tbody').sortable({
+        cursor: 'move',
+        axis: 'y',
+        stop: updateIndexContentSection,
+        update: function(e, ui) {
+          $(this).sortable('refresh');
+          var params = {};
+          params = $('.ContentSectionOrders').serializeArray();
+          var pid=$('#project_id').val();
+          //console.log('params',params);
+          var _token = $('input[name="_token"]').val();
+            $.ajax({
+              url:'{{ url("/admin/ChangeProjectContentSectionOrder") }}',
+              method:"POST",
+              data: {
+                  params: params,pid:pid,_token:_token
+              },
+              success:function(response) {
+  
+              }
+            })
+          }
+      });
     
  $('#save-and-preview').click(function(){
 

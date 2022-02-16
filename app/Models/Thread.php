@@ -50,7 +50,7 @@ class Thread extends Model implements HasMedia
 
     public function threadsContentSections()
     {
-        return $this->belongsToMany(ContentSection::class);
+        return $this->belongsToMany(ContentSection::class)->orderBy('order', 'ASC');
     }
 
     public function getPhotoAttribute()

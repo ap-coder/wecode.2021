@@ -826,6 +826,7 @@ select {
     display: inline-block;
     border-radius: 30px;
     text-align: center;
+    cursor: pointer;
 }
 
 .button:hover {
@@ -6816,4 +6817,6 @@ textarea.form-control {
     padding: 6px 8px;
 }
 
-ul {padding-left: 25px!important;}
+ul {
+    padding-left: 25px!important;
+}

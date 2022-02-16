@@ -34,10 +34,10 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest');
+    // }
 
     /**
      * Get a validator for an incoming registration request.
@@ -49,7 +49,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name'     => ['required', 'string', 'max:255'],
             'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username'    => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'captcha' => ['required','captcha'],
+            'remember' => ['accepted']
+        ],
+        [
+            'captcha' =>'Invalid captcha code.'
         ]);
     }
 
@@ -63,6 +69,9 @@ class RegisterController extends Controller
         return User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
+            'username'    => $data['username'],
+            'phone_number'    => $data['phone_number'],
+            'country'    => $data['country'],
             'password' => Hash::make($data['password']),
         ]);
     }

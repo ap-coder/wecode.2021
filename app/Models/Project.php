@@ -69,6 +69,7 @@ class Project extends Model implements HasMedia
         'fb_description',
         'tw_description',
         'website',
+        'use_on_clients',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -182,5 +183,10 @@ class Project extends Model implements HasMedia
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function projectsContentSections()
+    {
+        return $this->belongsToMany(ContentSection::class)->orderBy('order', 'ASC');
     }
 }

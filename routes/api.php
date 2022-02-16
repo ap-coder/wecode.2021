@@ -1,5 +1,10 @@
 <?php
 
+
+Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin'], function () {
+    Route::post('reload-captcha', 'UsersApiController@reloadCaptcha')->name('users.reloadCaptcha');
+});
+
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Permissions
     Route::apiResource('permissions', 'PermissionsApiController');
@@ -9,6 +14,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Users
     Route::post('users/media', 'UsersApiController@storeMedia')->name('users.storeMedia');
+    
     Route::apiResource('users', 'UsersApiController');
 
     // Staff

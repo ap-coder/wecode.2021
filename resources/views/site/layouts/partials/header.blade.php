@@ -15,9 +15,9 @@
                         <div class="topbar-right text-center text-md-right">
                             <ul class="list-inline">
                                 <!-- <li><a href="#"> Check your rankings anytime anywhere </a> </li> -->
-                                <li><a href="#"> Register for FREE!</a></li>
-                                <li><a href="#"> Support & FAQ</a></li>
-                                <li><a href="#">Login </a></li>
+                                <li><a href="{{ route('register') }}"> Register for FREE!</a></li>
+                                <li><a href="{{ route('faqs.index') }}"> Support & FAQ</a></li>
+                                <li><a href="{{ route('login') }}">Login </a></li>
                             </ul>
                         </div>
                     </div>

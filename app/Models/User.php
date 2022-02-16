@@ -65,6 +65,8 @@ class User extends Authenticatable implements HasMedia
         'company_name',
         'client_type',
         'phone_number',
+        'username',
+        'country',
         'created_at',
         'updated_at',
         'deleted_at',

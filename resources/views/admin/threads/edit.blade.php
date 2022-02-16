@@ -26,6 +26,9 @@
           <div class="tab-pane fade" id="vert-tabs-right-settings" role="tabpanel" aria-labelledby="vert-tabs-right-settings-tab">
               @include('admin.threads.partials.settings')
           </div>
+          <div class="tab-pane fade" id="vert-tabs-right-content-section" role="tabpanel" aria-labelledby="vert-tabs-right-content-section-tab">
+            @includeIf('admin.threads.partials.content-section', ['contentSections' => $thread->threadsContentSections])
+        </div>
 
       </div>
   </div>
@@ -36,7 +39,7 @@
           <a class="nav-link active" id="vert-tabs-right-general-tab" data-toggle="pill" href="#vert-tabs-right-general" role="tab" aria-controls="vert-tabs-right-general" aria-selected="true">General</a>
            <a class="nav-link" id="vert-tabs-right-images-tab" data-toggle="pill" href="#vert-tabs-right-images" role="tab" aria-controls="vert-tabs-right-images" aria-selected="true">Images</a>
           <a class="nav-link" id="vert-tabs-right-settings-tab" data-toggle="pill" href="#vert-tabs-right-settings" role="tab" aria-controls="vert-tabs-right-settings" aria-selected="false">Settings</a>
-
+          <a class="nav-link" id="vert-tabs-right-content-section-tab" data-toggle="pill" href="#vert-tabs-right-content-section" role="tab" aria-controls="vert-tabs-right-content-section" aria-selected="false">Content Section</a>
       </div>
   </div>
 
@@ -64,12 +67,49 @@
     </div>
 </div>
 
+<!-- The add Content Section Modal -->
+<div class="modal" id="addContentSectionModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 
+    </div>
+  </div>
+</div>
 
 @endsection
 
 @section('scripts')
 <script>
+
+updateIndexContentSection = function(e, ui) {
+          $('td.index', ui.item.parent()).each(function (i) {
+              $(this).html(i + 1);
+          });
+      };
+      $('.ContentSectionSort tbody').sortable({
+        cursor: 'move',
+        axis: 'y',
+        stop: updateIndexContentSection,
+        update: function(e, ui) {
+          $(this).sortable('refresh');
+          var params = {};
+          params = $('.ContentSectionOrders').serializeArray();
+          var pid=$('#thread_id').val();
+          //console.log('params',params);
+          var _token = $('input[name="_token"]').val();
+            $.ajax({
+              url:'{{ url("/admin/ChangeThreadContentSectionOrder") }}',
+              method:"POST",
+              data: {
+                  params: params,pid:pid,_token:_token
+              },
+              success:function(response) {
+  
+              }
+            })
+          }
+      });
+      
     $(document).ready(function () {
   function SimpleUploadAdapter(editor) {
     editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {

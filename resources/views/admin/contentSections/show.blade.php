@@ -93,6 +93,16 @@
                             @endforeach
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.contentSection.fields.projects') }}
+                        </th>
+                        <td>
+                            @foreach($contentSection->projects as $key => $projects)
+                                <span class="label label-info">{{ $projects->name }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

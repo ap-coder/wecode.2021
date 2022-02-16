@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\ContentSection;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -251,5 +252,44 @@ class ProjectsController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+
+    public function GetProjectContentSectionModalForm(Request $request)
+    {
+        $contentSection=ContentSection::find($request->id);
+        $html= view('admin.projects.partials.content-section-modal', compact('contentSection'))->render();
+
+        echo $html;
+    }
+
+    public function AddProjectContentSection(Request $request)
+    {
+        if($request->id){
+            $contentSection=ContentSection::find($request->id);
+            $contentSection->update($request->all());
+        }else{
+            $contentSection = ContentSection::create($request->all());
+        }
+
+        $contentSection->assign_projects()->sync($request->input('projects', []));
+
+        $projects = Project::where('id',$request->projects)->first();
+
+        $contentSections=$projects->projectsContentSections;
+
+        $html= view('admin.projects.partials.content-section-loop', compact('contentSections'))->render();
+
+        echo $html;
+    }
+
+    public function ChangeProjectContentSectionOrder(Request $request)
+    {
+        $ids=$request->params;
+        foreach ($ids as $key => $id) {
+            ContentSection::where('id',$id['value'])->update([
+                'order' => $key+1,
+            ]);
+        }
+        echo 1;
     }
 }

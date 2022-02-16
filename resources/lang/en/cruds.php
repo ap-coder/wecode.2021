@@ -629,6 +629,8 @@ return [
             'posts_helper'         => ' ',
             'threads'              => 'Threads',
             'threads_helper'       => ' ',
+            'projects'              => 'Projects',
+            'projects_helper'       => ' ',
             'section_type'         => 'Section Type',
             'section_type_helper'  => ' ',
         ],
@@ -695,6 +697,8 @@ return [
             'tw_description_helper'    => ' ',
             'website'                  => 'Website',
             'website_helper'           => ' ',
+            'use_on_clients'                  => 'Use on clients',
+            'use_on_clients_helper'           => ' ',
         ],
     ],
     'adminSetting' => [
