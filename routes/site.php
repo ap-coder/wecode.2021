@@ -7,7 +7,12 @@ Route::resource('blog', 'BlogController', ['except' => ['create', 'store', 'edit
 Route::resource('portfolio', 'ProjectsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
 Route::resource('faqs', 'FaqsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
 Route::resource('our-clients', 'OurClientController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+Route::resource('discuss', 'DiscussionsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+Route::get('discuss/{topic?}/{slug?}', 'DiscussionsController@show')->name('discuss.show');
 
 // Route::resource('/{pagepath}/{pageslug}', 'PagesController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 

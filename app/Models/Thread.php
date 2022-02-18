@@ -36,10 +36,17 @@ class Thread extends Model implements HasMedia
         'published',
         'closed',
         'slug',
+        'author_id',
+        'topic_id',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+    public function scopePublished($query)
+	{
+		return $query->where('published', 1);
+	}
 
  
     public function registerMediaConversions(Media $media = null): void
@@ -85,5 +92,15 @@ class Thread extends Model implements HasMedia
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class, 'topic_id');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
     }
 }

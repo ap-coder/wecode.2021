@@ -203,4 +203,9 @@ class User extends Authenticatable implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function threads()
+    {
+        return $this->hasMany(Thread::class, 'author_id', 'id');
+    }
 }

@@ -17,6 +17,10 @@ class StoreThreadRequest extends FormRequest
     public function rules()
     {
         return [
+            'topic_id'   => [
+                'required',
+                'integer',
+            ],
             'title' => [
                 'string',
                 'nullable',

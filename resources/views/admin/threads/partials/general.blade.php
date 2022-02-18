@@ -1,3 +1,28 @@
+
+ <div class="form-group">
+    <label class="required" for="topic_id">{{ trans('cruds.thread.fields.topic') }}</label>
+    <select class="form-control select2 {{ $errors->has('topic') ? 'is-invalid' : '' }}" name="topic_id" id="topic_id" required>
+        @foreach($topics as $id => $topic)
+            <option value="{{ $id }}" {{ (old('topic_id') ? old('topic_id') : $thread->topic->id ?? '') == $id ? 'selected' : '' }}>{{ $topic }}</option>
+        @endforeach
+    </select>
+    @if($errors->has('topic'))
+        <span class="text-danger">{{ $errors->first('topic') }}</span>
+    @endif
+    <span class="help-block">{{ trans('cruds.thread.fields.topic_helper') }}</span>
+</div>
+<div class="form-group">
+    <label for="author_id">{{ trans('cruds.thread.fields.author') }}</label>
+    <select class="form-control select2 {{ $errors->has('author') ? 'is-invalid' : '' }}" name="author_id" id="author_id">
+        @foreach($authors as $id => $author)
+            <option value="{{ $id }}" {{ (old('author_id') ? old('author_id') : $thread->author->id ?? '') == $id ? 'selected' : '' }}>{{ $author }}</option>
+        @endforeach
+    </select>
+    @if($errors->has('author'))
+        <span class="text-danger">{{ $errors->first('author') }}</span>
+    @endif
+    <span class="help-block">{{ trans('cruds.thread.fields.author_helper') }}</span>
+</div>
 <div class="form-group">
     <label for="title">{{ trans('cruds.thread.fields.title') }}</label>
     <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title" id="title" value="{{ old('title', @$thread->title) }}">

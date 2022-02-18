@@ -29,6 +29,12 @@
                             {{ trans('cruds.thread.fields.title') }}
                         </th>
                         <th>
+                            {{ trans('cruds.thread.fields.topic') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.thread.fields.author') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.thread.fields.published') }}
                         </th>
                         <th>
@@ -47,6 +53,12 @@
                             </td>
                             <td>
                                 {{ $thread->title ?? '' }}
+                            </td>
+                            <td>
+                                {{ @$thread->topic->name ? $thread->topic->name : '' }}
+                            </td>
+                            <td>
+                                {{ @$thread->author->name ? $thread->author->name : '' ?? '' }}
                             </td>
                             <td>
                                 <span style="display:none">{{ $thread->published ?? '' }}</span>

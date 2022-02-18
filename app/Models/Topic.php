@@ -60,4 +60,19 @@ class Topic extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function Thread()
+    {
+        return $this->hasOne(Thread::class, 'topic_id', 'id');
+    }
+
+    public function threads()
+    {
+        return $this->hasMany(Thread::class, 'topic_id', 'id');
+    }
+
+    public function topicThreads()
+    {
+        return $this->hasMany(Thread::class, 'topic_id', 'id');
+    }
 }

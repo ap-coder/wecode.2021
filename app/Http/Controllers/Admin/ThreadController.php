@@ -8,6 +8,8 @@ use App\Http\Requests\MassDestroyThreadRequest;
 use App\Http\Requests\StoreThreadRequest;
 use App\Http\Requests\UpdateThreadRequest;
 use App\Models\Thread;
+use App\Models\Topic;
+use App\Models\User;
 use App\Models\ContentSection;
 use Gate;
 use Illuminate\Http\Request;
@@ -31,7 +33,11 @@ class ThreadController extends Controller
     {
         abort_if(Gate::denies('thread_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.threads.create');
+        $topics = Topic::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $authors = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.threads.create', compact('topics', 'authors'));
     }
 
     public function store(StoreThreadRequest $request)
@@ -61,7 +67,11 @@ class ThreadController extends Controller
     {
         abort_if(Gate::denies('thread_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.threads.edit', compact('thread'));
+        $topics = Topic::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $authors = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.threads.edit', compact('thread','topics','authors'));
     }
 
     public function update(UpdateThreadRequest $request, Thread $thread)
