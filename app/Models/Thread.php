@@ -103,4 +103,14 @@ class Thread extends Model implements HasMedia
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'thread_id', 'id');
+    }
+
+    public function threadReplies()
+    {
+        return $this->hasMany(Reply::class, 'thread_id', 'id');
+    }
 }

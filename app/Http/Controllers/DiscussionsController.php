@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Thread;
+use App\Models\Reply;
 
 class DiscussionsController extends Controller
 {
@@ -28,6 +29,18 @@ class DiscussionsController extends Controller
     {
         $thread = Thread::where('slug', $slug)->first();
         return view('site.discussions.show', compact('thread'));
+    }
+
+    public function storeReply(Request $request)
+    {
+
+        $reply = Reply::create($request->all());
+
+        foreach ($request->input('attachments', []) as $file) {
+            $reply->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('attachments');
+        }
+
+        return back();
     }
 
 }
