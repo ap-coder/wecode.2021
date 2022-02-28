@@ -45,8 +45,12 @@ RUN apt-get update \
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 
-RUN groupadd --force -g $WWWGROUP sail
-RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
+RUN usermod --non-unique --uid 1000 www-data \
+  && groupmod --non-unique --gid 1000 www-data \
+  && chown -R www-data:www-data /var/www/html
+
+# RUN groupadd --force -g $WWWGROUP sail
+RUN useradd -ms /usr/bin/bash --no-user-group -g 1000 -u 1337 sail
 
 COPY start-container /usr/local/bin/start-container
 COPY start-container /usr/local/bin/setup
@@ -56,6 +60,6 @@ RUN chmod +x /usr/local/bin/setup
 RUN chmod +x /usr/local/bin/start-container
 
 
-EXPOSE 8000
+EXPOSE 80 8000
 
 ENTRYPOINT ["start-container"]

@@ -18,3 +18,5 @@ Homestead.json
 resources/views/Template
 resources/views/Template/*
 
+setup.sh
+storage/wecode.sublime-project

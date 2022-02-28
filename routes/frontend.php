@@ -107,6 +107,12 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::delete('technologies/destroy', 'TechnologyController@massDestroy')->name('technologies.massDestroy');
     Route::resource('technologies', 'TechnologyController');
 
+    // Service
+    Route::delete('services/destroy', 'ServiceController@massDestroy')->name('services.massDestroy');
+    Route::post('services/media', 'ServiceController@storeMedia')->name('services.storeMedia');
+    Route::post('services/ckmedia', 'ServiceController@storeCKEditorImages')->name('services.storeCKEditorImages');
+    Route::resource('services', 'ServiceController');
+
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');
     Route::post('frontend/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');

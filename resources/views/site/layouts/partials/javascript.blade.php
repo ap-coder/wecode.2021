@@ -23,7 +23,7 @@
         @include('site.layouts.partials.revolution-js')
     @endif
     
-
+@yield('custom_page_scripts')
     <!-- appear -->
     <script type="text/javascript" src="{{ asset('site/js/jquery.appear.js') }}"></script>
    

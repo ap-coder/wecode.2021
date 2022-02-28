@@ -138,6 +138,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('technologies/destroy', 'TechnologyController@massDestroy')->name('technologies.massDestroy');
     Route::resource('technologies', 'TechnologyController');
 
+    // Service
+    Route::delete('services/destroy', 'ServiceController@massDestroy')->name('services.massDestroy');
+    Route::post('services/media', 'ServiceController@storeMedia')->name('services.storeMedia');
+    Route::post('services/ckmedia', 'ServiceController@storeCKEditorImages')->name('services.storeCKEditorImages');
+    Route::resource('services', 'ServiceController');
     
 	Route::post('add_env_conditionals', function(Request $request) {
 
