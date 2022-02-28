@@ -2,7 +2,8 @@
 node_modules/
 npm-debug.log
 yarn-error.log
-
+setup.sh
+storage/wecode.sublime-project
 # Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
@@ -18,5 +19,3 @@ Homestead.json
 resources/views/Template
 resources/views/Template/*
 
-setup.sh
-storage/wecode.sublime-project
