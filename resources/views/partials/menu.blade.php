@@ -59,6 +59,18 @@
                         </ul>
                     </li>
                 @endcan
+                @can('service_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.services.index") }}" class="nav-link {{ request()->is("admin/services") || request()->is("admin/services/*") ? "active" : "" }}">
+                            <i class="fa-fw nav-icon fas fa-briefcase">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.service.title') }}
+                            </p>
+                        </a>
+                    </li>
+                @endcan
                 @can('blog_manager_access')
                     <li class="nav-item has-treeview {{ request()->is("admin/posts*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">

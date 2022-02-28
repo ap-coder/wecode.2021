@@ -6,8 +6,7 @@
 @include('site.our-clients.partials.client-intro')
 
 
-    <!--=================================
-    Our Client Title -->
+    <!--================================= Our Client Title -->
 
     <section class="page-section-pt">
         <div class="container">
@@ -21,8 +20,7 @@
             </div>
         </div>
     </section>
-    <!--=================================
-Our Client Title -->
+    <!--================================= Our Client Title -->
 
 
 <section class="clients-dolor page-section-pb">

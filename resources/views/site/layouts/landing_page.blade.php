@@ -1,8 +1,8 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html><html lang="en" @hasSection('htmlClasses') class="@yield('htmlClasses')" @endif itemscope @hasSection('htmlschema')itemtype="https://schema.org/@yield('htmlschema')"@endif @hasSection('htmlschema2')itemtype="https://schema.org/@yield('htmlschema2')" @endif @hasSection('htmlschema3')itemtype="https://schema.org/@yield('htmlschema3')" @endif>
     <head>
     @include('site.layouts.partials.head')
     </head>
-<body>
+<body @hasSection('bodyClasses') class="@yield('bodyClasses')" @endif @hasSection('bodyschema') itemscope="" itemtype="http://schema.org/@yield('bodyschema')" @endif>
     <!--================================= loading -->
     @include('site.layouts.partials.loader')
     <!--=================================  loading -->

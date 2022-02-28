@@ -7,8 +7,15 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": {
+        "menu": {
+            "type": "composer",
+            "url": "https://github.com/wecodelaravel/menu"
+        }
+    },
     "require": {
         "php": "^7.3|^7.4|^8.0",
+        "artesaos/seotools": "^0.22.0",
         "bugsnag/bugsnag-laravel": "^2.21",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
@@ -43,7 +50,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "wecodelaravel/laravel-menu"
+            ]
         }
     },
     "autoload": {
@@ -72,4 +81,5 @@
             "@php artisan key:generate --ansi"
         ]
     }
+
 }

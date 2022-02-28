@@ -15,10 +15,11 @@ use App\Models\Project;
 use Harimayco\Menu\Models\Menus;
 use Harimayco\Menu\Models\MenuItems;
 use Harimayco\Menu\Facades\Menu;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, SEOToolsTrait;
 
     public function __construct(Request $request)
 	{

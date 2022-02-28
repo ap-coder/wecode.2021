@@ -1,5 +1,9 @@
 @extends('site.layouts.landing_page')
 
+@section('page_styles') @endsection
+
+@section('custom_page_scripts') @endsection
+
  
 {{-- added this part for custom css for this page only. --}}
 @section('page_styles')
