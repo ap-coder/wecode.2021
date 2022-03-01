@@ -1,5 +1,12 @@
 <?php 
 
+Route::group(['prefix' => 'my-account','as' => 'my-account.', 'namespace' => 'Frontend', 'middleware' => ['auth']], function () {
+    
+    Route::get('/dashboard', 'AccountsController@dashboard')->name('dashboard');
+    
+});
+
+
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['auth']], function () {
     // Route::get('/home', 'HomeController@index')->name('home');
     
