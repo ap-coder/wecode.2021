@@ -14,6 +14,8 @@ class Role extends Model
 
     public $table = 'roles';
 
+    protected $with = ['permissions'];  
+
     protected $dates = [
         'created_at',
         'updated_at',

@@ -4,9 +4,7 @@
     @include('site.layouts.partials.revolution-css')
 @endsection
 
-@section('custom_page_scripts')
-    @include('site.layouts.partials.revolution-js')
-@endsection
+
 
 
 @section('content')
@@ -17,8 +15,7 @@
 <!--================================= banner -->
 
 
-<!--=================================
-wecomel -->
+<!--================================= wecomel -->
 
 <section class="education page-section-ptb" style="background:url({{ asset('site/images/bg-element/01.png') }}) no-repeat 150px 70px;">
     <div class="container">
@@ -41,7 +38,7 @@ wecomel -->
                     </div>
                     <div class="feature-box-info mt-2">
                         <h5 class="text-blue mb-2">Extremely Affordable</h5>
-                        <p>Development and Design are actually our passion, your success is actually our goal, and these qualities combined with marketing standards are precisely what set you apart within the industry.</p>
+                        <p>Development and Design are actually our passion, your success is actually our goal, and these qualities combined with with SEO and marketing standards are precisely what set us apart within the industry and we would love to pass it on to you.</p>
                     </div>
                 </div>
             </div>
@@ -63,7 +60,7 @@ wecomel -->
                     </div>
                     <div class="feature-box-info mt-2">
                         <h5 class="text-blue mb-2">Responsive & Mobile</h5>
-                        <p>Dominate desktops, tablets & smartphones with a responsive website. Hire We Code Laravel our company to design a mobile friendly site at best price for better reach and impact.</p>
+                        <p>Dominate desktops, tablets & smartphones with a responsive website. Hire We Code Laravel to design a mobile friendly, optimized and SEO compliant right out door. We have the best price around for obtaining better reach and impact.</p>
                     </div>
                 </div>
             </div>
@@ -71,12 +68,10 @@ wecomel -->
     </div>
 </section>
 
-<!--=================================
-wecomel -->
+<!--================================= wecomel -->
 
 
-<!--=================================
-our-service -->
+<!--================================= our-service -->
 
 <section class="our-service no-gutter container-fluid">
     <div class="row">
@@ -181,12 +176,10 @@ our-service -->
     </div>
 </section>
 
-<!--=================================
-our-service -->
+<!--================================= our-service -->
 
 
-<!--=================================
-map-location -->
+<!--================================= map-location -->
 
 <section class="map-location page-section-pt">
     <div class="container">
@@ -231,12 +224,10 @@ map-location -->
     </div>
 </section>
 
-<!--=================================
-map-location -->
+<!--================================= map-location -->
 
 
-<!--=================================
-newsletter -->
+<!--================================= newsletter -->
 
 <section class="newsletter page-section-ptb">
     <div class="container">
@@ -263,66 +254,63 @@ newsletter -->
     </div>
 </section>
 
-<!--=================================
-newsletter -->
+<!--================================= newsletter -->
 
 
-<!--=================================
-accordion-main -->
+<!--================================= accordion-main -->
+
 
 <section class="accordion-main page-section-ptb sec-relative">
-    <div class="side-content-image">
-        <img class="img-fluid" src="{{ asset('site/images/icon/04.png') }}" alt="">
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 text-center">
-                <div class="owl-carousel mt-3" data-nav-dots="true" data-nav-arrow="false" data-items="1" data-sm-items="1" data-lg-items="1" data-md-items="1" data-autoplay="false" data-loop="true">
-                    <div class="item">
-                        <img class="img-fluid" alt="#" src="{{ asset('site/images/icon/02.png') }}" />
-                    </div>
-                    <div class="item">
-                        <img class="img-fluid" src="{{ asset('site/images/icon/16.png') }}"  alt="" />
-                    </div>
-                    <div class="item">
-                        <img class="img-fluid" src="{{ asset('site/images/icon/03.png') }}"  alt="" />
+        <div class="side-content-image">
+            <img class="img-fluid" src="{{ asset('site/images/bg-element/04.png') }}" alt="">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center">
+                    <div class="owl-carousel mt-3" data-nav-dots="true" data-nav-arrow="false" data-items="1" data-sm-items="1" data-lg-items="1" data-md-items="1" data-autoplay="false" data-loop="true">
+                        <div class="item">
+                            <img class="img-fluid" alt="#" src="images/device/02.png" />
+                        </div>
+                        <div class="item">
+                            <img class="img-fluid" src="images/device/16.png"  alt="" />
+                        </div>
+                        <div class="item">
+                            <img class="img-fluid" src="images/device/03.jpg"  alt="" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <h3 class="mb-2">GROW YOUR BUSINESS WITH US</h3>
-                <p class="mb-2">We are on a mission to build, grow and maintain loyal communities at every touchpoint. This means you can accomplish your business goals hrough digital marketing</p>
-                <div class="accordion">
-                    <div class="acd-group acd-active">
-                        <a href="#" class="acd-heading"><span class="ti-bar-chart-alt text-blue"></span>We always Support within one business day.</a>
-                        <div class="acd-des">
-                            <p>We always provide Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.</p>
+                <div class="col-lg-6">
+                    <h3 class="mb-2">GROW YOUR BUSINESS WITH US</h3>
+                    <p class="mb-2">We are on a mission to build, grow and maintain loyal communities at every touchpoint. This means you can accomplish your business goals hrough digital marketing</p>
+                    <div class="accordion">
+                        <div class="acd-group acd-active">
+                            <a href="#" class="acd-heading"><span class="ti-bar-chart-alt text-blue"></span>We always Support within one business day.</a>
+                            <div class="acd-des">
+                                <p>We always provide Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="acd-group">
-                        <a href="#" class="acd-heading text-black"><span class="ti-pulse text-blue"></span> We deliver Top Rankings.</a>
-                        <div class="acd-des">
-                            <p> We always provide Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.</p>
+                        <div class="acd-group">
+                            <a href="#" class="acd-heading text-black"><span class="ti-pulse text-blue"></span> We deliver Top Rankings.</a>
+                            <div class="acd-des">
+                                <p> We always provide Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="acd-group">
-                        <a href="#" class="acd-heading text-black"><span class="ti-shield text-blue"></span> High customer retention rate.</a>
-                        <div class="acd-des">
-                            <p> We always provide Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.</p>
+                        <div class="acd-group">
+                            <a href="#" class="acd-heading text-black"><span class="ti-shield text-blue"></span> High customer retention rate.</a>
+                            <div class="acd-des">
+                                <p> We always provide Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!--=================================
-accordion-main -->
+<!--================================= accordion-main -->
 
 
-<!--=================================
-welcome-01 -->
+<!--================================= welcome-01 -->
 
 <section class="page-section-ptb welcome-01 bg fixed" style="background: url({{ asset('site/images/bg/01.jpg') }});">
     <div class="container">
@@ -342,12 +330,10 @@ welcome-01 -->
     </div>
 </section>
 
-<!--=================================
-welcome-01 -->
+<!--================================= welcome-01 -->
 
 
-<!--=================================
-pricing-packages -->
+<!--================================= pricing-packages -->
 
 <section class="pricing-packages page-section-ptb">
     <div class="container">
@@ -445,12 +431,10 @@ pricing-packages -->
     </div>
 </section>
 
-<!--=================================
-pricing-packages -->
+<!--================================= pricing-packages -->
 
 
-<!--=================================
-fancy-team -->
+<!--================================= fancy-team -->
 
 <section class="fancy-team pt-5">
     <div class="container-fluid">
@@ -559,3 +543,16 @@ fancy-team -->
 {{-- @section('bodyClasses', '') --}}
 @section('bodyschema', "WebPage")
 {{-- @section('jsonld') @endsection --}}
+
+@section('custom_page_scripts')
+    @include('site.layouts.partials.revolution-js')
+@endsection
+
+@section('custom_revslider_script')
+    {{-- @include('site.pages.homepage.partials.slider1-script') --}}
+    @include('site.pages.homepage.partials.slider2-script')
+    {{-- @include('site.pages.homepage.partials.slider3-script') --}}
+    {{-- @include('site.pages.homepage.partials.slider4-script') --}}
+    {{-- @include('site.pages.homepage.partials.slider5-script') --}}
+
+@endsection

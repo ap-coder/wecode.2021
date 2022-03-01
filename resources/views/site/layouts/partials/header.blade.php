@@ -5,9 +5,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="topbar-left text-center text-md-left">
-                            <ul class="list-inline">
-                                <li> <i class="ti-location-pin"> </i>Midvale, Utah</li>
-                                <li> <i class="ti-headphone-alt"></i>wecodelaravel@gmail.com</li>
+                            <ul class="list-inline" style="padding-left:0!important;">
+                                <li> <i class="ti-location-pin"> </i>United States</li>
+                                <li> <i class="ti-headphone-alt spamprotection"></i>
+                                    <a HREF="mailto:&#119;&#101;&#099;&#111;&#100;&#101;&#108;&#097;&#114;&#097;&#118;&#101;&#108;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">&#119;&#101;&#099;&#111;&#100;&#101;&#108;&#097;&#114;&#097;&#118;&#101;&#108;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
