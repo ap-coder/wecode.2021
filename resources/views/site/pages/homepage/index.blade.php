@@ -269,13 +269,13 @@
                 <div class="col-lg-6 text-center">
                     <div class="owl-carousel mt-3" data-nav-dots="true" data-nav-arrow="false" data-items="1" data-sm-items="1" data-lg-items="1" data-md-items="1" data-autoplay="false" data-loop="true">
                         <div class="item">
-                            <img class="img-fluid" alt="#" src="images/device/02.png" />
+                            <img class="img-fluid" alt="#" src="{{ asset('site/images/device/02.png') }}" />
                         </div>
                         <div class="item">
-                            <img class="img-fluid" src="images/device/16.png"  alt="" />
+                            <img class="img-fluid" src="{{ asset('site/images/device/16.png') }}"  alt="" />
                         </div>
                         <div class="item">
-                            <img class="img-fluid" src="images/device/03.jpg"  alt="" />
+                            <img class="img-fluid" src="{{ asset('site/images/device/03.jpg') }}"  alt="" />
                         </div>
                     </div>
                 </div>
@@ -312,7 +312,7 @@
 
 <!--================================= welcome-01 -->
 
-<section class="page-section-ptb welcome-01 bg fixed" style="background: url({{ asset('site/images/bg/01.jpg') }});">
+<section class="page-section-ptb welcome-01 bg fixed" style="background: url({{ asset('site/images/bg/03.jpg') }});">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
