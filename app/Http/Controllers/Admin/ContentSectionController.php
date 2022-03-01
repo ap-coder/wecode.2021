@@ -11,6 +11,7 @@ use App\Models\Page;
 use App\Models\Post;
 use App\Models\Thread;
 use App\Models\Project;
+use App\Models\Service;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -88,7 +89,9 @@ class ContentSectionController extends Controller
 
         $projects = Project::pluck('name', 'id');
 
-        return view('admin.contentSections.create', compact('pages', 'posts', 'threads','projects'));
+        $services = Service::pluck('title', 'id');
+
+        return view('admin.contentSections.create', compact('pages', 'posts', 'threads','projects','services'));
     }
 
     public function store(StoreContentSectionRequest $request)
@@ -98,6 +101,7 @@ class ContentSectionController extends Controller
         $contentSection->posts()->sync($request->input('posts', []));
         $contentSection->threads()->sync($request->input('threads', []));
         $contentSection->projects()->sync($request->input('projects', []));
+        $contentSection->services()->sync($request->input('services', []));
 
         return redirect()->route('admin.content-sections.index');
     }
@@ -114,9 +118,11 @@ class ContentSectionController extends Controller
 
         $projects = Project::pluck('name', 'id');
 
+        $services = Service::pluck('title', 'id');
+
         $contentSection->load('pages', 'posts', 'threads');
 
-        return view('admin.contentSections.edit', compact('contentSection', 'pages', 'posts', 'threads','projects'));
+        return view('admin.contentSections.edit', compact('contentSection', 'pages', 'posts', 'threads','projects','services'));
     }
 
     public function update(UpdateContentSectionRequest $request, ContentSection $contentSection)
@@ -126,6 +132,7 @@ class ContentSectionController extends Controller
         $contentSection->posts()->sync($request->input('posts', []));
         $contentSection->threads()->sync($request->input('threads', []));
         $contentSection->projects()->sync($request->input('projects', []));
+        $contentSection->services()->sync($request->input('services', []));
 
         return redirect()->route('admin.content-sections.index');
     }

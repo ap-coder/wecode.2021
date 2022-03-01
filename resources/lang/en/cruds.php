@@ -635,6 +635,8 @@ return [
             'threads_helper'       => ' ',
             'projects'              => 'Projects',
             'projects_helper'       => ' ',
+            'services'              => 'Services',
+            'services_helper'       => ' ',
             'section_type'         => 'Section Type',
             'section_type_helper'  => ' ',
         ],

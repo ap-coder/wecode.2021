@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\Service;
 use Harimayco\Menu\Models\Menus;
 use Harimayco\Menu\Models\MenuItems;
 use Harimayco\Menu\Facades\Menu;
@@ -46,6 +47,12 @@ class Controller extends BaseController
 				if ($pageData) {
 					$top_sections=$pageData->postsContentSections;
 					$bottom_sections=$pageData->postsContentSections;
+				}
+			} elseif($pagename=='services.show') {
+				$pageData=Service::where('slug',request()->route('service'))->first();
+				if ($pageData) {
+					$top_sections=$pageData->servicesContentSections;
+					$bottom_sections=$pageData->servicesContentSections;
 				}
 			}
 

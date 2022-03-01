@@ -7,150 +7,187 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("admin.services.update", [$service->id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("admin.services.update", [$service->id]) }}" enctype="multipart/form-data" id="submitServiceForm" class="form-horizontal" novalidate="">
             @method('PUT')
             @csrf
-            <div class="form-group">
-                <label class="required" for="title">{{ trans('cruds.service.fields.title') }}</label>
-                <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title" id="title" value="{{ old('title', $service->title) }}" required>
-                @if($errors->has('title'))
-                    <span class="text-danger">{{ $errors->first('title') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.title_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="sub_title">{{ trans('cruds.service.fields.sub_title') }}</label>
-                <input class="form-control {{ $errors->has('sub_title') ? 'is-invalid' : '' }}" type="text" name="sub_title" id="sub_title" value="{{ old('sub_title', $service->sub_title) }}">
-                @if($errors->has('sub_title'))
-                    <span class="text-danger">{{ $errors->first('sub_title') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.sub_title_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="service_text">{{ trans('cruds.service.fields.service_text') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('service_text') ? 'is-invalid' : '' }}" name="service_text" id="service_text">{!! old('service_text', $service->service_text) !!}</textarea>
-                @if($errors->has('service_text'))
-                    <span class="text-danger">{{ $errors->first('service_text') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.service_text_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="service_text_2">{{ trans('cruds.service.fields.service_text_2') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('service_text_2') ? 'is-invalid' : '' }}" name="service_text_2" id="service_text_2">{!! old('service_text_2', $service->service_text_2) !!}</textarea>
-                @if($errors->has('service_text_2'))
-                    <span class="text-danger">{{ $errors->first('service_text_2') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.service_text_2_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="excerpt">{{ trans('cruds.service.fields.excerpt') }}</label>
-                <textarea class="form-control {{ $errors->has('excerpt') ? 'is-invalid' : '' }}" name="excerpt" id="excerpt">{{ old('excerpt', $service->excerpt) }}</textarea>
-                @if($errors->has('excerpt'))
-                    <span class="text-danger">{{ $errors->first('excerpt') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.excerpt_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="price">{{ trans('cruds.service.fields.price') }}</label>
-                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', $service->price) }}" step="0.01">
-                @if($errors->has('price'))
-                    <span class="text-danger">{{ $errors->first('price') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.price_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="featured_image">{{ trans('cruds.service.fields.featured_image') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('featured_image') ? 'is-invalid' : '' }}" id="featured_image-dropzone">
-                </div>
-                @if($errors->has('featured_image'))
-                    <span class="text-danger">{{ $errors->first('featured_image') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.featured_image_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="content_images">{{ trans('cruds.service.fields.content_images') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('content_images') ? 'is-invalid' : '' }}" id="content_images-dropzone">
-                </div>
-                @if($errors->has('content_images'))
-                    <span class="text-danger">{{ $errors->first('content_images') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.content_images_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="meta_title">{{ trans('cruds.service.fields.meta_title') }}</label>
-                <input class="form-control {{ $errors->has('meta_title') ? 'is-invalid' : '' }}" type="text" name="meta_title" id="meta_title" value="{{ old('meta_title', $service->meta_title) }}">
-                @if($errors->has('meta_title'))
-                    <span class="text-danger">{{ $errors->first('meta_title') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.meta_title_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="meta_description">{{ trans('cruds.service.fields.meta_description') }}</label>
-                <input class="form-control {{ $errors->has('meta_description') ? 'is-invalid' : '' }}" type="text" name="meta_description" id="meta_description" value="{{ old('meta_description', $service->meta_description) }}">
-                @if($errors->has('meta_description'))
-                    <span class="text-danger">{{ $errors->first('meta_description') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.meta_description_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="facebook_title">{{ trans('cruds.service.fields.facebook_title') }}</label>
-                <input class="form-control {{ $errors->has('facebook_title') ? 'is-invalid' : '' }}" type="text" name="facebook_title" id="facebook_title" value="{{ old('facebook_title', $service->facebook_title) }}">
-                @if($errors->has('facebook_title'))
-                    <span class="text-danger">{{ $errors->first('facebook_title') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.facebook_title_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="facebook_desc">{{ trans('cruds.service.fields.facebook_desc') }}</label>
-                <input class="form-control {{ $errors->has('facebook_desc') ? 'is-invalid' : '' }}" type="text" name="facebook_desc" id="facebook_desc" value="{{ old('facebook_desc', $service->facebook_desc) }}">
-                @if($errors->has('facebook_desc'))
-                    <span class="text-danger">{{ $errors->first('facebook_desc') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.facebook_desc_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="banner">{{ trans('cruds.service.fields.banner') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('banner') ? 'is-invalid' : '' }}" id="banner-dropzone">
-                </div>
-                @if($errors->has('banner'))
-                    <span class="text-danger">{{ $errors->first('banner') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.banner_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <div class="form-check {{ $errors->has('published') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="published" value="0">
-                    <input class="form-check-input" type="checkbox" name="published" id="published" value="1" {{ $service->published || old('published', 0) === 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="published">{{ trans('cruds.service.fields.published') }}</label>
-                </div>
-                @if($errors->has('published'))
-                    <span class="text-danger">{{ $errors->first('published') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.published_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="slug">{{ trans('cruds.service.fields.slug') }}</label>
-                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', $service->slug) }}">
-                @if($errors->has('slug'))
-                    <span class="text-danger">{{ $errors->first('slug') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.service.fields.slug_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-danger" type="submit">
-                    {{ trans('global.save') }}
-                </button>
-            </div>
+            <input type="hidden" name="service_id" id="service_id" value="{{ $service->id }}">
+
+                            
+<div class="row">
+  <div class="col-7 col-sm-9">
+      <div class="tab-content" id="vert-tabs-right-tabContent">
+          <div class="tab-pane fade show active" id="vert-tabs-right-general" role="tabpanel" aria-labelledby="vert-tabs-right-general-tab">
+              @include('admin.services.partials.general')
+
+          </div>
+          <div class="tab-pane fade" id="vert-tabs-right-images"    role="tabpanel" aria-labelledby="vert-tabs-right-images-tab">
+              @include('admin.services.partials.images')
+          </div>           
+       
+          <div class="tab-pane fade" id="vert-tabs-right-seo"      role="tabpanel" aria-labelledby="vert-tabs-right-seo-tab">
+              @include('admin.services.partials.seo')
+          </div>
+
+          <div class="tab-pane fade" id="vert-tabs-right-settings" role="tabpanel" aria-labelledby="vert-tabs-right-settings-tab">
+              @include('admin.services.partials.settings')
+          </div>
+
+          <div class="tab-pane fade" id="vert-tabs-right-content-section" role="tabpanel" aria-labelledby="vert-tabs-right-content-section-tab">
+            @includeIf('admin.services.partials.content-section', ['contentSections' => $service->servicesContentSections])
+        </div>
+
+      </div>
+  </div>
+
+  <div class="col-5 col-sm-3">
+      <div class="nav flex-column nav-tabs nav-tabs-right h-100" id="vert-tabs-right-tab" role="tablist" aria-orientation="vertical">
+
+          <a class="nav-link active" id="vert-tabs-right-general-tab" data-toggle="pill" href="#vert-tabs-right-general" role="tab" aria-controls="vert-tabs-right-general" aria-selected="true">General</a>
+
+           <a class="nav-link" id="vert-tabs-right-images-tab" data-toggle="pill" href="#vert-tabs-right-images" role="tab" aria-controls="vert-tabs-right-images" aria-selected="true">Images</a>
+           
+          <a class="nav-link" id="vert-tabs-right-seo-tab" data-toggle="pill" href="#vert-tabs-right-seo" role="tab" aria-controls="vert-tabs-right-seo" aria-selected="false">SEO META</a>
+
+          <a class="nav-link" id="vert-tabs-right-settings-tab" data-toggle="pill" href="#vert-tabs-right-settings" role="tab" aria-controls="vert-tabs-right-settings" aria-selected="false">Settings</a>
+
+          <a class="nav-link" id="vert-tabs-right-content-section-tab" data-toggle="pill" href="#vert-tabs-right-content-section" role="tab" aria-controls="vert-tabs-right-content-section" aria-selected="false">Content Section</a>
+
+
+      </div>
+  </div>
+
+
+
+
+</div>
+
+
+<hr>
+          
+          <div class="form-group">
+            <button class="btn btn-danger" type="submit">
+                {{ trans('global.save_and_close') }}
+            </button>
+
+            <button class="btn btn-primary" id="save-and-preview" type="button">
+              {{ trans('global.save_and_preview') }}
+          </button>
+        </div>
         </form>
     </div>
 </div>
 
 
+<!-- The add Content Section Modal -->
+<div class="modal" id="addContentSectionModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+      </div>
+    </div>
+  </div>
 
 @endsection
 
 @section('scripts')
+
 <script>
+   
+ $('#save-and-preview').click(function(){
+
+$('#submitServiceForm').validate({
+      rules: {
+        'title': {
+            required: true
+        },
+        // 'categories[]': {
+        //     required: true
+        // },
+      },
+      messages: {
+        title: "Please Enter Title",
+        // 'categories[]': "You must select at least one category. Without it the combined media page will error out.",
+    }
+});
+
+if ($('#submitServiceForm').valid()) // check if form is valid
+  {
+      $this=$(this);
+      $loader='<div class="spinner-border text-dark" role="status">'+
+                '<span class="sr-only">Loading...</span>'+
+                '</div>';
+      $this.html($loader);
+      var formData = $('#submitServiceForm').serializeArray();
+
+      formData.push({name: "preview", value: 1});
+
+      var text1=getDataFromTheText1Editor();
+      var text2=getDataFromTheText2Editor();
+
+      // Find and replace `content` if there
+      for (index = 0; index < formData.length; ++index) {
+          if (formData[index].name == "service_text") {
+            formData[index].value = text1;
+              break;
+          }
+      }
+
+      // Find and replace `content` if there
+      for (index = 0; index < formData.length; ++index) {
+          if (formData[index].name == "service_text_2") {
+            formData[index].value = text2;
+              break;
+          }
+      }
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("admin.services.update", [$service->id]) }}',
+            dataType: 'json',
+            data: formData,
+            success: function(resultData) {
+              $this.html("{{ trans('global.save_and_preview') }}");
+              window.open("{{ url('services') }}/"+resultData, '_blank'); 
+             }
+        });
+
+  }
+
+});
+  updateIndexContentSection = function(e, ui) {
+          $('td.index', ui.item.parent()).each(function (i) {
+              $(this).html(i + 1);
+          });
+      };
+      $('.ContentSectionSort tbody').sortable({
+        cursor: 'move',
+        axis: 'y',
+        stop: updateIndexContentSection,
+        update: function(e, ui) {
+          $(this).sortable('refresh');
+          var params = {};
+          params = $('.ContentSectionOrders').serializeArray();
+          var pid=$('#service_id').val();
+          //console.log('params',params);
+          var _token = $('input[name="_token"]').val();
+            $.ajax({
+              url:'{{ url("/admin/ChangeServiceContentSectionOrder") }}',
+              method:"POST",
+              data: {
+                  params: params,pid:pid,_token:_token
+              },
+              success:function(response) {
+  
+              }
+            })
+          }
+      });
+</script>
+
+<script>
+  let theText1Editor;
+  let theText2Editor;
+
     $(document).ready(function () {
   function SimpleUploadAdapter(editor) {
     editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
@@ -203,15 +240,49 @@
     }
   }
 
-  var allEditors = document.querySelectorAll('.ckeditor');
+  // var allEditors = document.querySelectorAll('.ckeditor');
+  // for (var i = 0; i < allEditors.length; ++i) {
+  //   ClassicEditor.create(
+  //     allEditors[i], {
+  //       extraPlugins: [SimpleUploadAdapter]
+  //     }
+  //   );
+  // }
+
+  var allEditors = document.querySelectorAll('#service_text');
   for (var i = 0; i < allEditors.length; ++i) {
     ClassicEditor.create(
       allEditors[i], {
         extraPlugins: [SimpleUploadAdapter]
       }
-    );
+    ).then( editor => {
+        // CKEditorInspector.attach( editor );
+        theText1Editor = editor;
+    } )
   }
+
+  var alltext2Editors = document.querySelectorAll('#service_text_2');
+  for (var i = 0; i < alltext2Editors.length; ++i) {
+    ClassicEditor.create(
+      alltext2Editors[i], {
+        extraPlugins: [SimpleUploadAdapter]
+      }
+    ).then( editor => {
+        // CKEditorInspector.attach( editor );
+        theText2Editor = editor;
+    } )
+  }
+
+
 });
+
+function getDataFromTheText1Editor() {
+  return theText1Editor.getData();
+}
+
+function getDataFromTheText2Editor() {
+  return theText2Editor.getData();
+}
 </script>
 
 <script>

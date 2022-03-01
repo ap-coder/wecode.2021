@@ -122,6 +122,22 @@
                 <span class="help-block">{{ trans('cruds.contentSection.fields.projects_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="services">{{ trans('cruds.contentSection.fields.services') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('services') ? 'is-invalid' : '' }}" name="services[]" id="services" multiple>
+                    @foreach($services as $id => $service)
+                        <option value="{{ $id }}" {{ in_array($id, old('services', [])) ? 'selected' : '' }}>{{ $service }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('services'))
+                    <span class="text-danger">{{ $errors->first('services') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.contentSection.fields.services_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
