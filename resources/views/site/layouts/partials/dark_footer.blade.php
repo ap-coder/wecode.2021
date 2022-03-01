@@ -4,7 +4,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-logo">
                         <img id="logo_footer_light" class="img-fluid pb-2" src="images/logo-light.png" alt="">
-                        <p class="text-gray pb-2"> SEOhub helps you to quickly and easily build incredible websites. SEOhub is a Hand Crafted Pixel Perfect, Responsive, Multi-Purpose, Retina Ready, HTML5, Revolution slider & outstanding template with Many Features that You Need.<a href="" class="text-white"> BUY IT NOW!</a></p>
+                        <p class="text-gray pb-2"> WeCodeLaravel helps you to quickly and easily build incredible websites. WeCodeLaravel is a Hand Crafted Pixel Perfect, Responsive, Multi-Purpose, Retina Ready, HTML5, Revolution slider & outstanding template with Many Features that You Need.<a href="" class="text-white"> Email Us Today!</a></p>
                     </div>
                     <div class="addresss mb-1">
                         <div class="addresss-icon">
@@ -30,43 +30,43 @@
                         </div>
                         <div class="addresss-info">
                             <h6 class="text-white">Email address</h6>
-                            <p>wecodelaravel@gmail.com</p>
+                            <p><a HREF="mailto:&#119;&#101;&#099;&#111;&#100;&#101;&#108;&#097;&#114;&#097;&#118;&#101;&#108;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">&#119;&#101;&#099;&#111;&#100;&#101;&#108;&#097;&#114;&#097;&#118;&#101;&#108;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</a>
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 @if(isset($footer_widget_menu))
+                    @foreach($footer_widget_menu as $menu)
+                    <div class="col-lg-2 col-md-3">
+                        
+                            @if ($menu['link']=='')
+                                <h6 class="text-white pt-1 pb-3">{{ $menu['label'] }}</h6>
+    						@else
+    							<a href="{{ preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode(strpos($menu['link'], "http") === 0 ? $menu['link'] : url('', $menu['link']))) }}" title="{{ $menu['label'] }}">
+    								<h6 class="text-white pt-1 pb-3">{{ $menu['label'] }}</h6>
+    							</a>
+    						@endif
 
-                @foreach($footer_widget_menu as $menu)
-                <div class="col-lg-2 col-md-3">
-                    
-                        @if ($menu['link']=='')
-                            <h6 class="text-white pt-1 pb-3">{{ $menu['label'] }}</h6>
-						@else
-							<a href="{{ preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode(strpos($menu['link'], "http") === 0 ? $menu['link'] : url('', $menu['link']))) }}" title="{{ $menu['label'] }}">
-								<h6 class="text-white pt-1 pb-3">{{ $menu['label'] }}</h6>
-							</a>
-						@endif
-
-                        @if( $menu['child'] )
-                            <div class="footer-nav ">
-                                <ul>
-                                    @foreach( $menu['child'] as $child )
-                                    <li>
-                                        <a href="{{  preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode(strpos($child['link'], "http") === 0 ? $child['link'] : url('',$child['link']))) }}" title="{{ $child['label'] }}"> <i class="fa fa-angle-right"></i> {{ $child['label'] }} </a>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                   
-                </div>
-                @endforeach
+                            @if( $menu['child'] )
+                                <div class="footer-nav ">
+                                    <ul>
+                                        @foreach( $menu['child'] as $child )
+                                        <li>
+                                            <a href="{{  preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode(strpos($child['link'], "http") === 0 ? $child['link'] : url('',$child['link']))) }}" title="{{ $child['label'] }}"> <i class="fa fa-angle-right"></i> {{ $child['label'] }} </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                       
+                    </div>
+                    @endforeach
                 @endif
                 
                 <div class="col-lg-4 col-md-12">
                     <h6 class="text-white pt-1 pb-3">Recent Posts</h6>
-                    <p class="text-gray pb-2"> SEOhub helps you to quickly and easily build incredible websites.</p>
+                    <p class="text-gray pb-2"> WeCodeLaravel helps you to quickly and easily build incredible websites.</p>
                     <form class="form white">
                         <div class="form-group">
                             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">

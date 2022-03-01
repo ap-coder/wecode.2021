@@ -18,4 +18,4 @@ Homestead.json
 /.vagrant
 resources/views/Template
 resources/views/Template/*
-
+*Zone.Identifier
