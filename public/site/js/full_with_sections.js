@@ -67,15 +67,9 @@
  function fullWidthRun() {
      var site_width = $(window).width();
      var current_body = $('body');
-     // fullWidth($('.full-width-section'), site_width);
+ 
      fullWidth($('[class*="full-width-section"]'), site_width);
      fullWidth($('[class*="full-width-row"]'), site_width);
-     // fullWidth($("[class*='full-width-section']"), site_width);
-     fullWidth($("[class*='banjo']"), site_width);
-     if (current_body.hasClass('cc-100')) {
-         fullWidth($('[class*="full-width-section"]'), site_width);
-     }
-
  }
  fullWidthRun();
 

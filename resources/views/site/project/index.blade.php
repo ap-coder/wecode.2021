@@ -1,5 +1,9 @@
 @extends('site.layouts.app')
 
+@section('page_styles') @endsection
+
+@section('custom_page_scripts') @endsection
+
 @section('content')
 
 @include('site.project.partials.project-intro')
@@ -74,3 +78,13 @@ case-studies  -->
 
 
 @endsection
+
+
+{{-- SEO MICRODATA STUFF  --}}
+{{-- @section('htmlClasses','') --}}
+@section('htmlschema', 'Website')
+{{-- @section('htmlschema2','') --}}
+{{-- @section('htmlschema3','') --}}
+{{-- @section('bodyClasses', '') --}}
+@section('bodyschema', "WebPage")
+{{-- @section('jsonld') @endsection --}}

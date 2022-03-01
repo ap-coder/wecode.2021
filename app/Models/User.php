@@ -33,6 +33,9 @@ class User extends Authenticatable implements HasMedia
 
     public $table = 'users';
 
+    protected $with = ['roles', 'media'];  
+
+
     protected $hidden = [
         'remember_token',
         'password',

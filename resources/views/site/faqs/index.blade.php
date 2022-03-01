@@ -5,15 +5,14 @@
 
 @include('site.faqs.partials.faqs-intro')
 
-<!--=================================
-faq-->
+<!--================================= faq-->
 <section class="faq page-section-ptb">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="section-title text-center">
                     <span>Have a question? </span>
-                    <h3 class="text-center">Frequently asked questions</h3>
+                    <h1 class="text-center">Frequently Asked Questions(FAQ)</h1>
                 </div>
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs justify-content-center" role="tablist">
@@ -29,10 +28,12 @@ faq-->
                         <div class="accordion">
 
                             @foreach ($faqQuestions as $key => $faqQuestion)
-                                <div class="acd-group @if($key==0) acd-active @endif">
-                                    <a href="#" class="acd-heading">
+                                <div class="acd-group @if($key==0) acd-active @endif" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                    <a href="#" class="acd-heading" itemprop="name">
                                         <i class="fa fa-question" aria-hidden="true"></i>{{ $faqQuestion->question }}</a>
-                                    <div class="acd-des text-gray">{{ $faqQuestion->answer }}</div>
+                                    <div class="acd-des text-gray" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                       <div itemprop="text"> {{ $faqQuestion->answer }}</div>
+                                    </div>
                                 </div>
                             @endforeach
                             
@@ -64,8 +65,17 @@ faq-->
     </div>
 </section>
 
-<!--=================================
-faq -->
+<!--================================= faq -->
 
 
 @endsection
+
+
+{{-- SEO MICRODATA STUFF  --}}
+{{-- @section('htmlClasses','') --}}
+@section('htmlschema', 'FAQPage')
+{{-- @section('htmlschema2','') --}}
+{{-- @section('htmlschema3','') --}}
+{{-- @section('bodyClasses', '') --}}
+@section('bodyschema', "WebPage")
+{{-- @section('jsonld') @endsection --}}

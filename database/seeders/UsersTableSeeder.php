@@ -38,25 +38,6 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => NULL,
                 'deleted_at' => NULL,
             ),
-            1 => 
-            array (
-                'id' => 2,
-                'name' => 'Phillip Madsen',
-                'email' => 'contact@locate.contractors',
-                'email_verified_at' => NULL,
-                'password' => '$2y$10$b1i4.fcAKQ2DNnR9n88QU.F7rLXh/dS262jD4jHmP8P1agzNfHuMa',
-                'approved' => 1,
-                'verified' => 1,
-                'verified_at' => '2022-01-11 19:18:36',
-                'verification_token' => NULL,
-                'remember_token' => NULL,
-                'company_name' => 'Locate Contractors',
-                'client_type' => NULL,
-                'phone_number' => NULL,
-                'created_at' => '2022-01-11 19:18:35',
-                'updated_at' => '2022-01-11 19:18:35',
-                'deleted_at' => NULL,
-            ),
         ));
         
         

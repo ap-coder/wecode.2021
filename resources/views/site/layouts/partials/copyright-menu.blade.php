@@ -12,7 +12,7 @@
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="text-right">
-                    <p>Copyright © 2017 We Code Laravel. All Rights Reserved.</p>
+                    <p>Copyright © 2022 We Code Laravel. All Rights Reserved.</p>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@
         @include('site.layouts.partials.revolution-js')
     @endif
     
-
+@yield('custom_page_scripts')
     <!-- appear -->
     <script type="text/javascript" src="{{ asset('site/js/jquery.appear.js') }}"></script>
    
@@ -32,7 +32,8 @@
 
     <!-- custom -->
     <script type="text/javascript" src="{{ asset('site/js/custom.js') }}"></script>
-    {{-- <script type="text/javascript" src="{{ asset('site/js/full_with_sections.js') }}"></script> --}}
+
+    <script type="text/javascript" src="{{ asset('site/js/full_with_sections.js') }}"></script>
 
     @yield('scripts')
 
@@ -57,3 +58,5 @@
         //     shine: true
         // });
     </script>
+
+    
