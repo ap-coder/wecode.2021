@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyServiceRequest;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
+use App\Models\ContentSection;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -150,7 +151,12 @@ class ServiceController extends Controller
             $service->banner->delete();
         }
 
-        return redirect()->route('admin.services.index');
+        if ($request->preview) {
+            echo json_encode($service->slug);
+        } else {
+            return redirect()->route('admin.services.index');
+        }
+
     }
 
     public function show(Service $service)
@@ -186,5 +192,44 @@ class ServiceController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+
+    public function GetServiceContentSectionModalForm(Request $request)
+    {
+        $contentSection=ContentSection::find($request->id);
+        $html= view('admin.services.partials.content-section-modal', compact('contentSection'))->render();
+
+        echo $html;
+    }
+
+    public function AddServiceContentSection(Request $request)
+    {
+        if($request->id){
+            $contentSection=ContentSection::find($request->id);
+            $contentSection->update($request->all());
+        }else{
+            $contentSection = ContentSection::create($request->all());
+        }
+
+        $contentSection->assign_services()->sync($request->input('services', []));
+
+        $services = Service::where('id',$request->services)->first();
+
+        $contentSections=$services->servicesContentSections;
+
+        $html= view('admin.services.partials.content-section-loop', compact('contentSections'))->render();
+
+        echo $html;
+    }
+
+    public function ChangeServiceContentSectionOrder(Request $request)
+    {
+        $ids=$request->params;
+        foreach ($ids as $key => $id) {
+            ContentSection::where('id',$id['value'])->update([
+                'order' => $key+1,
+            ]);
+        }
+        echo 1;
     }
 }

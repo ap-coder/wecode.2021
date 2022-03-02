@@ -48,6 +48,11 @@ class Service extends Model implements HasMedia
         'deleted_at',
     ];
 
+    public function scopePublished($query)
+	{
+		return $query->where('published', 1);
+	}
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
@@ -93,5 +98,10 @@ class Service extends Model implements HasMedia
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function servicesContentSections()
+    {
+        return $this->belongsToMany(ContentSection::class)->orderBy('order', 'ASC');
     }
 }

@@ -58,6 +58,11 @@ class ContentSection extends Model
         return $this->belongsToMany(Project::class);
     }
 
+    public function services()
+    {
+        return $this->belongsToMany(Service::class);
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
@@ -81,5 +86,10 @@ class ContentSection extends Model
     public function assign_projects()
     {
         return $this->belongsToMany(Project::class);
+    }
+
+    public function assign_services()
+    {
+        return $this->belongsToMany(Service::class);
     }
 }
