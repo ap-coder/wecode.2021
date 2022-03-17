@@ -9,9 +9,10 @@
     "license": "MIT",
     "repositories": {
         "menu": {
-            "type": "composer",
-            "url": "https://github.com/wecodelaravel/menu"
+            "type": "vcs",
+            "url": "https://github.com/wecodelaravel/laravel-menu"
         }
+
     },
     "require": {
         "php": "^7.3|^7.4|^8.0",
@@ -21,7 +22,6 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "harimayco/laravel-menu": "^1.4",
         "laravel/dusk": "^6.11",
         "laravel/framework": "^8.70.1",
         "laravel/sanctum": "^2.8",
@@ -32,6 +32,7 @@
         "mews/captcha": "^3.2",
         "orangehill/iseed": "^3.0",
         "spatie/laravel-medialibrary": "^8.7",
+        "wecodelaravel/laravel-menu": "master",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
@@ -50,9 +51,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-                "wecodelaravel/laravel-menu"
-            ]
+            "dont-discover": []
         }
     },
     "autoload": {

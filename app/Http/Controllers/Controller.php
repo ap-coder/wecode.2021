@@ -13,9 +13,9 @@ use App\Models\Page;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
-use Harimayco\Menu\Models\Menus;
-use Harimayco\Menu\Models\MenuItems;
-use Harimayco\Menu\Facades\Menu;
+use Wecodelaravel\Menu\Models\Menus;
+use Wecodelaravel\Menu\Models\MenuItems;
+use Wecodelaravel\Menu\Facades\Menu;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 class Controller extends BaseController
