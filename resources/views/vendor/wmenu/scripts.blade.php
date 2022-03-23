@@ -21,13 +21,12 @@
 	var createnewmenur= '{{ route("hcreatenewmenu") }}';
 	var csrftoken="{{ csrf_token() }}";
 	var menuwr = "{{ url()->current() }}";
-
 	$.ajaxSetup({
 		headers: {
 			'X-CSRF-TOKEN': csrftoken
 		}
 	});
 </script>
-<script type="text/javascript" src="{{asset('vendor/harimayco-menu/scripts.js')}}"></script>
-<script type="text/javascript" src="{{asset('vendor/harimayco-menu/scripts2.js')}}"></script>
-<script type="text/javascript" src="{{asset('vendor/harimayco-menu/menu.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/wecodelaravel-menu/scripts.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/wecodelaravel-menu/scripts2.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/wecodelaravel-menu/menu.js')}}"></script>
