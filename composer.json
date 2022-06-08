@@ -32,6 +32,7 @@
         "mews/captcha": "^3.2",
         "orangehill/iseed": "^3.0",
         "spatie/laravel-medialibrary": "^8.7",
+        "tormjens/eventy": "^0.8.0",
         "wecodelaravel/laravel-menu": "master",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
@@ -62,6 +63,9 @@
         }
     },
     "autoload-dev": {
+        "files": [
+            "app/Helpers/helper-core.php"
+        ],
         "psr-4": {
             "Tests\\": "tests/"
         }

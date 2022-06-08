@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\MediaController;
 
 Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
 Auth::routes();
@@ -9,6 +10,19 @@ Route::get('/home', function () {
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
+
+    /**
+     * Media
+     */
+    Route::get('/media', [MediaController::class, 'index_media'])->name('media.index_media');
+    Route::get('/media/upload', [MediaController::class, 'media_upload'])->name('media.media_upload');
+    Route::get('/editmedia/{id}', [MediaController::class, 'index_editmedia'])->name('media.index_editmedia');
+    Route::get('/deletemedia/{id}/{token}', [MediaController::class, 'index_deletemedia'])->name('media.index_deletemedia');
+    Route::post('/MediaActions', [MediaController::class, 'media_actions'])->name('media.media_actions');
+    Route::post('/MediaUpdate', [MediaController::class, 'media_update'])->name('media.media_update');
+    Route::get('/medialibrary', [MediaController::class, 'index_medialibrary'])->name('media.medialibrary');
+    Route::post('/mediaaction', [MediaController::class, 'index_mediaaction'])->name('media.mediaaction');
+    Route::any('/mediaajax', [MediaController::class, 'index_mediaajax'])->name('media.mediaajax');
     
 
     Route::get('/dashboard', 'HomeController@index')->name('home');

@@ -12,7 +12,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="{{ asset('css/adminltev3.css') }}" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
+
+    {{-- media library --}}
+
+    {{-- <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" /> --}}
+    
+    <link href="{{ asset('libs/fonticons/fontawesome.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('libs/fonticons/boxicons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('libs/fonticons/fonticons.min.css') }}" rel="stylesheet" type="text/css" />
+
+    {{-- media library --}}
+
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -24,6 +34,15 @@
 		<link href="{{ asset('admin/css/prism-live.css') }}" rel="stylesheet" />
 
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+    
+    {{-- media library --}}
+
+    <link href="{{ asset('libs/cupload/js/thickbox/thickbox.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('libs/megaupload/megaupload.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <link href="{{ asset('css/media-library.css') }}" rel="stylesheet" />
+
+    {{-- media library --}}
 
     @php
             $random = rand(0, 99999);
@@ -167,6 +186,19 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 
+
+    <script type="text/javascript">
+      var media_upload_url = '{{ route("admin.media.medialibrary") }}',
+      tb_pathToImage = "{{ asset('libs/cupload/js/thickbox/loadingAnimation.gif') }}",
+      tb_closeImage  = "{{ asset('libs/cupload/js/thickbox/tb-close.png') }}";
+    </script>
+
+    {{-- media library --}}
+
+    <script src="{{ asset('libs/cupload/js/thickbox/thickbox.min.js') }}"></script>
+    <script src="{{ asset('libs/megaupload/megaupload.min.js') }}"></script>
+
+    {{-- media library --}}
     
 {{-- <script src="https://blissfuljs.com/bliss.shy.min.js"></script> --}}
 <script src="{{ asset('admin/js/bliss.shy.min.js') }}"></script>
