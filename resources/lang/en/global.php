@@ -36,6 +36,7 @@ return [
     'save_and_close'                           => 'Save & Close',
     'search'                         => 'Search',
     'menu'                         => 'Menu Mgmt',
+    'media_library'                         => 'Media Library',
     'searching'                      => 'Searching',
     'no_results'                     => 'No results',
     'results_could_not_be_loaded'    => 'The results could not be loaded',

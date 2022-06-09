@@ -37,7 +37,7 @@ class MediaController extends Controller
     {
         $data['page_title'] = 'Media Library';
         $data['page_class'] = 'Media';
-        $attachments = DB::table(ATTACHMENTS_TABLE);
+        $attachments = DB::table('attachments');
         if($request->get('s')){
             $attachments->where('at_title', 'like', '%'.$request->get('s').'%');
         }
@@ -58,7 +58,7 @@ class MediaController extends Controller
         $data['page_title'] = 'Upload';
         $data['page_class'] = 'Media';
 
-        return get_admin_view('medialibrary.index_media_upload', $data);
+        return view('admin.medialibrary.index_media_upload', $data);
     }
 
     /**
@@ -66,7 +66,7 @@ class MediaController extends Controller
      */
     public function index_editmedia($id, Request $request)
     {
-        $post = DB::table(ATTACHMENTS_TABLE)->where([['at_id', '=', $id]])->get();
+        $post = DB::table('attachments')->where([['at_id', '=', $id]])->get();
         if ($post->count()) {
             $single = $post->first();
             $data['page_title'] = 'Media Library';
@@ -89,11 +89,7 @@ class MediaController extends Controller
             }
             $data['single'] = $single;
 
-            $data['attached_in'] = DB::table(POSTSMETA_TABLE)
-            ->leftJoin('posts', function ($join) {$join->on('postsmeta.post_id', '=', 'posts.id');})
-            ->selectRaw('post_title,post_name,post_type,post_id')
-            ->where(['meta_key' => 'thumbnails', 'meta_value' => $single->at_id])->get(); 
-            return get_admin_view('medialibrary.index_media_edit', $data);
+            return view('admin.medialibrary.index_media_edit', $data);
         }
         else {
             return redirect()->back();
@@ -106,12 +102,12 @@ class MediaController extends Controller
     public function media_update(Request $request)
     {
         $at_id  = $request->get('at_id');
-        DB::table(ATTACHMENTS_TABLE)->where(['at_id' => $at_id])->update([
+        DB::table('attachments')->where(['at_id' => $at_id])->update([
             'at_title'  => $request->get('at_title'),
             'at_desc'  => $request->get('at_desc'),
         ]);
         $success = 'File has been updated.';
-        return redirect(get_admin_url('editmedia/' . $at_id))->with("success", $success);
+        return redirect(route('admin.media.index_editmedia', $at_id))->with("success", $success);
     }
 
     /**
@@ -123,7 +119,7 @@ class MediaController extends Controller
             $marks = $request->get('mark');
             if ($request->get('action') == 'delete' and is_array($marks)) {
                 foreach ($marks as $markid) {
-                    DB::table(ATTACHMENTS_TABLE)->where(['at_id' => $markid])->delete();
+                    DB::table('attachments')->where(['at_id' => $markid])->delete();
                 }
                 $success = 'Deleted successfully.';
             } else {
@@ -138,7 +134,7 @@ class MediaController extends Controller
      */
     public function index_deletemedia($id, $token)
     {
-        DB::table(ATTACHMENTS_TABLE)->where(['at_id' => $id])->delete();
+        DB::table('attachments')->where(['at_id' => $id])->delete();
         return redirect()->back()->with("success", 'File has been deleted.');
     }
 
@@ -153,21 +149,21 @@ class MediaController extends Controller
         } else {
             $type = 'image';
         }
-        // $attachments = DB::table(ATTACHMENTS_TABLE)->whereIn('at_mimes', $this->mimes[$type]);
-        // if($request->get('s')){
-        //     $attachments->where('at_title', 'like', '%'.$request->get('s').'%');
-        // }
-        // $attachments = $attachments->orderBy('at_modified', 'desc')->paginate($this->paginate);
-        // if ($request->has('page') and $request->get('page') > $attachments->lastPage()) {
-        //     return redirect($attachments->url($attachments->lastPage()));
-        // }
+        $attachments = DB::table('attachments')->whereIn('at_mimes', $this->mimes[$type]);
+        if($request->get('s')){
+            $attachments->where('at_title', 'like', '%'.$request->get('s').'%');
+        }
+        $attachments = $attachments->orderBy('at_modified', 'desc')->paginate($this->paginate);
+        if ($request->has('page') and $request->get('page') > $attachments->lastPage()) {
+            return redirect($attachments->url($attachments->lastPage()));
+        }
 
-        // $attach_date = DB::table(ATTACHMENTS_TABLE)
-        // ->select(DB::raw('count(at_id) as `data`'), DB::raw("DATE_FORMAT(at_modified, '%Y-%m') date_val"), DB::raw("DATE_FORMAT(at_modified, '%M %Y') date_txt"), DB::raw('YEAR(at_modified) year, MONTH(at_modified) month'))
-        // ->groupby('year','month')
-        // ->whereIn('at_mimes', $this->mimes[$type])->orderBy('at_modified', 'desc')->get();
-        $data['attachments'] = [];//$attachments;
-        $data['attach_date'] = [];//$attach_date;
+        $attach_date = DB::table('attachments')
+        ->select(DB::raw('count(at_id) as `data`'), DB::raw("DATE_FORMAT(at_modified, '%Y-%m') date_val"), DB::raw("DATE_FORMAT(at_modified, '%M %Y') date_txt"), DB::raw('YEAR(at_modified) year, MONTH(at_modified) month'))
+        ->groupby('year','month')
+        ->whereIn('at_mimes', $this->mimes[$type])->orderBy('at_modified', 'desc')->get();
+        $data['attachments'] = $attachments;
+        $data['attach_date'] = $attach_date;
         $data['type'] = $type;
         return view('admin.medialibrary.index_medialibrary', $data);
     }
@@ -187,7 +183,7 @@ class MediaController extends Controller
             else
             {
                 $send_id                = $request->get('id');
-                $attachments            = DB::table(ATTACHMENTS_TABLE)->where('at_id', $send_id)->first();
+                $attachments            = DB::table('attachments')->where('at_id', $send_id)->first();
                 $mimes                  = $attachments->at_mimes;
                 $file['title']          = $attachments->at_title;
                 $file['mimes']          = $mimes;
@@ -256,7 +252,7 @@ class MediaController extends Controller
             $where[]    = ['at_modified', 'like', '%'.$filter_date.'%'];
         }
         
-        $attachments = DB::table(ATTACHMENTS_TABLE)
+        $attachments = DB::table('attachments')
         ->where($where)
         ->whereIn('at_mimes', $this->mimes['image'])
         ->orderBy('at_modified', 'desc')
@@ -264,7 +260,7 @@ class MediaController extends Controller
 
         if ($page <= $attachments->lastPage()) {
             $data['upfiles'] = $attachments;
-            $returnHTML = get_admin_view('medialibrary.ajax_loop_load_media', $data)->render();
+            $returnHTML = view('admin.medialibrary.ajax_loop_load_media', $data)->render();
             return response()->json(['success' => true, 'html'=> $returnHTML, 'lastPage'=> $attachments->lastPage(), 'page'=> $page]);
         }
         else
@@ -279,7 +275,7 @@ class MediaController extends Controller
     public function ajax_get_media_info($request)
     {
         $mediaid = $request->get('mediaid');
-        $attachment = DB::table(ATTACHMENTS_TABLE)->where('at_id', '=', $mediaid)->get();
+        $attachment = DB::table('attachments')->where('at_id', '=', $mediaid)->get();
         if($attachment->count())
         {
             $file = $attachment->first();
@@ -292,7 +288,7 @@ class MediaController extends Controller
             {
                 $return['file']   = $file->at_file;
                 $return['type']   = 'audio';
-                $return['player'] = get_admin_view('layouts/player_audio')->render();
+                $return['player'] = view('admin.medialibrary.player_audio')->render();
             }
             return response()->json($return);
         }
@@ -313,9 +309,9 @@ class MediaController extends Controller
             $upfiles = $this->ajax_async_upload($request);
             $data['upfiles'] = $upfiles;
             if($retype == 'normal') {
-                $returnHTML = get_admin_view('medialibrary.loop_upfiles', $data)->render();
+                $returnHTML = view('admin.medialibrary.loop_upfiles', $data)->render();
             } else {
-                $returnHTML = get_admin_view('medialibrary.ajax_loop_upfiles', $data)->render();
+                $returnHTML = view('admin.medialibrary.ajax_loop_upfiles', $data)->render();
             }
             return response()->json(['success' => true, 'html'=> $returnHTML]);
         }
@@ -384,7 +380,7 @@ class MediaController extends Controller
                 $attachment_file['file'] = $new_file;
                 $at_files = maybe_serialize($attachment_file);
             }
-            $attach_id = DB::table(ATTACHMENTS_TABLE)->insertGetId([
+            $attach_id = DB::table('attachments')->insertGetId([
                 'at_uid'        => $user->id,
                 'at_title'      => $title,
                 'at_file'       => $new_file,

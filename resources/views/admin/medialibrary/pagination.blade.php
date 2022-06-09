@@ -28,7 +28,7 @@
             @endif
         </div>
         <div class="col-md-4 text-right currentpage">
-            <div>{{admin_lang('total_items', ['total' => $paginator->total()])}}</div>
+            <div>{{ $paginator->total() }} items</div>
         </div>
     </div>
 </div>

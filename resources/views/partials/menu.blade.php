@@ -445,6 +445,15 @@
                             </a>
                         </li>
                     @endcan
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('admin/media') || request()->is('admin/media/*') ? 'active' : '' }}" href="{{ route('admin.media.index_media') }}">
+                            <i class="fa-fw fas fa-camera nav-icon">
+                            </i>
+                            <p>
+                                {{ trans('global.media_library') }}
+                            </p>
+                        </a>
+                    </li>
                 @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
                     @can('profile_password_edit')
                         <li class="nav-item">

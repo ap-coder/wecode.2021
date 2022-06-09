@@ -39,8 +39,7 @@
 
     <link href="{{ asset('libs/cupload/js/thickbox/thickbox.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('libs/megaupload/megaupload.min.css') }}" rel="stylesheet" type="text/css" />
-
-    <link href="{{ asset('css/media-library.css') }}" rel="stylesheet" />
+    <link href="{{ asset('libs/css/style.css') }}" rel="stylesheet" type="text/css" />
 
     {{-- media library --}}
 
@@ -198,6 +197,40 @@
     <script src="{{ asset('libs/cupload/js/thickbox/thickbox.min.js') }}"></script>
     <script src="{{ asset('libs/megaupload/megaupload.min.js') }}"></script>
 
+    <script>
+      (function($) {
+          "use strict";
+          $("table th input:checkbox").on("click", function() {
+              var that = this;
+              $(this).closest("table").find("tr > td:first-child input:checkbox").each(function() {
+                  this.checked = that.checked;
+                  $(this).closest("tr").toggleClass("selected");
+              });
+          });
+          $('#confirm-delete').on('shown.bs.modal', function(e) {
+              $(this).find('.modal-body').html($(e.relatedTarget).data('body'));
+              $(this).find('.btn-confirmdelete').attr('href', $(e.relatedTarget).data('href'));
+          });
+          $('[rel="tooltip"]').tooltip({trigger: "hover"});
+      })(jQuery);
+      $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+      </script>
+
+<div class="modal fade modal-confirm-delete" id="confirmation-delete" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title mt-0">Confirm Delete</h5>
+              <button type="button" value="false" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="false">Cancel</button>
+              <button type="button" class="btn btn-danger btn-confirmdelete" data-bs-dismiss="modal" value="true">Confirm</button>
+          </div>
+      </div>
+  </div>
+</div>
     {{-- media library --}}
     
 {{-- <script src="https://blissfuljs.com/bliss.shy.min.js"></script> --}}

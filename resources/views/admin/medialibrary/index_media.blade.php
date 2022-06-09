@@ -1,19 +1,19 @@
-@extends('dashboard.layouts.master')
+@extends('layouts.admin')
 @section('content')
 <div class="page-title-box d-flex align-items-center justify-content-between">
-    <h4 class="mb-0 font-size-18">{{ $page_title }}</h4>
+    <h4 class="mb-0 font-size-18">Media Library</h4>
     <div class="page-title-right">
         <ol class="breadcrumb m-0">
-            <li class="breadcrumb-item"><a href="{{ get_admin_url('/') }}">{{ admin_lang('dashboard') }}</a></li>
-            <li class="breadcrumb-item active">{{ $page_title }}</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
+            <li class="breadcrumb-item active">Media Library</li>
         </ol>
     </div>
 </div>
 <div class="row mb-3">
     <div class="col-md-3 data-tables-filter">
         <form method="GET" action="" class="form-filter">
-            <input type="search" name="s" class="form-control form-control-sm" value="{{request()->get('s')}}" placeholder="{{admin_lang('search')}}">
-            <button type="submit" class="btn btn-sm btn-primary button-form-filter">{{admin_lang('search')}}</button>
+            <input type="search" name="s" class="form-control form-control-sm" value="{{request()->get('s')}}" placeholder="Search">
+            <button type="submit" class="btn btn-sm btn-primary button-form-filter">Search</button>
         </form>
     </div>
     <div class="col-md-6"></div>
@@ -24,39 +24,39 @@
 
 <div class="card">
     <div class="card-body">
-        <form class="form-horizontal" method="POST" action="{{ get_admin_url('MediaActions') }}">
+        <form class="form-horizontal" method="POST" action="{{ route('admin.media.media_actions') }}">
             {{ csrf_field() }}
             <input type="hidden" name="query" value="action">
             <div class="row mb-3">
                 <div class="col-md-4">
                     <div class="actionselect">
                         <select name="action" class="custom-select form-select custom-select-sm form-control form-control-sm width-120">
-                            <option value="-1">{{admin_lang('bulk_actions')}}</option>
-                            <option value="delete">{{admin_lang('delete')}}</option>
+                            <option value="-1">Bulk Actions</option>
+                            <option value="delete">Delete</option>
                         </select>
-                        <input type="submit" class="btn btn-sm btn-primary" value="{{admin_lang('apply')}}" onclick="return confirm(\'{{admin_lang('apply_confirm')}}\');">
+                        <input type="submit" class="btn btn-sm btn-primary" value="Apply" onclick="return confirm('Are you sure of the procedure?');">
                     </div>
                 </div>
                 <div class="col-md-4">
 
                 </div>
                 <div class="col-md-4 btn-addnew">
-                    <a href="{{ get_admin_url('media/upload') }}" class="btn btn-sm btn-primary">{{admin_lang('upload')}}</a>
+                    <a href="{{ route('admin.media.media_upload') }}" class="btn btn-sm btn-primary">Upload</a>
                 </div>
             </div>
             <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
                 <thead>
                     <tr>
-                        <th class="text-center th-checkbox width25">
+                        <th class="text-center th-checkbox" style="width: 50px;">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="selectall" />
                                 <label class="custom-control-label" for="selectall"></label>
                             </div>
                         </th>
-                        <th>{{admin_lang('title')}}</th>
-                        <th class="hidden-phone text-center">{{admin_lang('extension')}}</th>
-                        <th class="hidden-phone text-center">{{admin_lang('author')}}</th>
-                        <th class="hidden-phone text-center width-200">{{admin_lang('date')}}</th>
+                        <th>Title</th>
+                        <th class="hidden-phone text-center">Extension</th>
+                        <th class="hidden-phone text-center">Author</th>
+                        <th class="hidden-phone text-center width-200">Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,10 +70,10 @@
                         </td>
                         <td>
                             <img src="{{get_media_mimes_thumbnail($attachment->at_files, $attachment->at_mimes)}}" class="image-table" alt="">          
-                            <strong><a href="{{ get_admin_url('editmedia/'.$attachment->at_id) }}">{{ $attachment->at_title }}</a></strong>
+                            <strong><a href="{{ route('admin.media.index_editmedia',$attachment->at_id) }}">{{ $attachment->at_title }}</a></strong>
                             <div class="row-actions">
-                                <a href="{{ get_admin_url('editmedia/'.$attachment->at_id) }}">{{admin_lang('edit')}}</a> | 
-                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#confirm-delete" data-href="{{ get_admin_url('deletemedia/'.$attachment->at_id.'/'.csrf_token() ) }}" data-body="{{ admin_lang('delete_confirm') }} # {{ $attachment->at_title }}?" class="red">{{ admin_lang('delete') }}</a>
+                                <a href="{{ route('admin.media.index_editmedia',$attachment->at_id) }}">Edit</a> | 
+                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#confirm-delete" data-href="{{ url('admin/media/deletemedia/'.$attachment->at_id.'/'.csrf_token() ) }}" data-body="are you sure! Want to delete # {{ $attachment->at_title }}?" class="red">Delete</a>
                             </div>
                         </td>
                         <td class="hidden-phone text-center">{{$attachment->at_mimes}}</td>
@@ -84,7 +84,8 @@
                 </tbody>
             </table>
         </form>
-        {{$attachments->links('dashboard.layouts.pagination')}}
+        {{$attachments->links('layouts.pagination')}}
     </div>
 </div>
 @endsection
+
