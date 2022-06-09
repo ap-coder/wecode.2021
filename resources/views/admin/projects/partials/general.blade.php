@@ -16,7 +16,8 @@
 </div>
 <div class="form-group">
     <label for="body_content">{{ trans('cruds.project.fields.body_content') }}</label>
-    <textarea class="form-control ckeditor {{ $errors->has('body_content') ? 'is-invalid' : '' }}" name="body_content" id="body_content">{!! old('body_content', @$project->body_content) !!}</textarea>
+    {{-- <textarea class="form-control ckeditor {{ $errors->has('body_content') ? 'is-invalid' : '' }}" name="body_content" id="body_content">{!! old('body_content', @$project->body_content) !!}</textarea> --}}
+    <textarea rows="20" autocomplete="off" name="body_content" class="articleeditor-content {{ $errors->has('body_content') ? 'is-invalid' : '' }}" id="body_content">{!! old('body_content', @$project->body_content) !!}</textarea>
     @if($errors->has('body_content'))
         <span class="text-danger">{{ $errors->first('body_content') }}</span>
     @endif
@@ -86,7 +87,8 @@
 </div>
 <div class="form-group">
     <label for="challenges">{{ trans('cruds.project.fields.challenges') }}</label>
-    <textarea class="form-control ckeditor {{ $errors->has('challenges') ? 'is-invalid' : '' }}" name="challenges" id="challenges">{!! old('challenges', @$project->challenges) !!}</textarea>
+    {{-- <textarea class="form-control ckeditor {{ $errors->has('challenges') ? 'is-invalid' : '' }}" name="challenges" id="challenges">{!! old('challenges', @$project->challenges) !!}</textarea> --}}
+    <textarea rows="20" autocomplete="off" name="challenges" class="articleeditor-content {{ $errors->has('challenges') ? 'is-invalid' : '' }}" id="challenges">{!! old('challenges', @$project->challenges) !!}</textarea>
     @if($errors->has('challenges'))
         <span class="text-danger">{{ $errors->first('challenges') }}</span>
     @endif
@@ -94,7 +96,8 @@
 </div>
 <div class="form-group">
     <label for="solutions">{{ trans('cruds.project.fields.solutions') }}</label>
-    <textarea class="form-control ckeditor {{ $errors->has('solutions') ? 'is-invalid' : '' }}" name="solutions" id="solutions">{!! old('solutions', @$project->solutions) !!}</textarea>
+    {{-- <textarea class="form-control ckeditor {{ $errors->has('solutions') ? 'is-invalid' : '' }}" name="solutions" id="solutions">{!! old('solutions', @$project->solutions) !!}</textarea> --}}
+    <textarea rows="20" autocomplete="off" name="solutions" class="articleeditor-content {{ $errors->has('solutions') ? 'is-invalid' : '' }}" id="solutions">{!! old('solutions', @$project->solutions) !!}</textarea>
     @if($errors->has('solutions'))
         <span class="text-danger">{{ $errors->first('solutions') }}</span>
     @endif

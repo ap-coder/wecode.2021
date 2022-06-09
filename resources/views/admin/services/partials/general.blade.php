@@ -16,7 +16,8 @@
 </div>
 <div class="form-group">
     <label for="service_text">{{ trans('cruds.service.fields.service_text') }}</label>
-    <textarea class="form-control ckeditor {{ $errors->has('service_text') ? 'is-invalid' : '' }}" name="service_text" id="service_text">{!! old('service_text', @$service->service_text) !!}</textarea>
+    {{-- <textarea class="form-control ckeditor {{ $errors->has('service_text') ? 'is-invalid' : '' }}" name="service_text" id="service_text">{!! old('service_text', @$service->service_text) !!}</textarea> --}}
+    <textarea rows="20" autocomplete="off" name="service_text" class="articleeditor-content {{ $errors->has('service_text') ? 'is-invalid' : '' }}" id="service_text">{!! old('service_text', @$service->service_text) !!}</textarea>
     @if($errors->has('service_text'))
         <span class="text-danger">{{ $errors->first('service_text') }}</span>
     @endif
@@ -24,7 +25,8 @@
 </div>
 <div class="form-group">
     <label for="service_text_2">{{ trans('cruds.service.fields.service_text_2') }}</label>
-    <textarea class="form-control ckeditor {{ $errors->has('service_text_2') ? 'is-invalid' : '' }}" name="service_text_2" id="service_text_2">{!! old('service_text_2', @$service->service_text_2) !!}</textarea>
+    {{-- <textarea class="form-control ckeditor {{ $errors->has('service_text_2') ? 'is-invalid' : '' }}" name="service_text_2" id="service_text_2">{!! old('service_text_2', @$service->service_text_2) !!}</textarea> --}}
+    <textarea rows="20" autocomplete="off" name="service_text_2" class="articleeditor-content {{ $errors->has('service_text_2') ? 'is-invalid' : '' }}" id="service_text_2">{!! old('service_text_2', @$service->service_text_2) !!}</textarea>
     @if($errors->has('service_text_2'))
         <span class="text-danger">{{ $errors->first('service_text_2') }}</span>
     @endif

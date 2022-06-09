@@ -43,7 +43,8 @@
             </div>
             <div class="form-group">
                 <label for="bio">{{ trans('cruds.staff.fields.bio') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('bio') ? 'is-invalid' : '' }}" name="bio" id="bio">{!! old('bio') !!}</textarea>
+                {{-- <textarea class="form-control ckeditor {{ $errors->has('bio') ? 'is-invalid' : '' }}" name="bio" id="bio">{!! old('bio') !!}</textarea> --}}
+                <textarea rows="20" autocomplete="off" name="bio" class="articleeditor-content {{ $errors->has('bio') ? 'is-invalid' : '' }}" id="bio">{!! old('bio') !!}</textarea>
                 @if($errors->has('bio'))
                     <span class="text-danger">{{ $errors->first('bio') }}</span>
                 @endif

@@ -1,4 +1,6 @@
 
+
+
  <div class="form-group">
     <label class="required" for="title">{{ trans('cruds.post.fields.title') }}</label>
     <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title" id="title" value="{{ old('title', @$post->title) }}" required>
@@ -9,7 +11,10 @@
 </div>
 <div class="form-group">
     <label for="body_text">{{ trans('cruds.post.fields.body_text') }}</label>
-    <textarea class="form-control ckeditor {{ $errors->has('body_text') ? 'is-invalid' : '' }}" name="body_text" id="body_text">{!! old('body_text', @$post->body_text) !!}</textarea>
+    {{-- <textarea class="form-control ckeditor {{ $errors->has('body_text') ? 'is-invalid' : '' }}" name="body_text" id="body_text">{!! old('body_text', @$post->body_text) !!}</textarea> --}}
+
+    <textarea rows="20" autocomplete="off" name="body_text" class="articleeditor-content {{ $errors->has('body_text') ? 'is-invalid' : '' }}" id="body_text">{!! old('body_text', @$post->body_text) !!}</textarea>
+
     @if($errors->has('body_text'))
         <span class="text-danger">{{ $errors->first('body_text') }}</span>
     @endif

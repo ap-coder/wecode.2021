@@ -141,33 +141,33 @@ if ($('#submitPostForm').valid()) // check if form is valid
 
       formData.push({name: "preview", value: 1});
 
-      var body_content=getDataFromTheBodyEditor();
-      var challenges=getDataFromTheChallengesEditor();
-      var solutions=getDataFromTheSolutionsEditor();
+      // var body_content=getDataFromTheBodyEditor();
+      // var challenges=getDataFromTheChallengesEditor();
+      // var solutions=getDataFromTheSolutionsEditor();
 
-      // Find and replace `content` if there
-      for (index = 0; index < formData.length; ++index) {
-          if (formData[index].name == "body_content") {
-            formData[index].value = body_content;
-              break;
-          }
-      }
+      // // Find and replace `content` if there
+      // for (index = 0; index < formData.length; ++index) {
+      //     if (formData[index].name == "body_content") {
+      //       formData[index].value = body_content;
+      //         break;
+      //     }
+      // }
 
-      // Find and replace `content` if there
-      for (index = 0; index < formData.length; ++index) {
-          if (formData[index].name == "challenges") {
-            formData[index].value = challenges;
-              break;
-          }
-      }
+      // // Find and replace `content` if there
+      // for (index = 0; index < formData.length; ++index) {
+      //     if (formData[index].name == "challenges") {
+      //       formData[index].value = challenges;
+      //         break;
+      //     }
+      // }
 
-      // Find and replace `content` if there
-      for (index = 0; index < formData.length; ++index) {
-          if (formData[index].name == "solutions") {
-            formData[index].value = solutions;
-              break;
-          }
-      }
+      // // Find and replace `content` if there
+      // for (index = 0; index < formData.length; ++index) {
+      //     if (formData[index].name == "solutions") {
+      //       formData[index].value = solutions;
+      //         break;
+      //     }
+      // }
 
         $.ajax({
             type: 'POST',
@@ -249,41 +249,41 @@ let theSolutionsEditor;
   //   );
   // }
 
-  var allEditors = document.querySelectorAll('#body_content');
-  for (var i = 0; i < allEditors.length; ++i) {
-    ClassicEditor.create(
-      allEditors[i], {
-        extraPlugins: [SimpleUploadAdapter]
-      }
-    ).then( editor => {
-        // CKEditorInspector.attach( editor );
-        theBodyEditor = editor;
-    } )
-  }
+  // var allEditors = document.querySelectorAll('#body_content');
+  // for (var i = 0; i < allEditors.length; ++i) {
+  //   ClassicEditor.create(
+  //     allEditors[i], {
+  //       extraPlugins: [SimpleUploadAdapter]
+  //     }
+  //   ).then( editor => {
+  //       // CKEditorInspector.attach( editor );
+  //       theBodyEditor = editor;
+  //   } )
+  // }
 
-  var allchallengesEditors = document.querySelectorAll('#challenges');
-  for (var i = 0; i < allchallengesEditors.length; ++i) {
-    ClassicEditor.create(
-      allchallengesEditors[i], {
-        extraPlugins: [SimpleUploadAdapter]
-      }
-    ).then( editor => {
-        // CKEditorInspector.attach( editor );
-        theChallengesEditor = editor;
-    } )
-  }
+  // var allchallengesEditors = document.querySelectorAll('#challenges');
+  // for (var i = 0; i < allchallengesEditors.length; ++i) {
+  //   ClassicEditor.create(
+  //     allchallengesEditors[i], {
+  //       extraPlugins: [SimpleUploadAdapter]
+  //     }
+  //   ).then( editor => {
+  //       // CKEditorInspector.attach( editor );
+  //       theChallengesEditor = editor;
+  //   } )
+  // }
 
-  var allsolutionsEditors = document.querySelectorAll('#solutions');
-  for (var i = 0; i < allsolutionsEditors.length; ++i) {
-    ClassicEditor.create(
-      allsolutionsEditors[i], {
-        extraPlugins: [SimpleUploadAdapter]
-      }
-    ).then( editor => {
-        // CKEditorInspector.attach( editor );
-        theSolutionsEditor = editor;
-    } )
-  }
+  // var allsolutionsEditors = document.querySelectorAll('#solutions');
+  // for (var i = 0; i < allsolutionsEditors.length; ++i) {
+  //   ClassicEditor.create(
+  //     allsolutionsEditors[i], {
+  //       extraPlugins: [SimpleUploadAdapter]
+  //     }
+  //   ).then( editor => {
+  //       // CKEditorInspector.attach( editor );
+  //       theSolutionsEditor = editor;
+  //   } )
+  // }
 
 });
 

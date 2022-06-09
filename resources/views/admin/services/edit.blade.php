@@ -121,24 +121,24 @@ if ($('#submitServiceForm').valid()) // check if form is valid
 
       formData.push({name: "preview", value: 1});
 
-      var text1=getDataFromTheText1Editor();
-      var text2=getDataFromTheText2Editor();
+      // var text1=getDataFromTheText1Editor();
+      // var text2=getDataFromTheText2Editor();
 
-      // Find and replace `content` if there
-      for (index = 0; index < formData.length; ++index) {
-          if (formData[index].name == "service_text") {
-            formData[index].value = text1;
-              break;
-          }
-      }
+      // // Find and replace `content` if there
+      // for (index = 0; index < formData.length; ++index) {
+      //     if (formData[index].name == "service_text") {
+      //       formData[index].value = text1;
+      //         break;
+      //     }
+      // }
 
-      // Find and replace `content` if there
-      for (index = 0; index < formData.length; ++index) {
-          if (formData[index].name == "service_text_2") {
-            formData[index].value = text2;
-              break;
-          }
-      }
+      // // Find and replace `content` if there
+      // for (index = 0; index < formData.length; ++index) {
+      //     if (formData[index].name == "service_text_2") {
+      //       formData[index].value = text2;
+      //         break;
+      //     }
+      // }
 
         $.ajax({
             type: 'POST',
@@ -249,29 +249,29 @@ if ($('#submitServiceForm').valid()) // check if form is valid
   //   );
   // }
 
-  var allEditors = document.querySelectorAll('#service_text');
-  for (var i = 0; i < allEditors.length; ++i) {
-    ClassicEditor.create(
-      allEditors[i], {
-        extraPlugins: [SimpleUploadAdapter]
-      }
-    ).then( editor => {
-        // CKEditorInspector.attach( editor );
-        theText1Editor = editor;
-    } )
-  }
+  // var allEditors = document.querySelectorAll('#service_text');
+  // for (var i = 0; i < allEditors.length; ++i) {
+  //   ClassicEditor.create(
+  //     allEditors[i], {
+  //       extraPlugins: [SimpleUploadAdapter]
+  //     }
+  //   ).then( editor => {
+  //       // CKEditorInspector.attach( editor );
+  //       theText1Editor = editor;
+  //   } )
+  // }
 
-  var alltext2Editors = document.querySelectorAll('#service_text_2');
-  for (var i = 0; i < alltext2Editors.length; ++i) {
-    ClassicEditor.create(
-      alltext2Editors[i], {
-        extraPlugins: [SimpleUploadAdapter]
-      }
-    ).then( editor => {
-        // CKEditorInspector.attach( editor );
-        theText2Editor = editor;
-    } )
-  }
+  // var alltext2Editors = document.querySelectorAll('#service_text_2');
+  // for (var i = 0; i < alltext2Editors.length; ++i) {
+  //   ClassicEditor.create(
+  //     alltext2Editors[i], {
+  //       extraPlugins: [SimpleUploadAdapter]
+  //     }
+  //   ).then( editor => {
+  //       // CKEditorInspector.attach( editor );
+  //       theText2Editor = editor;
+  //   } )
+  // }
 
 
 });

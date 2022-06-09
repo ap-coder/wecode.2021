@@ -69,7 +69,8 @@
             </div>
             <div class="form-group">
                 <label for="content_area">{{ trans('cruds.reply.fields.content_area') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('content_area') ? 'is-invalid' : '' }}" name="content_area" id="content_area">{!! old('content_area', $reply->content_area) !!}</textarea>
+                {{-- <textarea class="form-control ckeditor {{ $errors->has('content_area') ? 'is-invalid' : '' }}" name="content_area" id="content_area">{!! old('content_area', $reply->content_area) !!}</textarea> --}}
+                <textarea rows="20" autocomplete="off" name="content_area" class="articleeditor-content {{ $errors->has('content_area') ? 'is-invalid' : '' }}" id="content_area">{!! old('content_area', @$reply->content_area) !!}</textarea>
                 @if($errors->has('content_area'))
                     <span class="text-danger">{{ $errors->first('content_area') }}</span>
                 @endif

@@ -73,6 +73,50 @@
 
 @section('scripts')
 <script>
+
+$('.copyToClipboard').click(function () {
+        var key = $(this).attr('key');
+        let str = $(this).attr('link');
+        const el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
+        var tooltip = document.getElementById("myTooltip"+key);
+        tooltip.innerHTML = "Copied";
+    })
+
+    function outFunc(key) {
+      var tooltip = document.getElementById("myTooltip"+key);
+      tooltip.innerHTML = "Copy to clipboard";
+    }
+
+    $('.copyToClipboardFile').click(function () {
+        var key = $(this).attr('key');
+        let str = $(this).attr('link');
+        const el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
+        var tooltip = document.getElementById("myTooltipfile"+key);
+        tooltip.innerHTML = "Copied";
+    })
+
+    function outFuncFile(key) {
+      var tooltip = document.getElementById("myTooltipfile"+key);
+      tooltip.innerHTML = "Copy to clipboard";
+    }
 $('#use_textonly_header').click(function(){
     if($(this).prop('checked') == true){
       $('#use_textonly_header_box').show();

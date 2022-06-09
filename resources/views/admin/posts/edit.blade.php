@@ -89,6 +89,8 @@
 
 @endsection
 
+
+
 @section('scripts')
 <script>
 
@@ -121,15 +123,15 @@ if ($('#submitPostForm').valid()) // check if form is valid
 
       formData.push({name: "preview", value: 1});
 
-      var body_text=getDataFromTheEditor();
+      // var body_text=getDataFromTheEditor();
 
-      // Find and replace `content` if there
-      for (index = 0; index < formData.length; ++index) {
-          if (formData[index].name == "body_text") {
-            formData[index].value = body_text;
-              break;
-          }
-      }
+      // // Find and replace `content` if there
+      // for (index = 0; index < formData.length; ++index) {
+      //     if (formData[index].name == "body_text") {
+      //       formData[index].value = body_text;
+      //         break;
+      //     }
+      // }
 
         $.ajax({
             type: 'POST',

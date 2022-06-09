@@ -33,7 +33,8 @@
 </div>
 <div class="form-group">
     <label for="body">{{ trans('cruds.thread.fields.body') }}</label>
-    <textarea class="form-control ckeditor {{ $errors->has('body') ? 'is-invalid' : '' }}" name="body" id="body">{!! old('body', @$thread->body) !!}</textarea>
+    {{-- <textarea class="form-control ckeditor {{ $errors->has('body') ? 'is-invalid' : '' }}" name="body" id="body">{!! old('body', @$thread->body) !!}</textarea> --}}
+    <textarea rows="20" autocomplete="off" name="body" class="articleeditor-content {{ $errors->has('body') ? 'is-invalid' : '' }}" id="body">{!! old('body', @$thread->body) !!}</textarea>
     @if($errors->has('body'))
         <span class="text-danger">{{ $errors->first('body') }}</span>
     @endif
