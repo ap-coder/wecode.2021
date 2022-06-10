@@ -20,13 +20,16 @@ page-section -->
                 <div class="blog-entry mb-3">
                     <div class="entry-image clearfix">
 
-                        @if($env == 'local')                            
+                        @if ($post->featured_image)
+                            <img class="img-fluid" src="{{ get_attachment_url($post->featured_image,'full') }}" alt="{{ $post->title }}">
+                        @endif
+                        {{-- @if($env == 'local')                            
                                 <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $post->title }}">
                             @elseif($post->featured_image)
                                 <img class="img-fluid" src="{{ $post->featured_image->getUrl() }}" alt="{{ $post->title }}">
                             @else
                                 <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $post->title }}">
-                            @endif
+                            @endif --}}
 
                     </div>
                     <div class="blog-detail mt-3">

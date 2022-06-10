@@ -1,8 +1,14 @@
+
 <label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.post.fields.featured_image') }}</label>
 <div class="featuredimage">
-    <input class="form-control" data-toggle="fileupload" data-size="full" data-button="{{ trans('cruds.post.fields.featured_image') }}" data-src="false" data-srcid="" data-field="thumbnails" type="hidden" name="thumbnails" value="" >
+    <input class="form-control" data-toggle="fileupload" data-size="thumbnail" data-button="{{ trans('cruds.post.fields.featured_image') }}" data-src="false" data-srcid="{{ get_attachment_url(@$post->featured_image) }}" data-field="featured_image" type="hidden" name="featured_image" value="{{ @$post->featured_image }}" >
 </div>
-<div class="form-group">
+
+<label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.post.fields.featured_image') }}</label>
+<div class="featuredimage">
+    <input class="form-control" data-toggle="fileupload" data-size="thumbnail" data-button="{{ trans('cruds.post.fields.attachments') }}" data-src="false" data-srcid="{{ get_attachment_url(@$post->attachments)  }}" data-field="attachments" type="hidden" name="attachments" value="{{ @$post->attachments }}">
+</div>
+{{-- <div class="form-group">
     <label for="featured_image">{{ trans('cruds.post.fields.featured_image') }}</label>
     <div class="needsclick dropzone {{ $errors->has('featured_image') ? 'is-invalid' : '' }}" id="featured_image-dropzone">
     </div>
@@ -19,4 +25,4 @@
         <span class="text-danger">{{ $errors->first('attachments') }}</span>
     @endif
     <span class="help-block">{{ trans('cruds.post.fields.attachments_helper') }}</span>
-</div>
+</div> --}}

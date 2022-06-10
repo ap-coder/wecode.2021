@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Staff;
 use App\Models\ContentSection;
+use App\Models\AttachmentData;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -82,19 +83,38 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
+        
         $post = Post::create($request->all());
 
         if ($request->input('featured_image', false)) {
-            $post->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+
+            $post->attachment()->create([
+                'collection_name' => 'featured_image',
+                'attachment_id' => $request->featured_image,
+            ]);
+            
         }
 
-        foreach ($request->input('attachments', []) as $file) {
-            $post->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('attachments');
+        if ($request->input('attachments', false)) {
+
+            $post->attachment()->create([
+                'collection_name' => 'attachments',
+                'attachment_id' => $request->attachments,
+            ]);
+
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $post->id]);
-        }
+        // if ($request->input('featured_image', false)) {
+        //     $post->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+        // }
+
+        // foreach ($request->input('attachments', []) as $file) {
+        //     $post->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('attachments');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $post->id]);
+        // }
 
         if ($request->input('body_text', false)) 
         {
@@ -131,29 +151,57 @@ class PostController extends Controller
         $post->update($request->all());
 
         if ($request->input('featured_image', false)) {
-            if (!$post->featured_image || $request->input('featured_image') !== $post->featured_image->file_name) {
-                if ($post->featured_image) {
-                    $post->featured_image->delete();
-                }
-                $post->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
-            }
-        } elseif ($post->featured_image) {
-            $post->featured_image->delete();
+
+            $post->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'featured_image'
+                ],
+                [
+                'collection_name' => 'featured_image',
+                'attachment_id' => $request->featured_image,
+                ]
+            );
+            
         }
 
-        if (count($post->attachments) > 0) {
-            foreach ($post->attachments as $media) {
-                if (!in_array($media->file_name, $request->input('attachments', []))) {
-                    $media->delete();
-                }
-            }
+        if ($request->input('attachments', false)) {
+
+            $post->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'attachments'
+                ],
+                [
+                'collection_name' => 'attachments',
+                'attachment_id' => $request->attachments,
+                ]
+        );
+
         }
-        $media = $post->attachments->pluck('file_name')->toArray();
-        foreach ($request->input('attachments', []) as $file) {
-            if (count($media) === 0 || !in_array($file, $media)) {
-                $post->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('attachments');
-            }
-        }
+
+        // if ($request->input('featured_image', false)) {
+        //     if (!$post->featured_image || $request->input('featured_image') !== $post->featured_image->file_name) {
+        //         if ($post->featured_image) {
+        //             $post->featured_image->delete();
+        //         }
+        //         $post->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+        //     }
+        // } elseif ($post->featured_image) {
+        //     $post->featured_image->delete();
+        // }
+
+        // if (count($post->attachments) > 0) {
+        //     foreach ($post->attachments as $media) {
+        //         if (!in_array($media->file_name, $request->input('attachments', []))) {
+        //             $media->delete();
+        //         }
+        //     }
+        // }
+        // $media = $post->attachments->pluck('file_name')->toArray();
+        // foreach ($request->input('attachments', []) as $file) {
+        //     if (count($media) === 0 || !in_array($file, $media)) {
+        //         $post->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('attachments');
+        //     }
+        // }
 
         if ($request->input('body_text', false)) 
         {

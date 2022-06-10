@@ -69,9 +69,9 @@ class UpdatePostRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'attachments' => [
-                'array',
-            ],
+            // 'attachments' => [
+            //     'array',
+            // ],
             'menu_order' => [
                 'nullable',
                 'integer',

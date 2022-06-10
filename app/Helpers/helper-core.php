@@ -219,3 +219,25 @@ if(!function_exists('get_username')){
         return $name;
     }
 }
+
+/**
+ * get_attachment_url
+ */
+if(!function_exists('get_attachment_url')){
+    function get_attachment_url($id, $size = 'thumbnail'){
+        $attachment_file = DB::table('attachments')->where('at_id', $id)->value('at_files');
+        $file = maybe_unserialize($attachment_file);
+        if(isset($file[$size]) and $file)
+        {
+            return url($file[$size]);
+        }
+        elseif(isset($file['file']) and $file)
+        {
+            return url($file['file']);
+        }
+        else
+        {
+            return false;
+        }
+    }
+}

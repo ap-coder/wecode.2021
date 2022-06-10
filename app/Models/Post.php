@@ -111,21 +111,28 @@ class Post extends Model implements HasMedia
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function attachment()
+    {
+      return $this->morphMany(AttachmentData::class, 'model');
+    }
+
     public function getFeaturedImageAttribute()
     {
-        $file = $this->getMedia('featured_image')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','featured_image')->value('attachment_id');
 
-        return $file;
+        // $file = $this->getMedia('featured_image')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        // }
+
+        // return $file;
     }
 
     public function getAttachmentsAttribute()
     {
-        return $this->getMedia('attachments');
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','attachments')->value('attachment_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

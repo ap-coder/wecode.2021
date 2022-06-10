@@ -15,7 +15,8 @@ class CreateAttachmentsTable extends Migration
     {
         Schema::create('attachments', function (Blueprint $table) {
             $table->bigIncrements('at_id');
-            $table->integer('at_uid');
+            $table->unsignedBigInteger('at_uid')->nullable();
+            $table->foreign('at_uid', 'at_uid_fk_24678811100')->references('id')->on('users');
             $table->string('at_title');
             $table->text('at_desc')->nullable();
             $table->text('at_file');
@@ -26,6 +27,7 @@ class CreateAttachmentsTable extends Migration
             $table->text('at_dimensions', '32')->nullable();
             $table->dateTime('at_modified')->useCurrent();;
             $table->tinyInteger('trash');
+            $table->timestamps();
         });
     }
 

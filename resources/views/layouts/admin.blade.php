@@ -188,13 +188,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 
 
+    
+
+    {{-- media library --}}
+
     <script type="text/javascript">
       var media_upload_url = '{{ route("admin.media.medialibrary") }}',
       tb_pathToImage = "{{ asset('libs/cupload/js/thickbox/loadingAnimation.gif') }}",
       tb_closeImage  = "{{ asset('libs/cupload/js/thickbox/tb-close.png') }}";
     </script>
-
-    {{-- media library --}}
 
     <script src="{{ asset('libs/cupload/js/thickbox/thickbox.min.js') }}"></script>
     <script src="{{ asset('libs/megaupload/megaupload.min.js') }}"></script>
@@ -252,6 +254,22 @@
         image: {drop: false},      
     });
 </script>
+
+<div class="modal fade modal-confirm-delete" id="confirm-delete" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title mt-0">Confirm Delete</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <a class="btn btn-danger btn-confirmdelete">Confirm</a>
+          </div>
+      </div>
+  </div>
+</div> 
 
     <script>
       (function($) {
