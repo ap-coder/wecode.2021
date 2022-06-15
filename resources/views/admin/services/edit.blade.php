@@ -92,8 +92,8 @@
 @section('scripts')
 
 <script>
-   
- $('#save-and-preview').click(function(){
+
+$('#save-and-preview').click(function(){
 
 $('#submitServiceForm').validate({
       rules: {

@@ -61,8 +61,8 @@
                         </th>
                         <td>
                             @if($staff->picture)
-                                <a href="{{ $staff->picture->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $staff->picture->getUrl('thumb') }}">
+                                <a href="{{ get_attachment_url($staff->picture,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ get_attachment_url($staff->picture) }}">
                                 </a>
                             @endif
                         </td>

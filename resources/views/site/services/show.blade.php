@@ -32,7 +32,10 @@ welcome -->
             </div>
             <div class="col-lg-8 col-sm-6">
                <div class="row">
-                @if($env == 'local')                            
+                @foreach ($service->content_images as $content_image)
+                    <img class="img-fluid mt-3 col-lg-6" src="{{ get_attachment_url($content_image) }}">
+                    @endforeach
+                {{-- @if($env == 'local')                            
                     <img class="img-fluid mt-3 col-lg-6" src="{{ url('site/images/case-studies/01.jpg') }}" alt="#">
                     <img class="img-fluid mt-3 col-lg-6" src="{{ url('site/images/case-studies/02.jpg') }}" alt="#">
                     <img class="img-fluid mt-3 col-lg-6" src="{{ url('site/images/case-studies/03.jpg') }}" alt="#">
@@ -46,7 +49,7 @@ welcome -->
                     <img class="img-fluid mt-3 col-lg-6" src="{{ url('site/images/case-studies/02.jpg') }}" alt="#">
                     <img class="img-fluid mt-3 col-lg-6" src="{{ url('site/images/case-studies/03.jpg') }}" alt="#">
                     <img class="img-fluid mt-3 col-lg-6" src="{{ url('site/images/case-studies/04.jpg') }}" alt="#">
-                @endif
+                @endif --}}
                
                </div>
             </div>

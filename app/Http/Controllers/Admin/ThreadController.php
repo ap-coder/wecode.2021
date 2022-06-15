@@ -45,20 +45,53 @@ class ThreadController extends Controller
         $thread = Thread::create($request->all());
 
         if ($request->input('photo', false)) {
-            $thread->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+
+            $thread->attachment()->create([
+                'collection_name' => 'photo',
+                'attachment_id' => $request->photo,
+            ]);
+            
         }
 
-        foreach ($request->input('additional_photos', []) as $file) {
-            $thread->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_photos');
+        if ($request->postmeta['additional_photos']) {
+
+            foreach ($request->postmeta['additional_photos'] as $file) {
+                $thread->attachment()->create([
+                    'collection_name' => 'additional_photos',
+                    'attachment_id' => $file,
+                ]);
+            }
+            
         }
 
-        foreach ($request->input('attachments', []) as $file) {
-            $thread->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('attachments');
+        if ($request->postmeta['attachments']) {
+
+            foreach ($request->postmeta['attachments'] as $file) {
+                $thread->attachment()->create([
+                    'collection_name' => 'attachments',
+                    'attachment_id' => $file,
+                ]);
+            }
+            
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $thread->id]);
-        }
+        
+
+        // if ($request->input('photo', false)) {
+        //     $thread->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        // }
+
+        // foreach ($request->input('additional_photos', []) as $file) {
+        //     $thread->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_photos');
+        // }
+
+        // foreach ($request->input('attachments', []) as $file) {
+        //     $thread->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('attachments');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $thread->id]);
+        // }
 
         return redirect()->route('admin.threads.index');
     }
@@ -79,43 +112,111 @@ class ThreadController extends Controller
         $thread->update($request->all());
 
         if ($request->input('photo', false)) {
-            if (!$thread->photo || $request->input('photo') !== $thread->photo->file_name) {
-                if ($thread->photo) {
-                    $thread->photo->delete();
-                }
-                $thread->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
-            }
-        } elseif ($thread->photo) {
-            $thread->photo->delete();
+
+            $thread->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'photo'
+                ],
+                [
+                'collection_name' => 'photo',
+                'attachment_id' => $request->photo,
+                ]
+            );
+            
         }
 
-        if (count($thread->additional_photos) > 0) {
-            foreach ($thread->additional_photos as $media) {
-                if (!in_array($media->file_name, $request->input('additional_photos', []))) {
-                    $media->delete();
+        if ($request->postmeta['additional_photos']) {
+
+            $attachmentIds = array_filter($request->postmeta['additional_photos'], function($v){ 
+                return !is_null($v) && $v !== ''; 
+               });
+
+            $thread->attachment()->where('collection_name','additional_photos')->whereNotIn('attachment_id',$attachmentIds)->delete();
+
+            foreach ($request->postmeta['additional_photos'] as $file) {
+                
+                if ($file) {
+                    $thread->attachment()->updateOrCreate(
+                        [
+                            'collection_name' => 'additional_photos',
+                            'attachment_id' => $file,
+                        ],
+                        [
+                        'collection_name' => 'additional_photos',
+                        'attachment_id' => $file,
+                        ]
+                    );
                 }
+                
             }
-        }
-        $media = $thread->additional_photos->pluck('file_name')->toArray();
-        foreach ($request->input('additional_photos', []) as $file) {
-            if (count($media) === 0 || !in_array($file, $media)) {
-                $thread->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_photos');
-            }
+            
         }
 
-        if (count($thread->attachments) > 0) {
-            foreach ($thread->attachments as $media) {
-                if (!in_array($media->file_name, $request->input('attachments', []))) {
-                    $media->delete();
+        if ($request->postmeta['attachments']) {
+
+            $attachmentIds = array_filter($request->postmeta['attachments'], function($v){ 
+                return !is_null($v) && $v !== ''; 
+               });
+
+            $thread->attachment()->where('collection_name','attachments')->whereNotIn('attachment_id',$attachmentIds)->delete();
+
+            foreach ($request->postmeta['attachments'] as $file) {
+                
+                if ($file) {
+                    $thread->attachment()->updateOrCreate(
+                        [
+                            'collection_name' => 'attachments',
+                            'attachment_id' => $file,
+                        ],
+                        [
+                        'collection_name' => 'attachments',
+                        'attachment_id' => $file,
+                        ]
+                    );
                 }
+                
             }
+            
         }
-        $media = $thread->attachments->pluck('file_name')->toArray();
-        foreach ($request->input('attachments', []) as $file) {
-            if (count($media) === 0 || !in_array($file, $media)) {
-                $thread->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('attachments');
-            }
-        }
+
+        // if ($request->input('photo', false)) {
+        //     if (!$thread->photo || $request->input('photo') !== $thread->photo->file_name) {
+        //         if ($thread->photo) {
+        //             $thread->photo->delete();
+        //         }
+        //         $thread->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        //     }
+        // } elseif ($thread->photo) {
+        //     $thread->photo->delete();
+        // }
+
+        // if (count($thread->additional_photos) > 0) {
+        //     foreach ($thread->additional_photos as $media) {
+        //         if (!in_array($media->file_name, $request->input('additional_photos', []))) {
+        //             $media->delete();
+        //         }
+        //     }
+        // }
+        // $media = $thread->additional_photos->pluck('file_name')->toArray();
+        // foreach ($request->input('additional_photos', []) as $file) {
+        //     if (count($media) === 0 || !in_array($file, $media)) {
+        //         $thread->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_photos');
+        //     }
+        // }
+
+        // if (count($thread->attachments) > 0) {
+        //     foreach ($thread->attachments as $media) {
+        //         if (!in_array($media->file_name, $request->input('attachments', []))) {
+        //             $media->delete();
+        //         }
+        //     }
+        // }
+        // $media = $thread->attachments->pluck('file_name')->toArray();
+        // foreach ($request->input('attachments', []) as $file) {
+        //     if (count($media) === 0 || !in_array($file, $media)) {
+        //         $thread->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('attachments');
+        //     }
+        // }
 
         return redirect()->route('admin.threads.index');
     }

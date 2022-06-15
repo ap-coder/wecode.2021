@@ -105,6 +105,11 @@ class User extends Authenticatable implements HasMedia
         });
     }
 
+    public function attachment()
+    {
+      return $this->morphMany(AttachmentData::class, 'model');
+    }
+
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
@@ -166,40 +171,43 @@ class User extends Authenticatable implements HasMedia
 
     public function getAvatarAttribute()
     {
-        $file = $this->getMedia('avatar')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-            $file->avatar   = $file->getUrl('avatar');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','avatar')->value('attachment_id');
+        // $file = $this->getMedia('avatar')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        //     $file->avatar   = $file->getUrl('avatar');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     public function getLogoAttribute()
     {
-        $file = $this->getMedia('logo')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-            $file->logo   = $file->getUrl('logo');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','logo')->value('attachment_id');
+        // $file = $this->getMedia('logo')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        //     $file->logo   = $file->getUrl('logo');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     public function getAdditionalImagesAttribute()
     {
-        $files = $this->getMedia('additional_images');
-        $files->each(function ($item) {
-            $item->url = $item->getUrl();
-            $item->thumbnail = $item->getUrl('thumb');
-            $item->preview = $item->getUrl('preview');
-        });
+        return $this->morphMany(AttachmentData::class, 'model')->where('collection_name','additional_images')->pluck('attachment_id')->toArray();
+        // $files = $this->getMedia('additional_images');
+        // $files->each(function ($item) {
+        //     $item->url = $item->getUrl();
+        //     $item->thumbnail = $item->getUrl('thumb');
+        //     $item->preview = $item->getUrl('preview');
+        // });
 
-        return $files;
+        // return $files;
     }
 
     protected function serializeDate(DateTimeInterface $date)

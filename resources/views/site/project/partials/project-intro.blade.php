@@ -20,7 +20,7 @@ intro-title -->
                         
                        
                         @if(@$project && @$project->header_image)
-                            <img class="img-fluid" src="{{ $project->header_image->getUrl() }}" alt="Banner Image">
+                            <img class="img-fluid" src="{{ get_attachment_url($project->header_image,'full') }}" alt="Banner Image">
                         @elseif($env == 'local')
                             <img class="img-fluid" src="{{ asset('site/images/breadcrumb/01.png') }}" alt="Banner Image">
                         @endif

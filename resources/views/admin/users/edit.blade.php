@@ -85,7 +85,63 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.phone_number_helper') }}</span>
             </div>
-            <div class="form-group">
+            <label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.user.fields.avatar') }}</label>
+            <div class="featuredimage">
+                <input class="form-control" data-toggle="fileupload" data-size="thumbnail" data-button="{{ trans('cruds.user.fields.avatar') }}" data-src="false" data-srcid="{{ @get_attachment_url(@$user->avatar) }}" data-field="avatar" type="hidden" name="avatar" value="{{ @$user->avatar }}" >
+            </div>
+            <label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.user.fields.logo') }}</label>
+            <div class="featuredimage">
+                <input class="form-control" data-toggle="fileupload" data-size="thumbnail" data-button="{{ trans('cruds.user.fields.logo') }}" data-src="false" data-srcid="{{ @get_attachment_url(@$user->logo) }}" data-field="logo" type="hidden" name="logo" value="{{ @$user->logo }}" >
+            </div>
+            
+<label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.user.fields.additional_images') }}</label>
+
+<div class="tacf-input mt-3">
+    <div class="tacf-repeater">
+        <table class="tacf-table">
+            <tbody class="tacf-ui-sortable">
+                
+                @if (@$user->additional_images)
+                    @foreach ($user->additional_images as $key => $photo)
+                        <tr class="tacf-row">
+                            <td class="tacf-field tacf-col-item">
+                                <div class="tacf-input tacf-toggle-content fadeIn">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="featuredimage">
+                                                <input class="form-control" data-toggle="fileupload" data-field="additional-images-{{$key}}" data-src="false" data-size="thumbnail" type="hidden" name="postmeta[additional_images][{{$key}}]" value="{{ $photo }}" data-button="{{ trans('cruds.user.fields.additional_images') }}" data-srcid="{{ get_attachment_url($photo) }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+                
+
+                <tr class="tacf-row tacf-clone">
+                    <td class="tacf-field tacf-col-item">
+                        <div class="tacf-input tacf-toggle-content fadeIn">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="featuredimage">
+                                        <input class="form-control tacf-input-key tacf-input-fileupload" data-field="additional-images-{key}" data-src="false" data-size="thumbnail" type="hidden" data-name="postmeta[additional_images][{key}]" data-button="{{ trans('cruds.user.fields.additional_images') }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>
+        <div class="tacf-actions mt-3">
+            <button type="button" class="tacf-button button button-primary mb-2" data-event="add-row">Add New</button>
+        </div>
+    </div>
+</div>
+            {{-- <div class="form-group">
                 <label for="avatar">{{ trans('cruds.user.fields.avatar') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('avatar') ? 'is-invalid' : '' }}" id="avatar-dropzone">
                 </div>
@@ -93,8 +149,8 @@
                     <span class="text-danger">{{ $errors->first('avatar') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.avatar_helper') }}</span>
-            </div>
-            <div class="form-group">
+            </div> --}}
+            {{-- <div class="form-group">
                 <label for="logo">{{ trans('cruds.user.fields.logo') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('logo') ? 'is-invalid' : '' }}" id="logo-dropzone">
                 </div>
@@ -102,8 +158,8 @@
                     <span class="text-danger">{{ $errors->first('logo') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.logo_helper') }}</span>
-            </div>
-            <div class="form-group">
+            </div> --}}
+            {{-- <div class="form-group">
                 <label for="additional_images">{{ trans('cruds.user.fields.additional_images') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('additional_images') ? 'is-invalid' : '' }}" id="additional_images-dropzone">
                 </div>
@@ -111,7 +167,7 @@
                     <span class="text-danger">{{ $errors->first('additional_images') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.additional_images_helper') }}</span>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

@@ -43,21 +43,52 @@ class ReplyController extends Controller
     {
         $reply = Reply::create($request->all());
 
-        if ($request->input('attachements', false)) {
-            $reply->addMedia(storage_path('tmp/uploads/' . basename($request->input('attachements'))))->toMediaCollection('attachements');
-        }
-
         if ($request->input('main_photo', false)) {
-            $reply->addMedia(storage_path('tmp/uploads/' . basename($request->input('main_photo'))))->toMediaCollection('main_photo');
+
+            $reply->attachment()->create([
+                'collection_name' => 'main_photo',
+                'attachment_id' => $request->main_photo,
+            ]);
+            
         }
 
-        foreach ($request->input('additional_photos', []) as $file) {
-            $reply->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_photos');
+        if ($request->postmeta['additional_photos']) {
+
+            foreach ($request->postmeta['additional_photos'] as $file) {
+                $reply->attachment()->create([
+                    'collection_name' => 'additional_photos',
+                    'attachment_id' => $file,
+                ]);
+            }
+            
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $reply->id]);
+        if ($request->postmeta['attachments']) {
+
+            foreach ($request->postmeta['attachments'] as $file) {
+                $reply->attachment()->create([
+                    'collection_name' => 'attachments',
+                    'attachment_id' => $file,
+                ]);
+            }
+            
         }
+
+        // if ($request->input('attachements', false)) {
+        //     $reply->addMedia(storage_path('tmp/uploads/' . basename($request->input('attachements'))))->toMediaCollection('attachements');
+        // }
+
+        // if ($request->input('main_photo', false)) {
+        //     $reply->addMedia(storage_path('tmp/uploads/' . basename($request->input('main_photo'))))->toMediaCollection('main_photo');
+        // }
+
+        // foreach ($request->input('additional_photos', []) as $file) {
+        //     $reply->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_photos');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $reply->id]);
+        // }
 
         return redirect()->route('admin.replies.index');
     }
@@ -79,41 +110,109 @@ class ReplyController extends Controller
     {
         $reply->update($request->all());
 
-        if ($request->input('attachements', false)) {
-            if (!$reply->attachements || $request->input('attachements') !== $reply->attachements->file_name) {
-                if ($reply->attachements) {
-                    $reply->attachements->delete();
-                }
-                $reply->addMedia(storage_path('tmp/uploads/' . basename($request->input('attachements'))))->toMediaCollection('attachements');
-            }
-        } elseif ($reply->attachements) {
-            $reply->attachements->delete();
-        }
-
         if ($request->input('main_photo', false)) {
-            if (!$reply->main_photo || $request->input('main_photo') !== $reply->main_photo->file_name) {
-                if ($reply->main_photo) {
-                    $reply->main_photo->delete();
-                }
-                $reply->addMedia(storage_path('tmp/uploads/' . basename($request->input('main_photo'))))->toMediaCollection('main_photo');
-            }
-        } elseif ($reply->main_photo) {
-            $reply->main_photo->delete();
+
+            $reply->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'main_photo'
+                ],
+                [
+                'collection_name' => 'main_photo',
+                'attachment_id' => $request->main_photo,
+                ]
+            );
+            
         }
 
-        if (count($reply->additional_photos) > 0) {
-            foreach ($reply->additional_photos as $media) {
-                if (!in_array($media->file_name, $request->input('additional_photos', []))) {
-                    $media->delete();
+        if ($request->postmeta['additional_photos']) {
+
+            $attachmentIds = array_filter($request->postmeta['additional_photos'], function($v){ 
+                return !is_null($v) && $v !== ''; 
+               });
+
+            $reply->attachment()->where('collection_name','additional_photos')->whereNotIn('attachment_id',$attachmentIds)->delete();
+
+            foreach ($request->postmeta['additional_photos'] as $file) {
+                
+                if ($file) {
+                    $reply->attachment()->updateOrCreate(
+                        [
+                            'collection_name' => 'additional_photos',
+                            'attachment_id' => $file,
+                        ],
+                        [
+                        'collection_name' => 'additional_photos',
+                        'attachment_id' => $file,
+                        ]
+                    );
                 }
+                
             }
+            
         }
-        $media = $reply->additional_photos->pluck('file_name')->toArray();
-        foreach ($request->input('additional_photos', []) as $file) {
-            if (count($media) === 0 || !in_array($file, $media)) {
-                $reply->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_photos');
+
+        if ($request->postmeta['attachments']) {
+
+            $attachmentIds = array_filter($request->postmeta['attachments'], function($v){ 
+                return !is_null($v) && $v !== ''; 
+               });
+
+            $reply->attachment()->where('collection_name','attachments')->whereNotIn('attachment_id',$attachmentIds)->delete();
+
+            foreach ($request->postmeta['attachments'] as $file) {
+                
+                if ($file) {
+                    $reply->attachment()->updateOrCreate(
+                        [
+                            'collection_name' => 'attachments',
+                            'attachment_id' => $file,
+                        ],
+                        [
+                        'collection_name' => 'attachments',
+                        'attachment_id' => $file,
+                        ]
+                    );
+                }
+                
             }
+            
         }
+
+        // if ($request->input('attachements', false)) {
+        //     if (!$reply->attachements || $request->input('attachements') !== $reply->attachements->file_name) {
+        //         if ($reply->attachements) {
+        //             $reply->attachements->delete();
+        //         }
+        //         $reply->addMedia(storage_path('tmp/uploads/' . basename($request->input('attachements'))))->toMediaCollection('attachements');
+        //     }
+        // } elseif ($reply->attachements) {
+        //     $reply->attachements->delete();
+        // }
+
+        // if ($request->input('main_photo', false)) {
+        //     if (!$reply->main_photo || $request->input('main_photo') !== $reply->main_photo->file_name) {
+        //         if ($reply->main_photo) {
+        //             $reply->main_photo->delete();
+        //         }
+        //         $reply->addMedia(storage_path('tmp/uploads/' . basename($request->input('main_photo'))))->toMediaCollection('main_photo');
+        //     }
+        // } elseif ($reply->main_photo) {
+        //     $reply->main_photo->delete();
+        // }
+
+        // if (count($reply->additional_photos) > 0) {
+        //     foreach ($reply->additional_photos as $media) {
+        //         if (!in_array($media->file_name, $request->input('additional_photos', []))) {
+        //             $media->delete();
+        //         }
+        //     }
+        // }
+        // $media = $reply->additional_photos->pluck('file_name')->toArray();
+        // foreach ($request->input('additional_photos', []) as $file) {
+        //     if (count($media) === 0 || !in_array($file, $media)) {
+        //         $reply->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_photos');
+        //     }
+        // }
 
         return redirect()->route('admin.replies.index');
     }

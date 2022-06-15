@@ -16,7 +16,12 @@ intro-title -->
                         </ul>
                     </div>
                     <div class="intro-img">
-                        <img class="img-fluid" src="{{ asset('site/images/breadcrumb/02.png') }}" alt="Blog banner">
+                        @if ($service->banner)
+                            <img class="img-fluid" src="{{ get_attachment_url($service->banner) }}" alt="Blog banner">
+                        @else
+                            <img class="img-fluid" src="{{ asset('site/images/breadcrumb/02.png') }}" alt="Blog banner">
+                        @endif
+                        
                     </div>
                 </div>
             </div>

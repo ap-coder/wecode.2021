@@ -74,12 +74,20 @@ class CategoryController extends Controller
         $category = Category::create($request->all());
 
         if ($request->input('photo', false)) {
-            $category->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
-        }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $category->id]);
+            $category->attachment()->create([
+                'collection_name' => 'photo',
+                'attachment_id' => $request->photo,
+            ]);
+            
         }
+        // if ($request->input('photo', false)) {
+        //     $category->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $category->id]);
+        // }
 
         return redirect()->route('admin.categories.index');
     }
@@ -96,15 +104,29 @@ class CategoryController extends Controller
         $category->update($request->all());
 
         if ($request->input('photo', false)) {
-            if (!$category->photo || $request->input('photo') !== $category->photo->file_name) {
-                if ($category->photo) {
-                    $category->photo->delete();
-                }
-                $category->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
-            }
-        } elseif ($category->photo) {
-            $category->photo->delete();
+
+            $category->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'photo'
+                ],
+                [
+                'collection_name' => 'photo',
+                'attachment_id' => $request->photo,
+                ]
+            );
+            
         }
+
+        // if ($request->input('photo', false)) {
+        //     if (!$category->photo || $request->input('photo') !== $category->photo->file_name) {
+        //         if ($category->photo) {
+        //             $category->photo->delete();
+        //         }
+        //         $category->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        //     }
+        // } elseif ($category->photo) {
+        //     $category->photo->delete();
+        // }
 
         return redirect()->route('admin.categories.index');
     }

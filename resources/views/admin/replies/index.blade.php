@@ -71,8 +71,8 @@
                             </td>
                             <td>
                                 @if($reply->main_photo)
-                                    <a href="{{ $reply->main_photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                        <img src="{{ $reply->main_photo->getUrl('thumb') }}">
+                                    <a href="{{ get_attachment_url($reply->main_photo,'full') }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ get_attachment_url($reply->main_photo) }}">
                                     </a>
                                 @endif
                             </td>

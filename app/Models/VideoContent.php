@@ -58,6 +58,11 @@ class VideoContent extends Model implements HasMedia
         'deleted_at',
     ];
 
+    public function attachment()
+    {
+      return $this->morphMany(AttachmentData::class, 'model');
+    }
+ 
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
@@ -66,14 +71,16 @@ class VideoContent extends Model implements HasMedia
 
     public function getPlaceholderAttribute()
     {
-        $file = $this->getMedia('placeholder')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','placeholder')->value('attachment_id');
 
-        return $file;
+        // $file = $this->getMedia('placeholder')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        // }
+
+        // return $file;
     }
 
     public function thread()

@@ -61,10 +61,11 @@
                         </th>
                         <td>
                             @if($post->featured_image)
-                                <a href="{{ $post->featured_image->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $post->featured_image->getUrl('thumb') }}">
+                                <a href="{{ @get_attachment_url($post->featured_image,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url($post->featured_image) }}">
                                 </a>
                             @endif
+                            
                         </td>
                     </tr>
                     <tr>
@@ -169,7 +170,7 @@
                         </th>
                         <td>
                             @foreach($post->attachments as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank">
+                                <a href="{{ @get_attachment_url($media,'full') }}" target="_blank">
                                     {{ trans('global.view_file') }}
                                 </a>
                             @endforeach

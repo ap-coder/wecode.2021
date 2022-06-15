@@ -132,7 +132,7 @@ class Post extends Model implements HasMedia
 
     public function getAttachmentsAttribute()
     {
-        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','attachments')->value('attachment_id');
+        return $this->morphMany(AttachmentData::class, 'model')->where('collection_name','attachments')->pluck('attachment_id')->toArray();
     }
 
     protected function serializeDate(DateTimeInterface $date)

@@ -57,7 +57,7 @@ class ServiceController extends Controller
                 }
                 $links = [];
                 foreach ($row->content_images as $media) {
-                    $links[] = '<a href="' . $media->getUrl() . '" target="_blank"><img src="' . $media->getUrl('thumb') . '" width="50px" height="50px"></a>';
+                    $links[] = '<a href="' . get_attachment_url($media,'full') . '" target="_blank"><img src="' . get_attachment_url($media,'thumbnail') . '" width="50px" height="50px"></a>';
                 }
 
                 return implode(' ', $links);
@@ -86,20 +86,49 @@ class ServiceController extends Controller
         $service = Service::create($request->all());
 
         if ($request->input('featured_image', false)) {
-            $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
-        }
 
-        foreach ($request->input('content_images', []) as $file) {
-            $service->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('content_images');
+            $service->attachment()->create([
+                'collection_name' => 'featured_image',
+                'attachment_id' => $request->featured_image,
+            ]);
+            
         }
 
         if ($request->input('banner', false)) {
-            $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('banner'))))->toMediaCollection('banner');
+
+            $service->attachment()->create([
+                'collection_name' => 'banner',
+                'attachment_id' => $request->banner,
+            ]);
+            
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $service->id]);
+        if ($request->postmeta) {
+
+            foreach ($request->postmeta['content_images'] as $file) {
+                $service->attachment()->create([
+                    'collection_name' => 'content_images',
+                    'attachment_id' => $file,
+                ]);
+            }
+            
         }
+
+        // if ($request->input('featured_image', false)) {
+        //     $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+        // }
+
+        // foreach ($request->input('content_images', []) as $file) {
+        //     $service->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('content_images');
+        // }
+
+        // if ($request->input('banner', false)) {
+        //     $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('banner'))))->toMediaCollection('banner');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $service->id]);
+        // }
 
         return redirect()->route('admin.services.index');
     }
@@ -113,43 +142,98 @@ class ServiceController extends Controller
 
     public function update(UpdateServiceRequest $request, Service $service)
     {
+        // dd($request->all());
         $service->update($request->all());
 
         if ($request->input('featured_image', false)) {
-            if (!$service->featured_image || $request->input('featured_image') !== $service->featured_image->file_name) {
-                if ($service->featured_image) {
-                    $service->featured_image->delete();
-                }
-                $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
-            }
-        } elseif ($service->featured_image) {
-            $service->featured_image->delete();
-        }
 
-        if (count($service->content_images) > 0) {
-            foreach ($service->content_images as $media) {
-                if (!in_array($media->file_name, $request->input('content_images', []))) {
-                    $media->delete();
-                }
-            }
-        }
-        $media = $service->content_images->pluck('file_name')->toArray();
-        foreach ($request->input('content_images', []) as $file) {
-            if (count($media) === 0 || !in_array($file, $media)) {
-                $service->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('content_images');
-            }
+            $service->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'featured_image'
+                ],
+                [
+                'collection_name' => 'featured_image',
+                'attachment_id' => $request->featured_image,
+                ]
+            );
+            
         }
 
         if ($request->input('banner', false)) {
-            if (!$service->banner || $request->input('banner') !== $service->banner->file_name) {
-                if ($service->banner) {
-                    $service->banner->delete();
-                }
-                $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('banner'))))->toMediaCollection('banner');
-            }
-        } elseif ($service->banner) {
-            $service->banner->delete();
+
+            $service->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'banner'
+                ],
+                [
+                'collection_name' => 'banner',
+                'attachment_id' => $request->banner,
+                ]
+            );
+            
         }
+
+        if ($request->postmeta) {
+
+            $attachmentIds = array_filter($request->postmeta['content_images'], function($v){ 
+                return !is_null($v) && $v !== ''; 
+               });
+
+            $service->attachment()->where('collection_name','content_images')->whereNotIn('attachment_id',$attachmentIds)->delete();
+
+            foreach ($request->postmeta['content_images'] as $file) {
+                
+                if ($file) {
+                    $service->attachment()->updateOrCreate(
+                        [
+                            'collection_name' => 'content_images',
+                            'attachment_id' => $file,
+                        ],
+                        [
+                        'collection_name' => 'content_images',
+                        'attachment_id' => $file,
+                        ]
+                    );
+                }
+                
+            }
+            
+        }
+        // if ($request->input('featured_image', false)) {
+        //     if (!$service->featured_image || $request->input('featured_image') !== $service->featured_image->file_name) {
+        //         if ($service->featured_image) {
+        //             $service->featured_image->delete();
+        //         }
+        //         $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+        //     }
+        // } elseif ($service->featured_image) {
+        //     $service->featured_image->delete();
+        // }
+
+        // if (count($service->content_images) > 0) {
+        //     foreach ($service->content_images as $media) {
+        //         if (!in_array($media->file_name, $request->input('content_images', []))) {
+        //             $media->delete();
+        //         }
+        //     }
+        // }
+        // $media = $service->content_images->pluck('file_name')->toArray();
+        // foreach ($request->input('content_images', []) as $file) {
+        //     if (count($media) === 0 || !in_array($file, $media)) {
+        //         $service->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('content_images');
+        //     }
+        // }
+
+        // if ($request->input('banner', false)) {
+        //     if (!$service->banner || $request->input('banner') !== $service->banner->file_name) {
+        //         if ($service->banner) {
+        //             $service->banner->delete();
+        //         }
+        //         $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('banner'))))->toMediaCollection('banner');
+        //     }
+        // } elseif ($service->banner) {
+        //     $service->banner->delete();
+        // }
 
         if ($request->preview) {
             echo json_encode($service->slug);

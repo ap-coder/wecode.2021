@@ -77,8 +77,8 @@
                         </th>
                         <td>
                             @if($service->featured_image)
-                                <a href="{{ $service->featured_image->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $service->featured_image->getUrl('thumb') }}">
+                                <a href="{{ @get_attachment_url($service->featured_image,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url($service->featured_image) }}">
                                 </a>
                             @endif
                         </td>
@@ -89,8 +89,8 @@
                         </th>
                         <td>
                             @foreach($service->content_images as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
+                                <a href="{{ @get_attachment_url($media,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url($media) }}">
                                 </a>
                             @endforeach
                         </td>
@@ -133,8 +133,8 @@
                         </th>
                         <td>
                             @if($service->banner)
-                                <a href="{{ $service->banner->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $service->banner->getUrl('thumb') }}">
+                                <a href="{{ @get_attachment_url($service->banner,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url($service->banner) }}">
                                 </a>
                             @endif
                         </td>

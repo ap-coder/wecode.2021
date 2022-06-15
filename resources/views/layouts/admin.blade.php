@@ -42,6 +42,7 @@
     <link href="{{ asset('libs/css/style.css') }}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="{{ asset('libs/article/article-editor.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('libs/tacf/tacf.min.css') }}" />
 
     {{-- media library --}}
 
@@ -82,6 +83,10 @@
          .error{
              color: red;
          }
+         .featuredimage {
+    text-align: center;
+    position: relative;
+}
      </style>
 
 
@@ -195,7 +200,8 @@
     <script type="text/javascript">
       var media_upload_url = '{{ route("admin.media.medialibrary") }}',
       tb_pathToImage = "{{ asset('libs/cupload/js/thickbox/loadingAnimation.gif') }}",
-      tb_closeImage  = "{{ asset('libs/cupload/js/thickbox/tb-close.png') }}";
+      tb_closeImage  = "{{ asset('libs/cupload/js/thickbox/tb-close.png') }}",
+      delete_confirm_text = 'are you sure! Want to delete';
     </script>
 
     <script src="{{ asset('libs/cupload/js/thickbox/thickbox.min.js') }}"></script>
@@ -216,6 +222,7 @@
 <script src="{{ asset('libs/article/plugins/specialchars.min.js') }}"></script>
 <script src="{{ asset('libs/article/plugins/textdirection.min.js') }}"></script>
 <script src="{{ asset('libs/article/plugins/underline.min.js') }}"></script>
+<script src="{{ asset('libs/tacf/tacf.min.js') }}"></script>
 
 <script>
     var token = '{{ csrf_token() }}';

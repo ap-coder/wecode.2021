@@ -95,13 +95,15 @@ class PostController extends Controller
             
         }
 
-        if ($request->input('attachments', false)) {
+        if ($request->postmeta) {
 
-            $post->attachment()->create([
-                'collection_name' => 'attachments',
-                'attachment_id' => $request->attachments,
-            ]);
-
+            foreach ($request->postmeta['attachments'] as $file) {
+                $post->attachment()->create([
+                    'collection_name' => 'attachments',
+                    'attachment_id' => $file,
+                ]);
+            }
+            
         }
 
         // if ($request->input('featured_image', false)) {
@@ -164,18 +166,31 @@ class PostController extends Controller
             
         }
 
-        if ($request->input('attachments', false)) {
+        if ($request->postmeta) {
 
-            $post->attachment()->updateOrCreate(
-                [
-                    'collection_name' => 'attachments'
-                ],
-                [
-                'collection_name' => 'attachments',
-                'attachment_id' => $request->attachments,
-                ]
-        );
+            $attachmentIds = array_filter($request->postmeta['attachments'], function($v){ 
+                return !is_null($v) && $v !== ''; 
+               });
 
+            $post->attachment()->where('collection_name','attachments')->whereNotIn('attachment_id',$attachmentIds)->delete();
+
+            foreach ($request->postmeta['attachments'] as $file) {
+                
+                if ($file) {
+                    $post->attachment()->updateOrCreate(
+                        [
+                            'collection_name' => 'attachments',
+                            'attachment_id' => $file,
+                        ],
+                        [
+                        'collection_name' => 'attachments',
+                        'attachment_id' => $file,
+                        ]
+                    );
+                }
+                
+            }
+            
         }
 
         // if ($request->input('featured_image', false)) {

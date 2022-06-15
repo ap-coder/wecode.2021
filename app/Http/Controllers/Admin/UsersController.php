@@ -75,8 +75,8 @@ class UsersController extends Controller
                 if ($photo = $row->avatar) {
                     return sprintf(
         '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
+        get_attachment_url($row->avatar,'full'),
+        get_attachment_url($row->avatar)
     );
                 }
 
@@ -104,21 +104,50 @@ class UsersController extends Controller
     {
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
+
         if ($request->input('avatar', false)) {
-            $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
-        }
 
+            $user->attachment()->create([
+                'collection_name' => 'avatar',
+                'attachment_id' => $request->avatar,
+            ]);
+            
+        }
         if ($request->input('logo', false)) {
-            $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
+
+            $user->attachment()->create([
+                'collection_name' => 'logo',
+                'attachment_id' => $request->logo,
+            ]);
+            
         }
 
-        foreach ($request->input('additional_images', []) as $file) {
-            $user->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_images');
+        if ($request->postmeta['additional_images']) {
+
+            foreach ($request->postmeta['additional_images'] as $file) {
+                $user->attachment()->create([
+                    'collection_name' => 'additional_images',
+                    'attachment_id' => $file,
+                ]);
+            }
+            
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $user->id]);
-        }
+        // if ($request->input('avatar', false)) {
+        //     $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
+        // }
+
+        // if ($request->input('logo', false)) {
+        //     $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
+        // }
+
+        // foreach ($request->input('additional_images', []) as $file) {
+        //     $user->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_images');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $user->id]);
+        // }
 
         return redirect()->route('admin.users.index');
     }
@@ -138,41 +167,95 @@ class UsersController extends Controller
     {
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
+
         if ($request->input('avatar', false)) {
-            if (!$user->avatar || $request->input('avatar') !== $user->avatar->file_name) {
-                if ($user->avatar) {
-                    $user->avatar->delete();
-                }
-                $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
-            }
-        } elseif ($user->avatar) {
-            $user->avatar->delete();
-        }
 
+            $user->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'avatar'
+                ],
+                [
+                'collection_name' => 'avatar',
+                'attachment_id' => $request->avatar,
+                ]
+            );
+            
+        }
         if ($request->input('logo', false)) {
-            if (!$user->logo || $request->input('logo') !== $user->logo->file_name) {
-                if ($user->logo) {
-                    $user->logo->delete();
-                }
-                $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
-            }
-        } elseif ($user->logo) {
-            $user->logo->delete();
+
+            $user->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'logo'
+                ],
+                [
+                'collection_name' => 'logo',
+                'attachment_id' => $request->logo,
+                ]
+            );
+            
         }
 
-        if (count($user->additional_images) > 0) {
-            foreach ($user->additional_images as $media) {
-                if (!in_array($media->file_name, $request->input('additional_images', []))) {
-                    $media->delete();
+        if ($request->postmeta['additional_images']) {
+
+            $attachmentIds = array_filter($request->postmeta['additional_images'], function($v){ 
+                return !is_null($v) && $v !== ''; 
+               });
+
+            $user->attachment()->where('collection_name','additional_images')->whereNotIn('attachment_id',$attachmentIds)->delete();
+
+            foreach ($request->postmeta['additional_images'] as $file) {
+                
+                if ($file) {
+                    $user->attachment()->updateOrCreate(
+                        [
+                            'collection_name' => 'additional_images',
+                            'attachment_id' => $file,
+                        ],
+                        [
+                        'collection_name' => 'additional_images',
+                        'attachment_id' => $file,
+                        ]
+                    );
                 }
+                
             }
+            
         }
-        $media = $user->additional_images->pluck('file_name')->toArray();
-        foreach ($request->input('additional_images', []) as $file) {
-            if (count($media) === 0 || !in_array($file, $media)) {
-                $user->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_images');
-            }
-        }
+        // if ($request->input('avatar', false)) {
+        //     if (!$user->avatar || $request->input('avatar') !== $user->avatar->file_name) {
+        //         if ($user->avatar) {
+        //             $user->avatar->delete();
+        //         }
+        //         $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('avatar'))))->toMediaCollection('avatar');
+        //     }
+        // } elseif ($user->avatar) {
+        //     $user->avatar->delete();
+        // }
+
+        // if ($request->input('logo', false)) {
+        //     if (!$user->logo || $request->input('logo') !== $user->logo->file_name) {
+        //         if ($user->logo) {
+        //             $user->logo->delete();
+        //         }
+        //         $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
+        //     }
+        // } elseif ($user->logo) {
+        //     $user->logo->delete();
+        // }
+
+        // if (count($user->additional_images) > 0) {
+        //     foreach ($user->additional_images as $media) {
+        //         if (!in_array($media->file_name, $request->input('additional_images', []))) {
+        //             $media->delete();
+        //         }
+        //     }
+        // }
+        // $media = $user->additional_images->pluck('file_name')->toArray();
+        // foreach ($request->input('additional_images', []) as $file) {
+        //     if (count($media) === 0 || !in_array($file, $media)) {
+        //         $user->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_images');
+        //     }
+        // }
 
         return redirect()->route('admin.users.index');
     }

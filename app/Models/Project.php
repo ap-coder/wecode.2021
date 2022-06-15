@@ -79,6 +79,11 @@ class Project extends Model implements HasMedia
 	{
 		return $query->where('published', 1);
 	}
+
+    public function attachment()
+    {
+      return $this->morphMany(AttachmentData::class, 'model');
+    }
     
     public function registerMediaConversions(Media $media = null): void
     {
@@ -118,66 +123,71 @@ class Project extends Model implements HasMedia
 
     public function getHeaderImageAttribute()
     {
-        $file = $this->getMedia('header_image')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-            $file->portfolio   = $file->getUrl('portfolio');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','header_image')->value('attachment_id');
+        // $file = $this->getMedia('header_image')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        //     $file->portfolio   = $file->getUrl('portfolio');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     public function getFeaturedImageAttribute()
     {
-        $file = $this->getMedia('featured_image')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-            $file->featured  = $file->getUrl('featured');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','featured_image')->value('attachment_id');
+        // $file = $this->getMedia('featured_image')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        //     $file->featured  = $file->getUrl('featured');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     public function getAdditionalImagesAttribute()
     {
-        $files = $this->getMedia('additional_images');
-        $files->each(function ($item) {
-            $item->url = $item->getUrl();
-            $item->thumbnail = $item->getUrl('thumb');
-            $item->preview = $item->getUrl('preview');
-        });
+        return $this->morphMany(AttachmentData::class, 'model')->where('collection_name','additional_images')->pluck('attachment_id')->toArray();
+        // $files = $this->getMedia('additional_images');
+        // $files->each(function ($item) {
+        //     $item->url = $item->getUrl();
+        //     $item->thumbnail = $item->getUrl('thumb');
+        //     $item->preview = $item->getUrl('preview');
+        // });
 
-        return $files;
+        // return $files;
     }
 
     public function getChallengeImageAttribute()
     {
-        $file = $this->getMedia('challenge_image')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-            $file->challenge   = $file->getUrl('challenge');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','challenge_image')->value('attachment_id');
+        // $file = $this->getMedia('challenge_image')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        //     $file->challenge   = $file->getUrl('challenge');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     public function getSolutionImageAttribute()
     {
-        $file = $this->getMedia('solution_image')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-            $file->solution   = $file->getUrl('solution');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','solution_image')->value('attachment_id');
+        // $file = $this->getMedia('solution_image')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        //     $file->solution   = $file->getUrl('solution');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     protected function serializeDate(DateTimeInterface $date)

@@ -149,7 +149,11 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.videoContent.fields.video_type_helper') }}</span>
             </div>
-            <div class="form-group">
+            <label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.videoContent.fields.placeholder') }}</label>
+            <div class="featuredimage">
+                <input class="form-control" data-toggle="fileupload" data-size="thumbnail" data-button="{{ trans('cruds.videoContent.fields.placeholder') }}" data-src="false" data-srcid="" data-field="placeholder" type="hidden" name="placeholder" value="">
+            </div>
+            {{-- <div class="form-group">
                 <label for="placeholder">{{ trans('cruds.videoContent.fields.placeholder') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('placeholder') ? 'is-invalid' : '' }}" id="placeholder-dropzone">
                 </div>
@@ -157,7 +161,7 @@
                     <span class="text-danger">{{ $errors->first('placeholder') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.videoContent.fields.placeholder_helper') }}</span>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label for="thread_id">{{ trans('cruds.videoContent.fields.thread') }}</label>
                 <select class="form-control select2 {{ $errors->has('thread') ? 'is-invalid' : '' }}" name="thread_id" id="thread_id">

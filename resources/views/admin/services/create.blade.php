@@ -73,6 +73,31 @@
 @endsection
 
 @section('scripts')
+<script type="text/javascript">
+
+
+  $(document).ready(function() {
+
+
+    $(".add-more").click(function(){
+      var i = 2; 
+        var html = $(".content_images").html();
+        console.log(html);
+        $(html).find('data-field').attr('data-field','content_images_'+i);
+        $(".after-add-more").after(html);
+        i++;
+    });
+
+
+    $("body").on("click",".remove",function(){ 
+        $(this).parents(".control-group").remove();
+    });
+
+
+  });
+
+
+</script>
 <script>
     $(document).ready(function () {
   function SimpleUploadAdapter(editor) {

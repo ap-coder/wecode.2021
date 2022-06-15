@@ -53,8 +53,8 @@
                         </th>
                         <td>
                             @if($thread->photo)
-                                <a href="{{ $thread->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $thread->photo->getUrl('thumb') }}">
+                                <a href="{{ @get_attachment_url(@$thread->photo,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url(@$thread->photo) }}">
                                 </a>
                             @endif
                         </td>
@@ -65,8 +65,8 @@
                         </th>
                         <td>
                             @foreach($thread->additional_photos as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
+                                <a href="{{ @get_attachment_url($media,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url($media) }}">
                                 </a>
                             @endforeach
                         </td>
@@ -77,7 +77,7 @@
                         </th>
                         <td>
                             @foreach($thread->attachments as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank">
+                                <a href="{{ @get_attachment_url($media,'full') }}" target="_blank">
                                     {{ trans('global.view_file') }}
                                 </a>
                             @endforeach

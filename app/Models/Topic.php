@@ -37,6 +37,11 @@ class Topic extends Model implements HasMedia
         'updated_at',
         'deleted_at',
     ];
+
+    public function attachment()
+    {
+      return $this->morphMany(AttachmentData::class, 'model');
+    }
  
     public function registerMediaConversions(Media $media = null): void
     {
@@ -46,14 +51,15 @@ class Topic extends Model implements HasMedia
 
     public function getPhotoAttribute()
     {
-        $file = $this->getMedia('photo')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','photo')->value('attachment_id');
+        // $file = $this->getMedia('photo')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     protected function serializeDate(DateTimeInterface $date)

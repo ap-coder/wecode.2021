@@ -117,24 +117,33 @@ class PagesController extends Controller
         $page = Page::create($request->all());
 
         if ($request->input('featured_image', false)) {
-            $page->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image', 'public');
+
+            $page->attachment()->create([
+                'collection_name' => 'featured_image',
+                'attachment_id' => $request->featured_image,
+            ]);
+            
         }
 
-        foreach ($request->input('photos', []) as $file) {
-            File::ensureDirectoryExists('site/img/landing-pages');
-            File::move(storage_path('tmp/uploads/' . basename($file)), public_path('site/img/landing-pages/'.basename($file)));
-            File::delete(storage_path('tmp/uploads/' . basename($file)));
-        }
+        // if ($request->input('featured_image', false)) {
+        //     $page->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image', 'public');
+        // }
 
-        foreach ($request->input('attachments', []) as $file) {
-            File::ensureDirectoryExists('site/attachments/landing-pages');
-            File::move(storage_path('tmp/uploads/' . basename($file)), public_path('site/attachments/landing-pages/'.basename($file)));
-            File::delete(storage_path('tmp/uploads/' . basename($file)));
-        }
+        // foreach ($request->input('photos', []) as $file) {
+        //     File::ensureDirectoryExists('site/img/landing-pages');
+        //     File::move(storage_path('tmp/uploads/' . basename($file)), public_path('site/img/landing-pages/'.basename($file)));
+        //     File::delete(storage_path('tmp/uploads/' . basename($file)));
+        // }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $page->id]);
-        }
+        // foreach ($request->input('attachments', []) as $file) {
+        //     File::ensureDirectoryExists('site/attachments/landing-pages');
+        //     File::move(storage_path('tmp/uploads/' . basename($file)), public_path('site/attachments/landing-pages/'.basename($file)));
+        //     File::delete(storage_path('tmp/uploads/' . basename($file)));
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $page->id]);
+        // }
 
         return redirect()->route('admin.pages.edit', $page->id);
     }
@@ -175,28 +184,44 @@ class PagesController extends Controller
         $page->update($request->all());
 
         if ($request->input('featured_image', false)) {
-            if (!$page->featured_image || $request->input('featured_image') !== $page->featured_image->file_name) {
-                if ($page->featured_image) {
-                    $page->featured_image->delete();
-                }
 
-                $page->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image', 'public');
-            }
-        } elseif ($page->featured_image) {
-            $page->featured_image->delete();
+            $page->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'featured_image'
+                ],
+                [
+                'collection_name' => 'featured_image',
+                'attachment_id' => $request->featured_image,
+                ]
+            );
+            
         }
 
-        foreach ($request->input('photos', []) as $file) {
-            File::ensureDirectoryExists('site/img/landing-pages');
-            File::move(storage_path('tmp/uploads/' . basename($file)), public_path('site/img/landing-pages/'.basename($file)));
-            File::delete(storage_path('tmp/uploads/' . basename($file)));
-        }
+       
+        // if ($request->input('featured_image', false)) {
+        //     if (!$page->featured_image || $request->input('featured_image') !== $page->featured_image->file_name) {
+        //         if ($page->featured_image) {
+        //             $page->featured_image->delete();
+        //         }
 
-        foreach ($request->input('attachments', []) as $file) {
-            File::ensureDirectoryExists('site/attachments/landing-pages');
-            File::move(storage_path('tmp/uploads/' . basename($file)), public_path('site/attachments/landing-pages/'.basename($file)));
-            File::delete(storage_path('tmp/uploads/' . basename($file)));
-        }
+        //         $page->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image', 'public');
+        //     }
+        // } elseif ($page->featured_image) {
+        //     $page->featured_image->delete();
+        // }
+
+        // foreach ($request->input('photos', []) as $file) {
+        //     File::ensureDirectoryExists('site/img/landing-pages');
+        //     File::move(storage_path('tmp/uploads/' . basename($file)), public_path('site/img/landing-pages/'.basename($file)));
+        //     File::delete(storage_path('tmp/uploads/' . basename($file)));
+        // }
+        
+
+        // foreach ($request->input('attachments', []) as $file) {
+        //     File::ensureDirectoryExists('site/attachments/landing-pages');
+        //     File::move(storage_path('tmp/uploads/' . basename($file)), public_path('site/attachments/landing-pages/'.basename($file)));
+        //     File::delete(storage_path('tmp/uploads/' . basename($file)));
+        // }
         
         if ($request->preview) {
             echo json_encode($page->path.'/'.$page->slug);

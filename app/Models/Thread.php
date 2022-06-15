@@ -48,7 +48,11 @@ class Thread extends Model implements HasMedia
 		return $query->where('published', 1);
 	}
 
- 
+    public function attachment()
+    {
+      return $this->morphMany(AttachmentData::class, 'model');
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
@@ -62,31 +66,36 @@ class Thread extends Model implements HasMedia
 
     public function getPhotoAttribute()
     {
-        $file = $this->getMedia('photo')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','photo')->value('attachment_id');
 
-        return $file;
+        // $file = $this->getMedia('photo')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        // }
+
+        // return $file;
     }
 
     public function getAdditionalPhotosAttribute()
     {
-        $files = $this->getMedia('additional_photos');
-        $files->each(function ($item) {
-            $item->url = $item->getUrl();
-            $item->thumbnail = $item->getUrl('thumb');
-            $item->preview = $item->getUrl('preview');
-        });
+        return $this->morphMany(AttachmentData::class, 'model')->where('collection_name','additional_photos')->pluck('attachment_id')->toArray();
 
-        return $files;
+        // $files = $this->getMedia('additional_photos');
+        // $files->each(function ($item) {
+        //     $item->url = $item->getUrl();
+        //     $item->thumbnail = $item->getUrl('thumb');
+        //     $item->preview = $item->getUrl('preview');
+        // });
+
+        // return $files;
     }
 
     public function getAttachmentsAttribute()
     {
-        return $this->getMedia('attachments');
+        return $this->morphMany(AttachmentData::class, 'model')->where('collection_name','attachments')->pluck('attachment_id')->toArray();
+        // return $this->getMedia('attachments');
     }
 
     protected function serializeDate(DateTimeInterface $date)

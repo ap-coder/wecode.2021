@@ -64,8 +64,8 @@ class ProjectsController extends Controller
                 if ($photo = $row->header_image) {
                     return sprintf(
         '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
+        get_attachment_url($row->header_image,'full'),
+        get_attachment_url($row->header_image)
     );
                 }
 
@@ -108,28 +108,75 @@ class ProjectsController extends Controller
         $project = Project::create($request->all());
 
         if ($request->input('header_image', false)) {
-            $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('header_image'))))->toMediaCollection('header_image');
+
+            $project->attachment()->create([
+                'collection_name' => 'header_image',
+                'attachment_id' => $request->header_image,
+            ]);
+            
         }
 
         if ($request->input('featured_image', false)) {
-            $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
-        }
 
-        foreach ($request->input('additional_images', []) as $file) {
-            $project->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_images');
+            $project->attachment()->create([
+                'collection_name' => 'featured_image',
+                'attachment_id' => $request->featured_image,
+            ]);
+            
         }
 
         if ($request->input('challenge_image', false)) {
-            $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('challenge_image'))))->toMediaCollection('challenge_image');
+
+            $project->attachment()->create([
+                'collection_name' => 'challenge_image',
+                'attachment_id' => $request->challenge_image,
+            ]);
+            
         }
 
         if ($request->input('solution_image', false)) {
-            $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('solution_image'))))->toMediaCollection('solution_image');
+
+            $project->attachment()->create([
+                'collection_name' => 'solution_image',
+                'attachment_id' => $request->solution_image,
+            ]);
+            
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $project->id]);
+        if ($request->postmeta['additional_images']) {
+
+            foreach ($request->postmeta['additional_images'] as $file) {
+                $project->attachment()->create([
+                    'collection_name' => 'additional_images',
+                    'attachment_id' => $file,
+                ]);
+            }
+            
         }
+
+        // if ($request->input('header_image', false)) {
+        //     $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('header_image'))))->toMediaCollection('header_image');
+        // }
+
+        // if ($request->input('featured_image', false)) {
+        //     $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+        // }
+
+        // foreach ($request->input('additional_images', []) as $file) {
+        //     $project->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_images');
+        // }
+
+        // if ($request->input('challenge_image', false)) {
+        //     $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('challenge_image'))))->toMediaCollection('challenge_image');
+        // }
+
+        // if ($request->input('solution_image', false)) {
+        //     $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('solution_image'))))->toMediaCollection('solution_image');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $project->id]);
+        // }
 
         return redirect()->route('admin.projects.index');
     }
@@ -152,62 +199,143 @@ class ProjectsController extends Controller
         $project->update($request->all());
 
         if ($request->input('header_image', false)) {
-            if (!$project->header_image || $request->input('header_image') !== $project->header_image->file_name) {
-                if ($project->header_image) {
-                    $project->header_image->delete();
-                }
-                $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('header_image'))))->toMediaCollection('header_image');
-            }
-        } elseif ($project->header_image) {
-            $project->header_image->delete();
-        }
 
+            $project->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'header_image'
+                ],
+                [
+                'collection_name' => 'header_image',
+                'attachment_id' => $request->header_image,
+                ]
+            );
+            
+        }
         if ($request->input('featured_image', false)) {
-            if (!$project->featured_image || $request->input('featured_image') !== $project->featured_image->file_name) {
-                if ($project->featured_image) {
-                    $project->featured_image->delete();
-                }
-                $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
-            }
-        } elseif ($project->featured_image) {
-            $project->featured_image->delete();
-        }
 
-        if (count($project->additional_images) > 0) {
-            foreach ($project->additional_images as $media) {
-                if (!in_array($media->file_name, $request->input('additional_images', []))) {
-                    $media->delete();
-                }
-            }
+            $project->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'featured_image'
+                ],
+                [
+                'collection_name' => 'featured_image',
+                'attachment_id' => $request->featured_image,
+                ]
+            );
+            
         }
-        $media = $project->additional_images->pluck('file_name')->toArray();
-        foreach ($request->input('additional_images', []) as $file) {
-            if (count($media) === 0 || !in_array($file, $media)) {
-                $project->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_images');
-            }
-        }
-
         if ($request->input('challenge_image', false)) {
-            if (!$project->challenge_image || $request->input('challenge_image') !== $project->challenge_image->file_name) {
-                if ($project->challenge_image) {
-                    $project->challenge_image->delete();
-                }
-                $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('challenge_image'))))->toMediaCollection('challenge_image');
-            }
-        } elseif ($project->challenge_image) {
-            $project->challenge_image->delete();
+
+            $project->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'challenge_image'
+                ],
+                [
+                'collection_name' => 'challenge_image',
+                'attachment_id' => $request->challenge_image,
+                ]
+            );
+            
+        }
+        if ($request->input('solution_image', false)) {
+
+            $project->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'solution_image'
+                ],
+                [
+                'collection_name' => 'solution_image',
+                'attachment_id' => $request->solution_image,
+                ]
+            );
+            
         }
 
-        if ($request->input('solution_image', false)) {
-            if (!$project->solution_image || $request->input('solution_image') !== $project->solution_image->file_name) {
-                if ($project->solution_image) {
-                    $project->solution_image->delete();
+        if ($request->postmeta['additional_images']) {
+
+            $attachmentIds = array_filter($request->postmeta['additional_images'], function($v){ 
+                return !is_null($v) && $v !== ''; 
+               });
+
+            $project->attachment()->where('collection_name','additional_images')->whereNotIn('attachment_id',$attachmentIds)->delete();
+
+            foreach ($request->postmeta['additional_images'] as $file) {
+                
+                if ($file) {
+                    $project->attachment()->updateOrCreate(
+                        [
+                            'collection_name' => 'additional_images',
+                            'attachment_id' => $file,
+                        ],
+                        [
+                        'collection_name' => 'additional_images',
+                        'attachment_id' => $file,
+                        ]
+                    );
                 }
-                $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('solution_image'))))->toMediaCollection('solution_image');
+                
             }
-        } elseif ($project->solution_image) {
-            $project->solution_image->delete();
+            
         }
+        
+
+        // if ($request->input('header_image', false)) {
+        //     if (!$project->header_image || $request->input('header_image') !== $project->header_image->file_name) {
+        //         if ($project->header_image) {
+        //             $project->header_image->delete();
+        //         }
+        //         $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('header_image'))))->toMediaCollection('header_image');
+        //     }
+        // } elseif ($project->header_image) {
+        //     $project->header_image->delete();
+        // }
+
+        // if ($request->input('featured_image', false)) {
+        //     if (!$project->featured_image || $request->input('featured_image') !== $project->featured_image->file_name) {
+        //         if ($project->featured_image) {
+        //             $project->featured_image->delete();
+        //         }
+        //         $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+        //     }
+        // } elseif ($project->featured_image) {
+        //     $project->featured_image->delete();
+        // }
+
+        // if (count($project->additional_images) > 0) {
+        //     foreach ($project->additional_images as $media) {
+        //         if (!in_array($media->file_name, $request->input('additional_images', []))) {
+        //             $media->delete();
+        //         }
+        //     }
+        // }
+        // $media = $project->additional_images->pluck('file_name')->toArray();
+        // foreach ($request->input('additional_images', []) as $file) {
+        //     if (count($media) === 0 || !in_array($file, $media)) {
+        //         $project->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('additional_images');
+        //     }
+        // }
+
+        // if ($request->input('challenge_image', false)) {
+        //     if (!$project->challenge_image || $request->input('challenge_image') !== $project->challenge_image->file_name) {
+        //         if ($project->challenge_image) {
+        //             $project->challenge_image->delete();
+        //         }
+        //         $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('challenge_image'))))->toMediaCollection('challenge_image');
+        //     }
+        // } elseif ($project->challenge_image) {
+        //     $project->challenge_image->delete();
+        // }
+
+        // if ($request->input('solution_image', false)) {
+        //     if (!$project->solution_image || $request->input('solution_image') !== $project->solution_image->file_name) {
+        //         if ($project->solution_image) {
+        //             $project->solution_image->delete();
+        //         }
+        //         $project->addMedia(storage_path('tmp/uploads/' . basename($request->input('solution_image'))))->toMediaCollection('solution_image');
+        //     }
+        // } elseif ($project->solution_image) {
+        //     $project->solution_image->delete();
+        // }
 
         if ($request->preview) {
             echo json_encode($project->slug);

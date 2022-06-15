@@ -149,7 +149,8 @@ class MediaController extends Controller
         } else {
             $type = 'image';
         }
-        $attachments = DB::table('attachments')->whereIn('at_mimes', $this->mimes[$type]);
+        // $attachments = DB::table('attachments')->whereIn('at_mimes', $this->mimes[$type]);
+        $attachments = DB::table('attachments');
         if($request->get('s')){
             $attachments->where('at_title', 'like', '%'.$request->get('s').'%');
         }
@@ -161,7 +162,8 @@ class MediaController extends Controller
         $attach_date = DB::table('attachments')
         ->select(DB::raw('count(at_id) as `data`'), DB::raw("DATE_FORMAT(at_modified, '%Y-%m') date_val"), DB::raw("DATE_FORMAT(at_modified, '%M %Y') date_txt"), DB::raw('YEAR(at_modified) year, MONTH(at_modified) month'))
         ->groupby('year','month')
-        ->whereIn('at_mimes', $this->mimes[$type])->orderBy('at_modified', 'desc')->get();
+        // ->whereIn('at_mimes', $this->mimes[$type])->orderBy('at_modified', 'desc')->get();
+        ->orderBy('at_modified', 'desc')->get();
         $data['attachments'] = $attachments;
         $data['attach_date'] = $attach_date;
         $data['type'] = $type;

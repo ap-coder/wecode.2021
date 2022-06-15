@@ -157,8 +157,8 @@
                         </th>
                         <td>
                             @if($videoContent->placeholder)
-                                <a href="{{ $videoContent->placeholder->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $videoContent->placeholder->getUrl('thumb') }}">
+                                <a href="{{ @get_attachment_url(@$videoContent->placeholder,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url(@$videoContent->placeholder) }}">
                                 </a>
                             @endif
                         </td>

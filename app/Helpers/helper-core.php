@@ -80,7 +80,7 @@ if(!function_exists('get_media_mimes_thumbnail')){
             $src = get_attachment_data_url($attachment, $size);
         }
         else {
-            if(file_exists(public_path("public/libs/filetypes/{$type}.svg"))){
+            if(file_exists(public_path("libs/filetypes/{$type}.svg"))){
                 $src = asset("libs/filetypes/{$type}.svg");
             } else {
                 $src = asset("libs/filetypes/search.svg");
@@ -117,7 +117,7 @@ if(!function_exists('get_media_mimes_thumbnail')){
             $src = get_attachment_data_url($attachment, $size);
         }
         else {
-            if(file_exists(public_path("public/libs/filetypes/{$type}.svg"))){
+            if(file_exists(public_path("libs/filetypes/{$type}.svg"))){
                 $src = asset("libs/filetypes/{$type}.svg");
             } else {
                 $src = asset("libs/filetypes/search.svg");
@@ -225,19 +225,33 @@ if(!function_exists('get_username')){
  */
 if(!function_exists('get_attachment_url')){
     function get_attachment_url($id, $size = 'thumbnail'){
-        $attachment_file = DB::table('attachments')->where('at_id', $id)->value('at_files');
-        $file = maybe_unserialize($attachment_file);
-        if(isset($file[$size]) and $file)
-        {
-            return url($file[$size]);
+        // $attachment_file = DB::table('attachments')->where('at_id', $id)->value('at_files');
+        $attachment_file = DB::table('attachments')->where('at_id', $id)->first();
+        
+        if($attachment_file->at_files){
+            $src = get_attachment_data_url($attachment_file->at_files, $size);
         }
-        elseif(isset($file['file']) and $file)
-        {
-            return url($file['file']);
+        else {
+            if(file_exists(public_path("libs/filetypes/{$attachment_file->at_mimes}.svg"))){
+                $src = asset("libs/filetypes/{$attachment_file->at_mimes}.svg");
+            } else {
+                $src = asset("libs/filetypes/search.svg");
+            }
         }
-        else
-        {
-            return false;
-        }
+        return $src;
+        // $file = maybe_unserialize($attachment_file);
+        // if(isset($file[$size]) and $file)
+        // {
+        //     return url($file[$size]);
+        // }
+        // elseif(isset($file['file']) and $file)
+        // {
+        //     return url($file['file']);
+        // }
+        // else
+        // {
+        //     return false;
+        // }
+
     }
 }

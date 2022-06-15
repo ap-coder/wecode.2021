@@ -117,8 +117,8 @@
                         </th>
                         <td>
                             @if($project->header_image)
-                                <a href="{{ $project->header_image->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $project->header_image->getUrl('thumb') }}">
+                                <a href="{{ get_attachment_url($project->header_image,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ get_attachment_url($project->header_image) }}">
                                 </a>
                             @endif
                         </td>
@@ -129,8 +129,8 @@
                         </th>
                         <td>
                             @if($project->featured_image)
-                                <a href="{{ $project->featured_image->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $project->featured_image->getUrl('thumb') }}">
+                                <a href="{{ get_attachment_url($project->featured_image,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ get_attachment_url($project->featured_image) }}">
                                 </a>
                             @endif
                         </td>
@@ -141,8 +141,8 @@
                         </th>
                         <td>
                             @foreach($project->additional_images as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
+                                <a href="{{ get_attachment_url($media,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ get_attachment_url($media) }}">
                                 </a>
                             @endforeach
                         </td>
@@ -153,8 +153,8 @@
                         </th>
                         <td>
                             @if($project->challenge_image)
-                                <a href="{{ $project->challenge_image->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $project->challenge_image->getUrl('thumb') }}">
+                                <a href="{{ get_attachment_url($project->challenge_image,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ get_attachment_url($project->challenge_image) }}">
                                 </a>
                             @endif
                         </td>
@@ -165,8 +165,8 @@
                         </th>
                         <td>
                             @if($project->solution_image)
-                                <a href="{{ $project->solution_image->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $project->solution_image->getUrl('thumb') }}">
+                                <a href="{{ get_attachment_url($project->solution_image,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ get_attachment_url($project->solution_image) }}">
                                 </a>
                             @endif
                         </td>

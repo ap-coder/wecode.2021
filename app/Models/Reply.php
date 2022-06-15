@@ -25,7 +25,7 @@ class Reply extends Model implements HasMedia
     ];
 
     protected $appends = [
-        'attachements',
+        'attachments',
         'main_photo',
         'additional_photos',
     ];
@@ -42,6 +42,11 @@ class Reply extends Model implements HasMedia
         'deleted_at',
     ];
 
+    public function attachment()
+    {
+      return $this->morphMany(AttachmentData::class, 'model');
+    }
+    
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
@@ -58,33 +63,36 @@ class Reply extends Model implements HasMedia
         return $this->belongsTo(Thread::class, 'thread_id');
     }
 
-    public function getAttachementsAttribute()
+    public function getAttachmentsAttribute()
     {
-        return $this->getMedia('attachements')->last();
+        return $this->morphMany(AttachmentData::class, 'model')->where('collection_name','attachments')->pluck('attachment_id')->toArray();
+        // return $this->getMedia('attachments')->last();
     }
-
+    
     public function getMainPhotoAttribute()
     {
-        $file = $this->getMedia('main_photo')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','main_photo')->value('attachment_id');
+        // $file = $this->getMedia('main_photo')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     public function getAdditionalPhotosAttribute()
     {
-        $files = $this->getMedia('additional_photos');
-        $files->each(function ($item) {
-            $item->url = $item->getUrl();
-            $item->thumbnail = $item->getUrl('thumb');
-            $item->preview = $item->getUrl('preview');
-        });
+        return $this->morphMany(AttachmentData::class, 'model')->where('collection_name','additional_photos')->pluck('attachment_id')->toArray();
+        // $files = $this->getMedia('additional_photos');
+        // $files->each(function ($item) {
+        //     $item->url = $item->getUrl();
+        //     $item->thumbnail = $item->getUrl('thumb');
+        //     $item->preview = $item->getUrl('preview');
+        // });
 
-        return $files;
+        // return $files;
     }
 
     protected function serializeDate(DateTimeInterface $date)

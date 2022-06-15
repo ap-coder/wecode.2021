@@ -130,6 +130,11 @@ class Page extends Model implements HasMedia
         return $query->where('published', 1);
     }
 
+    public function attachment()
+    {
+      return $this->morphMany(AttachmentData::class, 'model');
+    }
+    
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
@@ -139,36 +144,39 @@ class Page extends Model implements HasMedia
 
     public function getFeaturedImageAttribute()
     {
-        $file = $this->getMedia('featured_image')->last();
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','featured_image')->value('attachment_id');
+        // $file = $this->getMedia('featured_image')->last();
 
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-            $file->masthead   = $file->getUrl('masthead');
-        }
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        //     $file->masthead   = $file->getUrl('masthead');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     public function getPhotoAttribute()
     {
-        $file = $this->getMedia('photo')->last();
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','photo')->value('attachment_id');
+        // $file = $this->getMedia('photo')->last();
 
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-            $file->photo   = $file->getUrl('photo');
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        //     $file->photo   = $file->getUrl('photo');
 
-        }
+        // }
 
-        return $file;
+        // return $file;
     }
 
     public function getAttachmentsAttribute()
     {
-        return $this->getMedia('attachments');
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','attachments')->value('attachment_id');
+        // return $this->getMedia('attachments');
     }
 
 }

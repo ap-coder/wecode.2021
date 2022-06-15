@@ -80,12 +80,21 @@ class StaffController extends Controller
         $staff = Staff::create($request->all());
 
         if ($request->input('picture', false)) {
-            $staff->addMedia(storage_path('tmp/uploads/' . basename($request->input('picture'))))->toMediaCollection('picture');
+
+            $staff->attachment()->create([
+                'collection_name' => 'picture',
+                'attachment_id' => $request->picture,
+            ]);
+            
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $staff->id]);
-        }
+        // if ($request->input('picture', false)) {
+        //     $staff->addMedia(storage_path('tmp/uploads/' . basename($request->input('picture'))))->toMediaCollection('picture');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $staff->id]);
+        // }
 
         return redirect()->route('admin.staff.index');
     }
@@ -106,15 +115,29 @@ class StaffController extends Controller
         $staff->update($request->all());
 
         if ($request->input('picture', false)) {
-            if (!$staff->picture || $request->input('picture') !== $staff->picture->file_name) {
-                if ($staff->picture) {
-                    $staff->picture->delete();
-                }
-                $staff->addMedia(storage_path('tmp/uploads/' . basename($request->input('picture'))))->toMediaCollection('picture');
-            }
-        } elseif ($staff->picture) {
-            $staff->picture->delete();
+
+            $staff->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'picture'
+                ],
+                [
+                'collection_name' => 'picture',
+                'attachment_id' => $request->picture,
+                ]
+            );
+            
         }
+
+        // if ($request->input('picture', false)) {
+        //     if (!$staff->picture || $request->input('picture') !== $staff->picture->file_name) {
+        //         if ($staff->picture) {
+        //             $staff->picture->delete();
+        //         }
+        //         $staff->addMedia(storage_path('tmp/uploads/' . basename($request->input('picture'))))->toMediaCollection('picture');
+        //     }
+        // } elseif ($staff->picture) {
+        //     $staff->picture->delete();
+        // }
 
         return redirect()->route('admin.staff.index');
     }

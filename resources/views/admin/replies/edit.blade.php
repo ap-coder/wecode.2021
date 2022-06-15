@@ -76,7 +76,109 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.reply.fields.content_area_helper') }}</span>
             </div>
-            <div class="form-group">
+            <label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.reply.fields.main_photo') }}</label>
+            <div class="featuredimage">
+                <input class="form-control" data-toggle="fileupload" data-size="thumbnail" data-button="{{ trans('cruds.reply.fields.main_photo') }}" data-src="false" data-srcid="{{ @get_attachment_url(@$reply->main_photo) }}" data-field="main_photo" type="hidden" name="main_photo" value="{{ @$reply->main_photo }}" >
+            </div>
+
+            
+<label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.reply.fields.additional_photos') }}</label>
+
+<div class="tacf-input mt-3">
+    <div class="tacf-repeater">
+        <table class="tacf-table">
+            <tbody class="tacf-ui-sortable">
+                
+                @if (@$reply->additional_photos)
+                    @foreach ($reply->additional_photos as $key => $photo)
+                        <tr class="tacf-row">
+                            <td class="tacf-field tacf-col-item">
+                                <div class="tacf-input tacf-toggle-content fadeIn">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="featuredimage">
+                                                <input class="form-control" data-toggle="fileupload" data-field="additional-photos-{{$key}}" data-src="false" data-size="thumbnail" type="hidden" name="postmeta[additional_photos][{{$key}}]" value="{{ $photo }}" data-button="{{ trans('cruds.reply.fields.additional_photos') }}" data-srcid="{{ get_attachment_url($photo) }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+                
+
+                <tr class="tacf-row tacf-clone">
+                    <td class="tacf-field tacf-col-item">
+                        <div class="tacf-input tacf-toggle-content fadeIn">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="featuredimage">
+                                        <input class="form-control tacf-input-key tacf-input-fileupload" data-field="additional-photos-{key}" data-src="false" data-size="thumbnail" type="hidden" data-name="postmeta[additional_photos][{key}]" data-button="{{ trans('cruds.reply.fields.additional_photos') }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>
+        <div class="tacf-actions mt-3">
+            <button type="button" class="tacf-button button button-primary mb-2" data-event="add-row">Add New</button>
+        </div>
+    </div>
+</div>
+
+<label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.reply.fields.attachments') }}</label>
+
+<div class="tacf-input mt-3">
+    <div class="tacf-repeater">
+        <table class="tacf-table">
+            <tbody class="tacf-ui-sortable">
+                
+                @if (@$reply->attachments)
+                    @foreach ($reply->attachments as $key => $image)
+                        <tr class="tacf-row">
+                            <td class="tacf-field tacf-col-item">
+                                <div class="tacf-input tacf-toggle-content fadeIn">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="featuredimage">
+                                                <input class="form-control" data-toggle="fileupload" data-field="attachment-{{$key}}" data-src="false" data-size="thumbnail" type="hidden" name="postmeta[attachments][{{$key}}]" value="{{ $image }}" data-button="{{ trans('cruds.reply.fields.attachments') }}" data-srcid="{{ get_attachment_url($image) }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+                
+
+                <tr class="tacf-row tacf-clone">
+                    <td class="tacf-field tacf-col-item">
+                        <div class="tacf-input tacf-toggle-content fadeIn">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="featuredimage">
+                                        <input class="form-control tacf-input-key tacf-input-fileupload" data-field="attachment-{key}" data-src="false" data-size="thumbnail" type="hidden" data-name="postmeta[attachments][{key}]" data-button="{{ trans('cruds.reply.fields.attachments') }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>
+        <div class="tacf-actions mt-3">
+            <button type="button" class="tacf-button button button-primary mb-2" data-event="add-row">Add New</button>
+        </div>
+    </div>
+</div>
+
+            {{-- <div class="form-group">
                 <label for="attachements">{{ trans('cruds.reply.fields.attachements') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('attachements') ? 'is-invalid' : '' }}" id="attachements-dropzone">
                 </div>
@@ -102,7 +204,7 @@
                     <span class="text-danger">{{ $errors->first('additional_photos') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.reply.fields.additional_photos_helper') }}</span>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

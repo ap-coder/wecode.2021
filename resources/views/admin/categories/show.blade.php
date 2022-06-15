@@ -61,8 +61,8 @@
                         </th>
                         <td>
                             @if($category->photo)
-                                <a href="{{ $category->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $category->photo->getUrl('thumb') }}">
+                                <a href="{{ @get_attachment_url(@$category->photo,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url(@$category->photo) }}">
                                 </a>
                             @endif
                         </td>

@@ -11,6 +11,7 @@
     @include('site.layouts.partials.header')
 
     <!--================================= header -->
+    @yield('masthead')
     @include('site.layouts.partials.top_sections')
     @yield('above-content')
         @yield('content')

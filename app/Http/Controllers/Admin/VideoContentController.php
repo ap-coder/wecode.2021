@@ -85,13 +85,23 @@ class VideoContentController extends Controller
     {
         $videoContent = VideoContent::create($request->all());
         $videoContent->pages()->sync($request->input('pages', []));
+
         if ($request->input('placeholder', false)) {
-            $videoContent->addMedia(storage_path('tmp/uploads/' . basename($request->input('placeholder'))))->toMediaCollection('placeholder');
+
+            $videoContent->attachment()->create([
+                'collection_name' => 'placeholder',
+                'attachment_id' => $request->placeholder,
+            ]);
+            
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $videoContent->id]);
-        }
+        // if ($request->input('placeholder', false)) {
+        //     $videoContent->addMedia(storage_path('tmp/uploads/' . basename($request->input('placeholder'))))->toMediaCollection('placeholder');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $videoContent->id]);
+        // }
 
         return redirect()->route('admin.video-contents.index');
     }
@@ -113,16 +123,31 @@ class VideoContentController extends Controller
     {
         $videoContent->update($request->all());
         $videoContent->pages()->sync($request->input('pages', []));
+
         if ($request->input('placeholder', false)) {
-            if (!$videoContent->placeholder || $request->input('placeholder') !== $videoContent->placeholder->file_name) {
-                if ($videoContent->placeholder) {
-                    $videoContent->placeholder->delete();
-                }
-                $videoContent->addMedia(storage_path('tmp/uploads/' . basename($request->input('placeholder'))))->toMediaCollection('placeholder');
-            }
-        } elseif ($videoContent->placeholder) {
-            $videoContent->placeholder->delete();
+
+            $videoContent->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'placeholder'
+                ],
+                [
+                'collection_name' => 'placeholder',
+                'attachment_id' => $request->placeholder,
+                ]
+            );
+            
         }
+
+        // if ($request->input('placeholder', false)) {
+        //     if (!$videoContent->placeholder || $request->input('placeholder') !== $videoContent->placeholder->file_name) {
+        //         if ($videoContent->placeholder) {
+        //             $videoContent->placeholder->delete();
+        //         }
+        //         $videoContent->addMedia(storage_path('tmp/uploads/' . basename($request->input('placeholder'))))->toMediaCollection('placeholder');
+        //     }
+        // } elseif ($videoContent->placeholder) {
+        //     $videoContent->placeholder->delete();
+        // }
 
         return redirect()->route('admin.video-contents.index');
     }

@@ -103,8 +103,8 @@
                         </th>
                         <td>
                             @if($user->avatar)
-                                <a href="{{ $user->avatar->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $user->avatar->getUrl('thumb') }}">
+                                <a href="{{ get_attachment_url($user->avatar,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ get_attachment_url($user->avatar) }}">
                                 </a>
                             @endif
                         </td>
@@ -115,8 +115,8 @@
                         </th>
                         <td>
                             @if($user->logo)
-                                <a href="{{ $user->logo->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $user->logo->getUrl('thumb') }}">
+                                <a href="{{ get_attachment_url($user->logo,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ get_attachment_url($user->logo) }}">
                                 </a>
                             @endif
                         </td>
@@ -127,8 +127,8 @@
                         </th>
                         <td>
                             @foreach($user->additional_images as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
+                                <a href="{{ get_attachment_url($media,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ get_attachment_url($media) }}">
                                 </a>
                             @endforeach
                         </td>

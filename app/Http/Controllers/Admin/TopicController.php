@@ -38,12 +38,21 @@ class TopicController extends Controller
         $topic = Topic::create($request->all());
 
         if ($request->input('photo', false)) {
-            $topic->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+
+            $topic->attachment()->create([
+                'collection_name' => 'photo',
+                'attachment_id' => $request->photo,
+            ]);
+            
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $topic->id]);
-        }
+        // if ($request->input('photo', false)) {
+        //     $topic->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        // }
+
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $topic->id]);
+        // }
 
         return redirect()->route('admin.topics.index');
     }
@@ -60,15 +69,30 @@ class TopicController extends Controller
         $topic->update($request->all());
 
         if ($request->input('photo', false)) {
-            if (!$topic->photo || $request->input('photo') !== $topic->photo->file_name) {
-                if ($topic->photo) {
-                    $topic->photo->delete();
-                }
-                $topic->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
-            }
-        } elseif ($topic->photo) {
-            $topic->photo->delete();
+
+            $topic->attachment()->updateOrCreate(
+                [
+                    'collection_name' => 'photo'
+                ],
+                [
+                'collection_name' => 'photo',
+                'attachment_id' => $request->photo,
+                ]
+            );
+            
         }
+
+
+        // if ($request->input('photo', false)) {
+        //     if (!$topic->photo || $request->input('photo') !== $topic->photo->file_name) {
+        //         if ($topic->photo) {
+        //             $topic->photo->delete();
+        //         }
+        //         $topic->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        //     }
+        // } elseif ($topic->photo) {
+        //     $topic->photo->delete();
+        // }
 
         return redirect()->route('admin.topics.index');
     }

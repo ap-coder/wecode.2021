@@ -16,7 +16,7 @@
                 <div class="single-image">
                      
                     @if($project->featured_image)
-                        <img class="img-fluid" src="{{ $project->featured_image->getUrl() }}" alt="{{ $project->name }}">
+                        <img class="img-fluid" src="{{ get_attachment_url($project->featured_image,'full') }}" alt="{{ $project->name }}">
                     @elseif($env == 'local')
                         <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
                     @endif
@@ -58,7 +58,7 @@
                     <div class="col-md-6">
  
                         @if($project->challenge_image)
-                            <img class="img-fluid" src="{{ $project->challenge_image->getUrl('challenge') }}" alt="{{ $project->name }}">
+                            <img class="img-fluid" src="{{ get_attachment_url($project->challenge_image,'full') }}" alt="{{ $project->name }}">
                         @elseif($env == 'local')
                             <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
                         @endif
@@ -74,7 +74,7 @@
                     <div class="col-md-6">
      
                         @if($project->solution_image)
-                            <img class="img-fluid" src="{{ $project->solution_image->getUrl('solution') }}" alt="{{ $project->name }}">
+                            <img class="img-fluid" src="{{ get_attachment_url($project->solution_image,'full') }}" alt="{{ $project->name }}">
                         @elseif($env == 'local')
                             <img class="img-fluid" src="{{ asset('site/images/blog/01.jpg') }}" alt="{{ $project->name }}">
                         @endif

@@ -7,8 +7,9 @@
 
 @elseif(isset($page) && $page->use_featured_image_header == true)               
 
+
 {{-- THIS IS FEATURED IMAGE HEADER PLACEMENT --}}
-<section class="page-header page-header-modern page-header-background page-header-background-md @if($page->show_title || $page->show_tagline || $page->show_featured_content) overlay overlay-color-dark overlay-show overlay-op-5 @endif" style="width: 100%; min-height: 500px; background-image: url({{ $page->featured_image->getUrl('masthead') }});">
+<section class="page-header page-header-modern page-header-background page-header-background-md @if($page->show_title || $page->show_tagline || $page->show_featured_content) overlay overlay-color-dark overlay-show overlay-op-5 @endif" style="width: 100%; min-height: 500px; background-image: url({{ get_attachment_url($page->featured_image,'full') }});">
   <div class="container">
     <div class="row">
       <div class="col-md-10 order-2 order-md-1 align-self-center p-static">

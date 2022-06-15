@@ -73,14 +73,17 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.reply.fields.attachements') }}
+                            {{ trans('cruds.reply.fields.attachments') }}
                         </th>
                         <td>
-                            @if($reply->attachements)
-                                <a href="{{ $reply->attachements->getUrl() }}" target="_blank">
+                            @if($reply->attachments)
+                                @foreach($reply->attachments as $key => $media)
+                                    <a href="{{ @get_attachment_url($media,'full') }}" target="_blank">
                                     {{ trans('global.view_file') }}
-                                </a>
+                                    </a>
+                                @endforeach
                             @endif
+                            
                         </td>
                     </tr>
                     <tr>
@@ -89,8 +92,8 @@
                         </th>
                         <td>
                             @if($reply->main_photo)
-                                <a href="{{ $reply->main_photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $reply->main_photo->getUrl('thumb') }}">
+                                <a href="{{ @get_attachment_url(@$reply->main_photo,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url(@$reply->main_photo) }}">
                                 </a>
                             @endif
                         </td>
@@ -100,11 +103,14 @@
                             {{ trans('cruds.reply.fields.additional_photos') }}
                         </th>
                         <td>
+                            @if ($reply->additional_photos)
                             @foreach($reply->additional_photos as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
-                                </a>
-                            @endforeach
+                            <a href="{{ @get_attachment_url($media,'full') }}" target="_blank" style="display: inline-block">
+                                <img src="{{ @get_attachment_url($media) }}">
+                            </a>
+                        @endforeach
+                            @endif
+                            
                         </td>
                     </tr>
                 </tbody>

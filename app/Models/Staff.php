@@ -55,6 +55,11 @@ class Staff extends Model implements HasMedia
         'deleted_at',
     ];
  
+    public function attachment()
+    {
+      return $this->morphMany(AttachmentData::class, 'model');
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
@@ -73,14 +78,15 @@ class Staff extends Model implements HasMedia
 
     public function getPictureAttribute()
     {
-        $file = $this->getMedia('picture')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
+        return $this->morphOne(AttachmentData::class, 'model')->where('collection_name','picture')->value('attachment_id');
+        // $file = $this->getMedia('picture')->last();
+        // if ($file) {
+        //     $file->url       = $file->getUrl();
+        //     $file->thumbnail = $file->getUrl('thumb');
+        //     $file->preview   = $file->getUrl('preview');
+        // }
 
-        return $file;
+        // return $file;
     }
 
     public function user()

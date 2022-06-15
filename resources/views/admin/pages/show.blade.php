@@ -33,6 +33,18 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.page.fields.featured_image') }}
+                        </th>
+                        <td>
+                            @if($page->featured_image)
+                                <a href="{{ @get_attachment_url(@$page->featured_image,'full') }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ @get_attachment_url(@$page->featured_image) }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.page.fields.sub_title') }}
                         </th>
                         <td>
@@ -81,34 +93,34 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.page.fields.fb_title') }}
+                            {{ trans('cruds.page.fields.facebook_title') }}
                         </th>
                         <td>
-                            {{ $page->fb_title }}
+                            {{ $page->facebook_title }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.page.fields.fb_description') }}
+                            {{ trans('cruds.page.fields.facebook_desc') }}
                         </th>
                         <td>
-                            {{ $page->fb_description }}
+                            {{ $page->facebook_description }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.page.fields.tw_title') }}
+                            {{ trans('cruds.page.fields.twitter_post_title') }}
                         </th>
                         <td>
-                            {{ $page->tw_title }}
+                            {{ $page->twitter_title }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.page.fields.tw_description') }}
+                            {{ trans('cruds.page.fields.twitter_post_description') }}
                         </th>
                         <td>
-                            {{ $page->tw_description }}
+                            {{ $page->twitter_description }}
                         </td>
                     </tr>
                 </tbody>

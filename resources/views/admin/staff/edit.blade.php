@@ -51,7 +51,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.staff.fields.bio_helper') }}</span>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="picture">{{ trans('cruds.staff.fields.picture') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('picture') ? 'is-invalid' : '' }}" id="picture-dropzone">
                 </div>
@@ -59,6 +59,10 @@
                     <span class="text-danger">{{ $errors->first('picture') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.staff.fields.picture_helper') }}</span>
+            </div> --}}
+            <label class="w-100 border-bottom mb-3 pb-2">{{ trans('cruds.staff.fields.picture') }}</label>
+            <div class="featuredimage">
+                <input class="form-control" data-toggle="fileupload" data-size="thumbnail" data-button="{{ trans('cruds.staff.fields.picture') }}" data-src="false" data-srcid="{{ @get_attachment_url(@$staff->picture) }}" data-field="picture" type="hidden" name="picture" value="{{ @$staff->picture }}" >
             </div>
             <div class="form-group">
                 <div class="form-check {{ $errors->has('published') ? 'is-invalid' : '' }}">
